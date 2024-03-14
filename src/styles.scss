@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+
+body {
+    margin:0;font-family: 'Poppins' ;
+    overflow-x: hidden;
+}
+.mat-typography {
+    font-family: 'Poppins' !important; /* or any other font settings you prefer */
+}
+
+.mdc-form-field {
+    font-family: 'Poppins' !important;
+}
+
+.mat-tab-label {
+    color: black !important; /* Change to your desired font color */
+  }
+  
+  /* Set the color for the selected tab */
+  .mat-tab-label.mat-tab-label-active {
+    color: #438ce7 !important; /* Change to your desired color for the selected tab */
+  }
+
+  .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #438ce7 !important;
+  }
+  .mat-mdc-tab .mdc-tab__text-label{
+    color: black !important;;
+  }
+  .mat-mdc-tab-group{
+    --mdc-tab-indicator-active-indicator-color: #438ce7;
+  }
+  .mdc-checkbox{
+    padding-right: 3px !important;
+  }
+  .mat-mdc-tab-labels{
+    width: 50% !important;
+  }
+  .mat-mdc-tab-header{
+    left: 3%;
+    padding-bottom: 4%;
+    width: 97%;
+  }

@@ -1,0 +1,89 @@
+<div class="container" style="position: absolute;top: 55px;">
+    <div class="row att-file-structure p-10">
+        <!-- <mat-icon style="font-size: 30px; color: gray; padding-right: 10px;">arrow_back</mat-icon> -->
+        <img class="help-image p-10" style="width: 20px;" src="assets/icons/Icon awesome-arrow-left.svg">
+        <!-- <mat-icon style="color: rgb(8, 74, 117); font-size: 30px; padding-right: 10px;">description</mat-icon> -->
+        <img class="help-image p-10" style="width: 25px;" src="assets/icons/Group 2097.svg">
+        <h4 class="poppins" style="margin: 0; font-weight: bold;">ADD NEW ATTRIBUTE</h4>
+        <div style="display: flex; justify-content: flex-end; width: 76.5%;">
+            <mat-checkbox [checked]="isChecked" style="padding-left: 0;">Mandatory Fields Only </mat-checkbox>
+        </div>
+
+    </div>
+    <hr style="width: 95%; margin: 0;margin-left: 1%; margin-bottom: 1%;">
+    <div class="container-create">
+        <div class="tree-container" *ngIf="tree_view_enabled" style="width:25%">
+            <app-tree-view></app-tree-view>
+        </div>
+        <div class="content-container p-5" style="width:73%">
+            <div class="row" style="display: flex; width: 100%;">
+                <div class="icon-box">
+                    <!-- <mat-icon>folder_open</mat-icon> -->
+                    <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                        <img class="help-image" style="width: 25px;" src="assets/icons/Group 319.svg">
+                    
+                        <mat-icon style="width: 15px;">chevron_right</mat-icon>
+                    </div>
+                    
+                </div>
+                <div class="ticket-data p-5" style="width: 20%;">
+                    <p style="margin: 0;font-weight: bold;">Ticket 125487</p>
+                    <p>Container Material Code</p>
+                </div>
+                <div class="container" style="display: flex; align-items: center; width: 70%;">
+                    <p style="margin-left: auto;">Clone Attribute </p>
+                </div>
+
+            </div>
+            <!-- <br> -->
+            <div class="row">
+                <div class="mat-tabs-section" style="display: flex; width: 100%; position: relative;">
+                    <mat-tab-group style="width: 100%;">
+                        <mat-tab label="Core Details">
+                          <app-core-details></app-core-details>
+                        </mat-tab>
+                        <mat-tab label="Applicability">
+                          <app-applicability></app-applicability>
+                        </mat-tab>
+                        <mat-tab label="Change History">
+                          <!-- <app-tab3></app-tab3> -->
+                        </mat-tab>
+                    </mat-tab-group>
+                    <hr class="h-line-tabs">
+                    <div class="row row-save-cancel">
+                        <div class="row" style="display: flex; width: 100%; align-items: center;">
+                    
+                            <img class="help-image save-cancel p-3" src="assets/icons/Group 2098.svg">
+                            
+                            <button>
+                                <p  style="margin-bottom: 0;">Save Draft</p>
+                            </button>
+                            
+                            <div class="form-input-gap" style="width: 7%;"></div>
+                           
+                            <img class="help-image save-cancel p-3" src="assets/icons/Icon metro-cancel.svg">
+                            <button>
+                                <p  style="margin-bottom: 0;">Cancel</p>
+                            </button>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+            </div>
+
+            <br>
+
+            
+
+        </div>
+        <!-- <div class="vertical-line"></div> -->
+        <div class="field-rules-container" style="width:27%">
+            <app-field-rules></app-field-rules>
+        </div>
+    </div>
+
+
+</div>

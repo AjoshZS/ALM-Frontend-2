@@ -1,0 +1,135 @@
+// .container{
+//     top: 16%;
+//     position: absolute;
+//     z-index: 10;
+// }
+
+.att-file-structure{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+}
+.container-create{
+    display: flex;
+}
+.poppins{
+    font-family: 'Poppins'
+}
+.vertical-line {
+    border-left: 1px solid black;
+    height: 100px; /* Adjust height as needed */
+}
+.icon-box{
+    // width: 45px;
+    height: 45px;
+    background-color: #dae1e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+}
+.pad-child-cpt{
+    padding-left: 5%;
+}
+.form-label{
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+.form-input{
+    width: 80%;
+    outline: none;
+    // border-left: 2px solid #438ce7;
+}
+.form-single-row{
+    padding: 10px 5px 5px 30px;
+}
+#name_EN{
+    padding-left: 10px;
+    width: 93%;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    background: white;
+    border-left-width: 2px solid #438ce7;
+    outline: none;
+}
+#description{
+    padding-left: 10px;
+    width: 44%;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    outline: none;
+}
+.form-input-gap{
+    width: 3%;
+}
+// .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+//     border-color:
+//   }
+
+.mat-mdc-radio-button.mat-accent{
+    --mdc-radio-unselected-icon-color:  #438ce7 !important;
+    --mdc-radio-selected-icon-color: #438ce7 !important;
+    --mdc-radio-unselected-hover-icon-color:#438ce7 !important;
+    --mdc-radio-selected-focus-icon-color:#438ce7 !important;
+    --mdc-radio-selected-hover-icon-color:#438ce7 !important;
+    --mat-radio-checked-ripple-color: none;/* Change this to your desired border color */
+  }
+
+  .search-icon{
+    position: absolute;
+    right: 6%;
+    top: 10%;
+    color: #438ce7;
+    
+  }
+
+  .search-icon-select{
+    position: absolute;
+    top: 50%;
+    right: 2px;
+    transform: translateY(-50%);
+    width: 22px;
+  }
+  .save-cancel{
+    width: 20px;
+    height: 14px;
+  }
+  .mat-tabs-section{
+    display: flex;
+    width: 76%;
+    position: relative;
+    left: 3%;
+  }
+//   .mat-mdc-focus-indicator {
+//     font-family: 'Poppins' !important;
+    
+//   }
+  .mat-tab-label {
+    color:black !important;
+    // font-family: 'Poppins' !important;
+  }
+  .mat-tab-label.mat-tab-label-active {
+    color: #438ce7 !important;
+  }
+
+  .mat-mdc-tab-labels{
+    width: 50% !important;
+  }
+
+  .row-save-cancel{
+    display: flex; 
+    width: 22%; 
+    position: absolute;
+    right: 2.5%;
+    top: 2%;
+  }
+  .save-cancel{
+    width: 20px;
+    height: 14px;
+  }
+  
