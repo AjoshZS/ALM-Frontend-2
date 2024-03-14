@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { TreeViewComponent } from '../../../../../components/tree-view/tree-view.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GeneralService } from '../../../services/general.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,11 +11,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './attribute-create.component.scss'
 })
 export class AttributeCreateComponent {
+
+  formData: any;
+  formDataSubscription!: Subscription;
+
   tree_view_enabled : boolean = false
   isChecked : boolean = false
   createForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private generalService: GeneralService) {
+      
+     }
 
   ngOnInit() {
     this.createForm = this.formBuilder.group({
@@ -36,6 +45,16 @@ export class AttributeCreateComponent {
       dependent: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
     });
+  }
+
+  saveForm(){
+    console.log("saveForm clicked")
+    this.generalService.setFormData("triggered");
+  }
+
+  removeForm(){
+    this.generalService.setFormData("clear");
+    console.log("removeForm clicked")
   }
 
 }

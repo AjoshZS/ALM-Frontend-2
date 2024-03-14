@@ -6,7 +6,7 @@
             </div>
             <div class="input form-input">
                 <input type="text"
-                    style="border-radius:4px;width: 93%;height: 35px; border: 1px solid #438ce7; border-left-width: 3px;outline: none;padding-left: 10px; "
+                    style="font-family: 'Poppins';border-radius:4px;width: 93%;height: 35px; border: 1px solid #438ce7; border-left-width: 3px;outline: none;padding-left: 10px; "
                     id="business_name" formControlName="business_name">
             </div>
         </div>
@@ -36,9 +36,9 @@
                 <label for="description">Description (EN)</label>
             </div>
             <div class="row input form-input" style="display: flex;">
-                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="description" formControlName="description1">
-                <div class="form-input-gap"></div>
-                <input type="text" id="description" formControlName="description2">
+                <textarea style="border-left-width: 2px;border-left-color: #438ce7;" id="description" formControlName="description1"></textarea>
+                <div class="form-input-gap" style="width: 2%;"></div>
+                <textarea id="description" formControlName="description2"></textarea>
             </div>
         </div>
 
@@ -57,9 +57,8 @@
             </div>
             <select formControlName="repeating_Attribute" id="name_EN" style="border-left-width: 2px;border-left-color: #438ce7;width: 15%; height: 30px;">
                 <option value="" selected disabled hidden>No</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="option1">No</option>
+                <option value="option2">Yes</option>
             </select>
 
             <div class="form-input-gap" style="width: 2%;"></div>
@@ -92,32 +91,36 @@
             <div class="label form-label">
                 <label for="min_value">Min Value</label>
             </div>
-            <select formControlName="min_value" id="name_EN" style="width: 15%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <!-- <select formControlName="min_value" id="name_EN" style="width: 15%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
-            </select>
+            </select> -->
+            <input type="number" formControlName="min_value" id="name_EN" style="width: 15%; height: 25px; border-left-width: 2px;border-left-color: #438ce7">
 
             <div class="form-input-gap" style="width: 2%;"></div>
 
-            <div class="label form-label" style="width: 13%;">
+            <div class="label form-label" style="width: 14%;">
                 <label for="max_value">Max Value</label>
             </div>
-            <select formControlName="max_value" id="name_EN" style="width: 15%; height: 30px;">
+            <!-- <select formControlName="max_value" id="name_EN" style="width: 15%; height: 30px;">
                 <option value="" selected disabled hidden>56</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
-            </select>
+            </select> -->
+            <input type="number" formControlName="max_value" id="name_EN" style="width: 15%; height: 25px;">
 
             <div class="form-input-gap" style="width: 2%;"></div>
 
-            <div class="label form-label" style="width: 10%;">
+            <div class="label form-label" style="width: 9%;">
                 <label for="data_type">Data Type</label>
             </div>
-            <div class="input form-input" style="width:19%">
-                <input type="text" id="name_EN" style="width: 92%;" formControlName="data_type">
-            </div>
+            <select formControlName="data_type" id="name_EN" style="width: 15%; height: 30px;">
+                <option value="" selected disabled hidden></option>
+                <option value="option1">number</option>
+                <option value="option2">string</option>
+            </select>
 
         </div>
 
@@ -125,7 +128,7 @@
             <div class="label form-label">
                 <label for="link_module">Link Module</label>
             </div>
-            <select formControlName="link_module" id="name_EN" style="width: 76%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <select formControlName="link_module" id="name_EN" style="width: 77%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>Core</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
@@ -141,7 +144,7 @@
             <div class="label form-label">
                 <label for="link_sub_module">Link Sub Module </label>
             </div>
-            <select formControlName="link_sub_module" id="name_EN" style="width: 76%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <select formControlName="link_sub_module" id="name_EN" style="width: 77%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>Select/Search sub module name</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
@@ -179,7 +182,7 @@
             <div class="label form-label">
                 <label for="dependent">Dependent</label>
             </div>
-            <select formControlName="dependent" id="name_EN" style="width: 76%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <select formControlName="dependent" id="name_EN" style="width: 77%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>YES(D)</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>

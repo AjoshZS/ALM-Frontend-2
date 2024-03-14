@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GeneralService } from '../../../services/general.service';
+// import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-core-details',
@@ -10,7 +12,7 @@ export class CoreDetailsComponent {
 
   createForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private generalService: GeneralService) { }
 
   ngOnInit() {
     this.createForm = this.formBuilder.group({
@@ -25,7 +27,7 @@ export class CoreDetailsComponent {
       code_value: ['',Validators.required],
       min_value: ['',Validators.required],
       max_value: ['',Validators.required],
-      data_type: ['string',Validators.required],
+      data_type: ['',Validators.required],
       link_module: ['',Validators.required],
       link_sub_module: ['',Validators.required],
       repeatingRadioOption: ['',Validators.required],
@@ -33,6 +35,24 @@ export class CoreDetailsComponent {
       dependent: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
     });
+
+    this.generalService.getFormData().subscribe(formData => {
+      if(formData === "SAVE"){
+        console.log(this.createForm.value);
+      }else{
+        this.createForm.reset();
+        console.log("form cleared",this.createForm.value);
+      }
+      
+      // Add your save logic here
+    });
+
+    
   }
+
+  // onSubmit() {
+  //   console.log("form data",this.createForm.value)
+  //   this.generalService.setFormData(this.createForm.value);
+  // }
 
 }
