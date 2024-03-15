@@ -1,31 +1,31 @@
 <div class="container" style="position: absolute;top: 55px;">
-    <div class="row att-file-structure p-10">
-        <!-- <mat-icon style="font-size: 30px; color: gray; padding-right: 10px;">arrow_back</mat-icon> -->
-        <img class="help-image p-10" style="width: 20px;" src="assets/icons/Icon awesome-arrow-left.svg">
-        <!-- <mat-icon style="color: rgb(8, 74, 117); font-size: 30px; padding-right: 10px;">description</mat-icon> -->
-        <img class="help-image p-10" style="width: 25px;" src="assets/icons/Group 2097.svg">
-        <h4 class="poppins" style="margin: 0; font-weight: bold;">ADD NEW ATTRIBUTE</h4>
-        <div style="display: flex; justify-content: flex-end; width: 76.5%;">
+    <div class="row att-file-structure p-10 p-b-0 j-space p-r-0">
+        <div class="d-flex align-center">
+            <!-- <mat-icon style="font-size: 30px; color: gray; padding-right: 10px;">arrow_back</mat-icon> -->
+            <img class="help-image p-10" style="width: 20px;" src="assets/icons/Icon awesome-arrow-left.svg">
+            <!-- <mat-icon style="color: rgb(8, 74, 117); font-size: 30px; padding-right: 10px;">description</mat-icon> -->
+            <img class="help-image p-10" style="width: 25px;" src="assets/icons/Group 2097.svg">
+            <h4 class="poppins" style="margin: 0; font-weight: bold;">ADD NEW ATTRIBUTE</h4>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
             <mat-checkbox [checked]="isChecked" style="padding-left: 0;">Mandatory Fields Only </mat-checkbox>
         </div>
-
     </div>
-    <hr style="width: 95%; margin: 0;margin-left: 1%; margin-bottom: 1%;">
+    <hr style="margin: 0;margin-left: 1%; margin-bottom: 1%;">
     <div class="container-create">
         <div class="tree-container" style="width:25%">
             <app-tree-view></app-tree-view>
         </div>
-        <div class="content-container p-r-20" style="width:50%">
+        <div class="content-container p-r-20" style="width:55%">
             <div class="row" style="display: flex; width: 100%;">
-                <div class="icon-box">
-                    <!-- <mat-icon>folder_open</mat-icon> -->
+                <!-- <div class="icon-box">
                     <div class="row" style="display: flex; justify-content: center; align-items: center;">
                         <img class="help-image" style="width: 20px;" src="assets/icons/Group 319.svg">
                     
                         <mat-icon style="width: 15px;">chevron_right</mat-icon>
                     </div>
                     
-                </div>
+                </div> -->
                 <div class="ticket-data p-5" style="width: 50%;">
                     <p style="margin: 0;font-weight: bold;">Ticket 125487</p>
                     <p>Container Material Code</p>
@@ -50,10 +50,10 @@
                         </mat-tab>
                     </mat-tab-group>
                     <hr class="h-line-tabs">
-                    <div class="row row-save-cancel">
-                        <div class="row" style="display: flex; width: 100%; align-items: center;">
+                    <div class="row row-save-cancel m-r-5">
+                        <div class="row j-end" style="display: flex; width: 100%; align-items: center;">
                     
-                            <div style="display: flex;cursor: pointer;" (click)="saveForm()">
+                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="saveForm()" matRipple [matRippleCentered]="true">
                                 <img class="help-image save-cancel p-3" src="assets/icons/Group 2098.svg">
                             
                            
@@ -62,9 +62,8 @@
                             
                             
                             
-                            <div class="form-input-gap" style="width: 7%;"></div>
 
-                            <div style="display: flex;cursor: pointer;" (click)="removeForm()">
+                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="removeForm()" matRipple [matRippleCentered]="true">
                                 <img class="help-image save-cancel p-3" src="assets/icons/Icon metro-cancel.svg">
                             
                                 <p  style="margin-bottom: 0;">Cancel</p>
@@ -87,7 +86,7 @@
 
         </div>
         <!-- <div class="vertical-line"></div> -->
-        <div class="field-rules-container" style="width:25%">
+        <div class="field-rules-container" style="width:20%">
             <app-field-rules></app-field-rules>
         </div>
     </div>

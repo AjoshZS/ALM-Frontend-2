@@ -1,19 +1,17 @@
-mat-icon{
+mat-icon {
   color: #2874A6;
 }
 
-.mat-arrow{
+.mat-arrow {
   color: black;
-  margin-bottom: 6px;
   cursor: pointer;
 }
 
-
-
 .search-container {
   position: relative;
-  width: 95%; 
+  width: 95%;
 }
+
 .search-input {
   width: 100%;
   padding: 8px 32px 8px 8px;
@@ -24,6 +22,7 @@ mat-icon{
   margin-top: 11px;
   height: 29px;
 }
+
 .search-icon {
   position: absolute;
   right: 3%;
@@ -38,55 +37,54 @@ img {
   overflow: clip;
 }
 
-.draft-icon{
+.draft-icon {
   width: 21px;
   height: 21px;
 }
 
-.item-name{
+.item-name {
   font-size: 13px;
   font-family: 'Poppins';
 }
-.item-name:hover{
+
+.item-name:hover {
   color: #2874A6;
-  
+
 }
-.mat-tree-node { 
+
+.mat-tree-node {
   min-height: 30px;
   padding-left: 0px;
- }
-
-
+}
 
 .vertical {
-border-right: 1px solid gray;
-height: 822px;
-margin-left: 10px;
-position: relative; 
+  border-right: 1px solid gray;
+  height: 822px;
+  margin-left: 10px;
+  position: relative;
 }
 
 .toggle-container {
-position: absolute;
-top: 6%;
-right: -12px;
-transform: translateY(-50%);
-width: 20px;
-height: 20px;
-border-radius: 50%;
-background-color: white;
-border: 1px solid gray;
-display: flex;
-justify-content: center;
-align-items: center;
-
+  position: absolute;
+  top: 6%;
+  right: -12px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .toggle-icon {
-font-size: 19px;
-color: gray;
-cursor: pointer; 
+  font-size: 19px;
+  color: gray;
+  cursor: pointer;
 }
 
-.visible-hidden{
-visibility: hidden !important;
+.visible-hidden {
+  visibility: hidden !important;
 }

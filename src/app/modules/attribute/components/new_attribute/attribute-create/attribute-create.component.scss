@@ -7,7 +7,6 @@
 .att-file-structure{
     display: flex;
     align-items: center;
-    width: 100vw;
 }
 .container-create{
     display: flex;
@@ -82,7 +81,7 @@
 
   .search-icon{
     position: absolute;
-    right: 6%;
+    right: 3%;
     top: 10%;
     color: #438ce7;
   }
@@ -123,5 +122,9 @@
     top: 1.7%;
     z-index: 15;
   }
+
+::ng-deep .mdc-label{
+  margin-top: 5px !important;
+}
 
   
