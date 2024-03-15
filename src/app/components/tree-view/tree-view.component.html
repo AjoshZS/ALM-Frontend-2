@@ -13,16 +13,12 @@
             <div class="main">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y">
-                        <mat-icon class="mat-icon-rtl-mirror mat-arrow visible-hidden" mat-icon-button matTreeNodeToggle
-                            [attr.aria-label]="'Toggle ' + node.name">
-                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                        </mat-icon>
                         <div class="c-pointer item-name d-flex align-center">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span>{{node?.name}}</span>
                         </div>
                     </mat-tree-node>
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding>
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button matTreeNodeToggle
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
