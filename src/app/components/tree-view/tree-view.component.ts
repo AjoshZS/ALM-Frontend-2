@@ -1,51 +1,24 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, ElementRef, Injectable, ViewChild } from '@angular/core';
+import { Component, ElementRef, Injectable, Input, OnChanges, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-
-
-
 interface FoodNode {
   name: string;
   children?: FoodNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Modules',
-    children: [
-      { name: 'Alcohol Information Module' },
-      { name: 'Allergen Information Module' },
-      {name:'Animal Feeding Module'},
-      {name:'Apparel Information Module '},
-      {
-        name: 'Alcohol BeverageContainer',
-        children: [
-          {name:'Container Material Code'},
-          {name:'Process Type Code'},
-          {
-            name: 'Alcohol Container',
-            children: [{ name: 'container Shape Code', }, { name: 'container Type Code' ,}]
-          },
-          
-        ]
-      }
-    ]
-  },
-];
 interface ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
 }
-
-
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrl: './tree-view.component.scss',
 
 })
-export class TreeViewComponent {
+export class TreeViewComponent implements OnInit, OnChanges {
+  @Input() treeData: any;
   expandedNodes: any[] = [];
   private _transformer = (node: FoodNode, level: number) => {
     return {
@@ -70,9 +43,18 @@ export class TreeViewComponent {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor() {
-    this.dataSource.data = TREE_DATA;
+    // this.dataSource.data = TREE_DATA;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
+  ngOnInit(): void{
+  }
+
+  ngOnChanges(changes: SimpleChanges): void{
+    if(changes['treeData']){
+      this.dataSource.data = [this.treeData];
+    }
+  }
 
 }
