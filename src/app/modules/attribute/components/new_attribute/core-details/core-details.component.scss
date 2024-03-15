@@ -132,4 +132,42 @@
     width: 20px;
     height: 14px;
   }
-  
+
+  .i-box-normal{
+    padding-left: 10px;
+    // width: 97%;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    background: white;
+    border-left-width: 2px solid #438ce7;
+    outline: none;
+    width: 96.5%;
+    border-left-width: 2px;
+    border-left-color: #438ce7;
+  }
+
+  .sel-fil-i-box{
+    outline: none;
+    width: 99%;
+    height: 25px;
+    border: 1px solid #ccc;
+  }
+
+  .sel-fil-item{
+    border-bottom: 1px solid #ccc;
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .sel-fil-item:hover {
+    background-color: #99a0a0; /* Change color on hover */
+  }
+  .sel-fil-div{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 99%;
+    overflow-y: auto;
+    max-height: 100px;
+  }

@@ -128,12 +128,21 @@
             <div class="label form-label">
                 <label for="link_module">Link Module</label>
             </div>
-            <select formControlName="link_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <div class="input form-input" style="position: relative;">
+                <input type="text" class="i-box-normal" (keyup)="onKeyUp($event)" formControlName="link_module">
+                <div class="sel-fil-div">
+                    <div class="sel-fil-item" *ngFor="let item of filteredItems">
+                        {{ item }}
+                    </div>
+                </div>
+                
+            </div>
+            <!-- <select formControlName="link_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>Core</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
-            </select>
+            </select> -->
             <!-- <img class="search-icon-select" style="width: 20px;" src="assets/icons/Icon feather-search.svg"> -->
             <!-- <div class="search-icon">
                 <mat-icon style="color: #438ce7;">search</mat-icon>

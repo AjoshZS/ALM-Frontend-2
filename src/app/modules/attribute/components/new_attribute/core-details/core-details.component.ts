@@ -10,6 +10,8 @@ import { GeneralService } from '../../../services/general.service';
 })
 export class CoreDetailsComponent {
 
+  moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
+  filteredItems: string[] = [];
   createForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,private generalService: GeneralService) { }
@@ -51,9 +53,11 @@ export class CoreDetailsComponent {
     
   }
 
-  // onSubmit() {
-  //   console.log("form data",this.createForm.value)
-  //   this.generalService.setFormData(this.createForm.value);
-  // }
+  onKeyUp(event: any) {
+    console.log('Input value:', event.target.value);
+    let searchQuery = event.target.value
+    this.filteredItems = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+    console.log("filteredItems",this.filteredItems)
+  }
 
 }
