@@ -1,98 +1,92 @@
 mat-icon{
-    color: #2874A6;
-    width: 22px;
-    height: 20px;
-  }
+  color: #2874A6;
+}
 
-  .mat-arrow{
-    color: black;
-    margin-bottom: 6px;
-  }
-
+.mat-arrow{
+  color: black;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
 
 
-  .search-container {
-    position: relative;
-    width: 300px; 
-  }
-  .search-input {
-    width: 83%;
-    padding: 8px 32px 8px 8px;
-    border: 0.5px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 15px;
-    margin-left: 45px;
-    margin-top: 11px;
-    height: 29px;
-  }
-  .search-icon {
-    position: absolute;
-    right: 16px;
-    top: 63%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 17px;
+
+.search-container {
+  position: relative;
+  width: 95%; 
+}
+.search-input {
+  width: 100%;
+  padding: 8px 32px 8px 8px;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin-top: 11px;
+  height: 29px;
+}
+.search-icon {
+  position: absolute;
+  right: 3%;
+  top: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 17px;
 }
 
 img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
-  }
-  .main{
-    margin-left: 7%;
-  }
-  .draft{
-    font-size: 13px;
-    margin-left: 5px;
-    margin-top: 16px;
-    margin-bottom: 0px;
-  }
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
 
-  .draft-icon{
-    width: 21px;
-    height: 21px;
-    margin-left: 42px;
-    margin-top: 12px;
-  }
+.draft-icon{
+  width: 21px;
+  height: 21px;
+}
 
-  .item-name{
-    font-size: 13px;
-    font-family: 'Poppins';
-  }
-  .item-name:hover{
-    color: #2874A6;
-    
-  }
-  .mat-tree-node { min-height: 30px }
+.item-name{
+  font-size: 13px;
+  font-family: 'Poppins';
+}
+.item-name:hover{
+  color: #2874A6;
+  
+}
+.mat-tree-node { 
+  min-height: 30px;
+  padding-left: 0px;
+ }
 
 
 
 .vertical {
-  border-right: 1px solid gray;
-  height: 822px;
-  margin-left: 10px;
-  position: relative; 
+border-right: 1px solid gray;
+height: 822px;
+margin-left: 10px;
+position: relative; 
 }
 
 .toggle-container {
-  position: absolute;
-  top: 6%;
-  right: -12px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid gray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+position: absolute;
+top: 6%;
+right: -12px;
+transform: translateY(-50%);
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background-color: white;
+border: 1px solid gray;
+display: flex;
+justify-content: center;
+align-items: center;
 
 }
 
 .toggle-icon {
-  font-size: 19px;
+font-size: 19px;
 color: gray;
-  cursor: pointer; 
+cursor: pointer; 
+}
+
+.visible-hidden{
+visibility: hidden !important;
 }

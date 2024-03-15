@@ -1441,6 +1441,10 @@
   align-items: baseline !important;
 }
 
+.d-flex{
+  display: flex !important;
+}
+
 /* .c-notallowed {
   cursor: not-allowed !important;
   pointer-events: all !important;

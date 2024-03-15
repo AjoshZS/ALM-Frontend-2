@@ -1,34 +1,36 @@
-<div class="container">
-    <div class="row " style="display: flex;">
-        <div>
+<div class="container m-r-20 p-l-20">
+    <div class="row d-flex w-100">
+        <div class="w-100">
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search">
                 <img src="/assets/icons/Icon feather-search.svg" class="search-icon">
 
             </div>
-            <div class="row" style="display: flex;">
+            <div class="row d-flex align-center m-t-15 m-b-10">
                 <span><mat-icon class="draft-icon">assignment</mat-icon></span>
-                <h5 class="draft">Draft</h5>
+                <p class="draft f-w-500 m-l-5 m-b-0">Draft</p>
             </div>
-
-
             <div class="main">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y">
-                        <span class="c-pointer item-name">
-                            <mat-icon>folder_open</mat-icon>
-                            {{node.name}}
-                        </span>
+                        <mat-icon class="mat-icon-rtl-mirror mat-arrow visible-hidden" mat-icon-button matTreeNodeToggle
+                            [attr.aria-label]="'Toggle ' + node.name">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                        <div class="c-pointer item-name d-flex align-center">
+                            <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
+                            <span>{{node?.name}}</span>
+                        </div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button matTreeNodeToggle
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
-                        <span class="c-pointer item-name">
-                            <mat-icon>{{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}</mat-icon>
-                            {{node.name}}
-                        </span>
+                        <div class="c-pointer item-name d-flex align-center">
+                            <mat-icon class="c-pointer m-r-5">{{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}</mat-icon>
+                            <span>{{node?.name}}</span>
+                        </div>
 
                     </mat-tree-node>
                 </mat-tree>
@@ -36,7 +38,7 @@
         </div>
         <div class="vertical">
             <div class="toggle-container">
-                <mat-icon class="toggle-icon">chevron_right</mat-icon>
+                <mat-icon class="toggle-icon d-flex align-center">chevron_right</mat-icon>
             </div>
         </div>
 
