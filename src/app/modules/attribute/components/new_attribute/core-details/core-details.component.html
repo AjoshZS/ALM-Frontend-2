@@ -129,9 +129,9 @@
                 <label for="link_module">Link Module</label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="i-box-normal" (keyup)="onKeyUp($event)" formControlName="link_module">
+                <input type="text" class="i-box-normal" [(ngModel)]="moduleName" (keyup)="onKeyUp($event)" formControlName="link_module">
                 <div class="sel-fil-div">
-                    <div class="sel-fil-item" *ngFor="let item of filteredItems">
+                    <div class="sel-fil-item" (click)="selectModule(item)" *ngFor="let item of filteredItems">
                         {{ item }}
                     </div>
                 </div>

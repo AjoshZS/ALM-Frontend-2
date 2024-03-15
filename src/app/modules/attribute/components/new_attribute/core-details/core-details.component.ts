@@ -13,6 +13,7 @@ export class CoreDetailsComponent {
   moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
   filteredItems: string[] = [];
   createForm!: FormGroup;
+  moduleName: string="";
 
   constructor(private formBuilder: FormBuilder,private generalService: GeneralService) { }
 
@@ -58,6 +59,14 @@ export class CoreDetailsComponent {
     let searchQuery = event.target.value
     this.filteredItems = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
     console.log("filteredItems",this.filteredItems)
+    if(searchQuery === ""){
+      this.filteredItems = []
+    }
+  }
+
+  selectModule(selected : any){
+    this.moduleName = selected
+    this.filteredItems = []
   }
 
 }
