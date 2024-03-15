@@ -3,6 +3,7 @@ import { TreeViewComponent } from '../../../../../components/tree-view/tree-view
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
 import { Subscription } from 'rxjs';
+import { CommonService } from '../../../../../services/common.service';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class AttributeCreateComponent {
   createForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private generalService: GeneralService) {
+    private generalService: GeneralService, private commonService: CommonService) {
       
      }
 
@@ -65,6 +66,7 @@ export class AttributeCreateComponent {
       dependent: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
     });
+    this.commonService.setTreeData.next(this.treeData);
   }
 
   saveForm(){
@@ -74,6 +76,7 @@ export class AttributeCreateComponent {
     let bkup = {... this.treeData};
     this.treeData = {};
     this.treeData = bkup;
+    this.commonService.treeUpdate.next(this.treeData);
   }
 
   removeForm(){

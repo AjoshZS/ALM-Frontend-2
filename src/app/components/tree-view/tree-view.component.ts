@@ -1,6 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, ElementRef, Injectable, Input, OnChanges, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { CommonService } from '../../services/common.service';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
@@ -17,7 +18,7 @@ interface ExampleFlatNode {
   styleUrl: './tree-view.component.scss',
 
 })
-export class TreeViewComponent implements OnInit, OnChanges {
+export class TreeViewComponent implements OnInit {
   @Input() treeData: any;
   expandedNodes: any[] = [];
   private _transformer = (node: FoodNode, level: number) => {
@@ -28,7 +29,7 @@ export class TreeViewComponent implements OnInit, OnChanges {
     };
   };
 
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
+  treeControl: any = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
     node => node.expandable
   );
@@ -42,24 +43,38 @@ export class TreeViewComponent implements OnInit, OnChanges {
 
   dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
-    // this.dataSource.data = TREE_DATA;
+  constructor(private commonService: CommonService) {
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    this.commonService.treeUpdate.subscribe(data =>{
+      if(Object?.keys(data)?.length > 0) this.updateTreeData(data);
+    });
+    this.commonService.setTreeData.subscribe(data =>{
+      if(Object?.keys(data)?.length > 0) this.dataSource.data = [data];
+    });
   }
 
-  ngOnChanges(changes: SimpleChanges): void{
-    if(changes['treeData']){
-      this.dataSource.data = [this.treeData];
-      // setTimeout(()=>{
-      //   console.log(this.treeControl)
-      //   console.log(this.dataSource)
-      //   this.dataSource.data[0].children.push({name:'Animal Feeding Module2'});
-      // }, 2000)
-    }
+  updateTreeData(data: any): void {
+    this.expandedNodes = [];
+    this.treeControl.dataNodes.forEach((node: any) => {
+      if (node.expandable && this.treeControl.isExpanded(node)) {
+        this.expandedNodes.push(node);
+      }
+    });
+    // console.log(this.expandedNodes)
+    // console.log(this.treeControl.dataNodes)
+    this.dataSource.data = [];
+    this.dataSource.data = [data];
+    
+    // setTimeout(()=>{
+    // this.expandedNodes.forEach(node => {
+    //     this.treeControl.expand(node);
+    //   });
+    // }, 1000)
+    this.treeControl.expandAll();
   }
 
 }
