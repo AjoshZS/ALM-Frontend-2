@@ -12,7 +12,7 @@
             </div>
             <div class="main">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y" matTreeNodePaddingIndent="20">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y">
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow visible-hidden" mat-icon-button matTreeNodeToggle
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
