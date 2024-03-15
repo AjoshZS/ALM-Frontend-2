@@ -13,9 +13,11 @@
             <div class="main">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y">
-                        <div class="c-pointer item-name d-flex align-center">
+                        <div class="c-pointer item-name d-flex align-center w-100">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
-                            <span  [class.overlap]="treeControl.getLevel(node) > 1" class="tooltip-span" title="{{node?.name}}">{{node?.name}}</span>
+                            <span  [ngClass]="{
+                                'overlap': treeControl.getLevel(node) > 1
+                              }" class="tooltip-span" title="{{node?.name}}">{{node?.name}}</span>
                         </div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding>

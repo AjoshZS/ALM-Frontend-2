@@ -40,7 +40,7 @@ export class TreeViewComponent implements OnInit, OnChanges {
     node => node.children
   );
 
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor() {
     // this.dataSource.data = TREE_DATA;
@@ -54,6 +54,11 @@ export class TreeViewComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void{
     if(changes['treeData']){
       this.dataSource.data = [this.treeData];
+      // setTimeout(()=>{
+      //   console.log(this.treeControl)
+      //   console.log(this.dataSource)
+      //   this.dataSource.data[0].children.push({name:'Animal Feeding Module2'});
+      // }, 2000)
     }
   }
 
