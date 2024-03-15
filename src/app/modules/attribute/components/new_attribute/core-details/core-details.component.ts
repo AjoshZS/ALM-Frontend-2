@@ -37,6 +37,7 @@ export class CoreDetailsComponent {
     });
 
     this.generalService.getFormData().subscribe(formData => {
+      console.log("form data recieved",formData)
       if(formData === "SAVE"){
         console.log(this.createForm.value);
       }else{

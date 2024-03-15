@@ -49,7 +49,7 @@ export class AttributeCreateComponent {
 
   saveForm(){
     console.log("saveForm clicked")
-    this.generalService.setFormData("triggered");
+    this.generalService.setFormData("SAVE");
   }
 
   removeForm(){
