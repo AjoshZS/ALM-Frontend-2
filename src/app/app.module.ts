@@ -12,6 +12,8 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { Interceptor } from './interceptor/interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MatIconModule,
     MatCheckboxModule,
     MatTabsModule,
@@ -35,7 +38,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

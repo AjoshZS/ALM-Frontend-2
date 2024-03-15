@@ -1,33 +1,35 @@
 <div class="container">
+    <div *ngIf="showLoader" class="loader-parent">
+        <img src="assets/gif/loader.gif">
+    </div>
     <form [formGroup]="createForm" class="form">
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="business_name">Business Requirement </label>
+                <label for="attr_bus_requirement">Business Requirement </label>
             </div>
             <div class="input form-input">
                 <input type="text"
                     style="font-family: 'Poppins';border-radius:4px;width: 97%;height: 35px; border: 1px solid #438ce7; border-left-width: 3px;outline: none;padding-left: 10px; "
-                    id="business_name" formControlName="business_name">
+                    id="attr_bus_requirement" formControlName="attr_bus_requirement">
             </div>
         </div>
-
         <br>
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="name_EN">Name (EN)</label>
+                <label for="attribute_title_en">Name (EN)</label>
             </div>
             <div class="input form-input">
-                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="name_EN" formControlName="name_EN">
+                <input class="input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attr_bus_requirement" formControlName="attribute_title_en">
             </div>
         </div>
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="name_FR">Name (FR)</label>
+                <label for="attribute_title_fr">Name (FR)</label>
             </div>
             <div class="input form-input">
-                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="name_EN" formControlName="name_FR">
+                <input class="input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_title_fr" formControlName="attribute_title_fr">
             </div>
         </div>
 
@@ -36,29 +38,28 @@
                 <label for="description">Description (EN)</label>
             </div>
             <div class="row input form-input" style="display: flex;">
-                <textarea style="border-left-width: 2px;border-left-color: #438ce7;" id="description" formControlName="description1"></textarea>
+                <textarea class="description" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_description_en" formControlName="attribute_description_en"></textarea>
                 <div class="form-input-gap" style="width: 2%;"></div>
-                <textarea id="description" formControlName="description2"></textarea>
+                <textarea class="description" formControlName="attribute_description_en"></textarea>
             </div>
         </div>
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="other_info">Other Info</label>
+                <label for="attribute_other_info">Other Info</label>
             </div>
             <div class="input form-input">
-                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="name_EN" formControlName="other_info">
+                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_other_info" formControlName="attribute_other_info">
             </div>
         </div>
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="other_info">Repeating Attribute</label>
+                <label for="repeating_attribute">Repeating Attribute</label>
             </div>
-            <select formControlName="repeating_Attribute" id="name_EN" style="border-left-width: 2px;border-left-color: #438ce7;width: 17%; height: 30px;">
-                <option value="" selected disabled hidden>No</option>
-                <option value="option1">No</option>
-                <option value="option2">Yes</option>
+            <select formControlName="repeating_attribute" id="repeating_attribute" style="border-left-width: 2px;border-left-color: #438ce7;width: 17%; height: 30px;">
+                <option selected value="false">No</option>
+                <option value="true">Yes</option>
             </select>
 
             <div class="form-input-gap" style="width: 2%;"></div>
@@ -66,7 +67,7 @@
             <div class="label form-label" style="width: 13%;">
                 <label for="code_list_name">Code List Name</label>
             </div>
-            <select formControlName="code_list_name" id="name_EN" style="width: 15%; height: 30px;">
+            <select formControlName="code_list_name" id="code_list_name" style="width: 15%; height: 30px;">
                 <option value="" selected disabled hidden>N/A</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
@@ -78,7 +79,7 @@
             <div class="label form-label" style="width: 10%;">
                 <label for="code_value">Code Value</label>
             </div>
-            <select formControlName="code_value" id="name_EN" style="width: 15%; height: 30px;margin-right: 4px;">
+            <select formControlName="code_value" id="code_value" style="width: 15%; height: 30px;margin-right: 4px;">
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
@@ -91,12 +92,7 @@
             <div class="label form-label">
                 <label for="min_value">Min Value</label>
             </div>
-            <!-- <select formControlName="min_value" id="name_EN" style="width: 15%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select> -->
-            <input type="number" formControlName="min_value" id="name_EN" style="width: 15%; height: 25px; border-left-width: 2px;border-left-color: #438ce7">
+            <input type="number" formControlName="min_value" id="min_value" style="width: 15%; height: 25px; border-left-width: 2px;border-left-color: #438ce7">
 
             <div class="form-input-gap" style="width: 2%;"></div>
 
@@ -109,17 +105,16 @@
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
             </select> -->
-            <input type="number" formControlName="max_value" id="name_EN" style="width: 15%; height: 25px;">
+            <input type="number" formControlName="max_value" id="max_value" style="width: 15%; height: 25px;">
 
             <div class="form-input-gap" style="width: 2%;"></div>
 
             <div class="label form-label" style="width: 9%;">
                 <label for="data_type">Data Type</label>
             </div>
-            <select formControlName="data_type" id="name_EN" style="width: 18%; height: 30px;">
-                <option value="" selected disabled hidden></option>
-                <option value="option1">number</option>
-                <option value="option2">string</option>
+            <select formControlName="data_type" id="data_type" style="width: 18%; height: 30px;">
+                <option value="Number" selected>Number</option>
+                <option value="String">String</option>
             </select>
 
         </div>
@@ -128,7 +123,7 @@
             <div class="label form-label">
                 <label for="link_module">Link Module</label>
             </div>
-            <select formControlName="link_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <select id="link_module" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>Core</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
@@ -144,7 +139,7 @@
             <div class="label form-label">
                 <label for="link_sub_module">Link Sub Module </label>
             </div>
-            <select formControlName="link_sub_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+            <select id="link_sub_module" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
                 <option value="" selected disabled hidden>Select/Search sub module name</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
@@ -154,14 +149,14 @@
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="repeatability">Repeatability</label>
+                <label for="attribute_repeatability">Repeatability</label>
             </div>
 
             <div class="form-input">
-                <mat-radio-group formControlName="repeatingRadioOption" style="width: 100%; display: flex;">
-                    <mat-radio-button value="optionA" style="width: 30%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
+                <mat-radio-group formControlName="attribute_repeatability" style="width: 100%; display: flex;">
+                    <mat-radio-button value="Self" style="width: 30%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
                     <!-- <div class="form-input-gap" style="width: 2%;"></div> -->
-                    <mat-radio-button value="optionB" style="width: 30%;">Group Repeating</mat-radio-button>
+                    <mat-radio-button value="Group" style="width: 30%;">Group Repeating</mat-radio-button>
                 </mat-radio-group>
             </div>
             
@@ -172,7 +167,7 @@
                 <!-- <label for="repeatability"></label> -->
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;width: 96.5%;" id="name_EN" formControlName="search_data">
+                <input type="text" style="border-left-width: 2px;border-left-color: #438ce7;width: 96.5%;" id="search_data" formControlName="search_data">
                 <!-- <mat-icon class="search-icon">search</mat-icon> -->
                 <img class="search-icon" style="width: 18px; height: 17px;" src="assets/icons/Icon feather-search.svg">
             </div>
@@ -180,13 +175,11 @@
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
-                <label for="dependent">Dependent</label>
+                <label for="is_dependent_attribute">Dependent</label>
             </div>
-            <select formControlName="dependent" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
-                <option value="" selected disabled hidden>YES(D)</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+            <select formControlName="is_dependent_attribute" id="is_dependent_attribute" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
+                <option value="true" selected hidden>Yes</option>
+                <option value="false">No</option>
             </select>
         </div>
 
@@ -195,7 +188,7 @@
                 <label for="dependent_attributes ">Dependent Attributes </label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" style="width: 96.5%;border-left-width: 2px;border-left-color: #438ce7" id="name_EN" formControlName="dependent_attributes">
+                <input type="text" style="width: 96.5%;border-left-width: 2px;border-left-color: #438ce7" id="dependent_attributes" formControlName="dependent_attributes">
                 <!-- <mat-icon class="search-icon">search</mat-icon> -->
                 <img class="help-image search-icon" style="width: 18px; height: 17px;" src="assets/icons/Icon feather-search.svg">
             </div>
