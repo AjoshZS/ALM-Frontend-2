@@ -42,7 +42,7 @@
     // border-left: 2px solid #438ce7;
 }
 .form-single-row{
-    padding: 10px 5px 5px 30px;
+    padding: 10px 5px 5px 0px;
 }
 #name_EN{
     padding-left: 10px;
@@ -109,9 +109,8 @@
   }
 
   .h-line-tabs{
-    width: 92.5%;
+    width: 100%;
     margin: 0;
-    margin-left: 3%;
     position: absolute;
     top: 48px;
   }
