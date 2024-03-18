@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './field-rules.component.scss'
 })
 export class FieldRulesComponent {
-
+  fontSizeClass: string = 'f-s-14';
 }
