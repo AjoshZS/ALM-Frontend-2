@@ -13,6 +13,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './interceptor/interceptor';
+import {ToastrModule} from 'ngx-toastr'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Interceptor } from './interceptor/interceptor';
     AttributeModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   exports: [
     // TreeViewComponent,

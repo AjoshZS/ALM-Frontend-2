@@ -37,10 +37,13 @@
             <div class="label form-label">
                 <label for="description">Description (EN)</label>
             </div>
-            <div class="row input form-input d-flex">
-                <textarea class="description" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_description_en" formControlName="attribute_description_en"></textarea>
-                <div class="desc-input-gap"></div>
-                <textarea class="description" formControlName="attribute_description_en"></textarea>
+            <div class="input form-input">
+                <div class="desc-f-row  d-flex">
+                    <textarea class="description" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_description_en" formControlName="attribute_description_en"></textarea>
+                    <div class="desc-input-gap"></div>
+                    <textarea class="description" formControlName="attribute_description_en"></textarea>
+                </div>
+                
             </div>
         </div>
 
@@ -124,7 +127,7 @@
                 <label for="link_module">Link Module</label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="i-box-normal" [(ngModel)]="moduleName" (keyup)="onKeyUp($event,'linkModule')" formControlName="link_module">
+                <input type="text" class="i-box-normal" [(ngModel)]="moduleName" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkModule')">
                 <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItemsLM.length >= 1, 'sel-fil-div-hidden': filteredItemsLM.length < 1}">
                     <div class="sel-fil-item" (click)="selectModule(item,'linkModule')" *ngFor="let item of filteredItemsLM">
                         {{ item }}
@@ -138,7 +141,7 @@
                 <label for="link_sub_module">Link Sub Module </label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="i-box-normal" [(ngModel)]="subModuleName" (keyup)="onKeyUp($event,'linkSubModule')" formControlName="link_sub_module">
+                <input type="text" class="i-box-normal" [(ngModel)]="subModuleName" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkSubModule')">
                 <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItemsLSM.length >= 1, 'sel-fil-div-hidden': filteredItemsLSM.length < 1}">
                     <div class="sel-fil-item" (click)="selectModule(item,'linkSubModule')" *ngFor="let item of filteredItemsLSM">
                         {{ item }}
