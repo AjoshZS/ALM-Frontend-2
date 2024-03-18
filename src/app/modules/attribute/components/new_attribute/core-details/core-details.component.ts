@@ -30,7 +30,7 @@ export class CoreDetailsComponent {
       min_value: ['',Validators.required],
       max_value: ['',Validators.required],
       data_type: ['',Validators.required],
-      attribute_repeatability: ['',Validators.required],
+      attribute_repeatability: ['Self',Validators.required],
       search_data: ['Search Attribute',Validators.required],
       is_dependent_attribute: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
