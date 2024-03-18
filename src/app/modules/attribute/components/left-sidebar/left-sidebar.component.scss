@@ -1,0 +1,35 @@
+
+.vertical {
+    border-right: 1px solid gray;
+    height: 100vh;
+    min-height: 100%;
+    position: absolute;
+    top:0;
+    right:10px;
+  }
+
+  .relative{
+    position: relative;
+  }
+  
+  .toggle-container {
+    position: absolute;
+    top: 6%;
+    right: -12px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .toggle-icon {
+    font-size: 19px;
+    color: gray;
+    cursor: pointer;
+  }
+  

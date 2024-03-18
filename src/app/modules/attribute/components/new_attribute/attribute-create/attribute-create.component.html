@@ -17,9 +17,10 @@
     <hr style="margin: 0; margin-bottom: 1%;">
     <div class="container-create">
         <div class="tree-container" style="width:25%">
-            <app-tree-view [treeData]="treeData"></app-tree-view>
+           <app-left-sidebar [treeData]="treeData" ></app-left-sidebar>
         </div>
         <div class="content-container p-r-20 z-index-1" style="width:55%">
+
             <div class="row" style="display: flex; width: 100%;">
                 <!-- <div class="icon-box">
                     <div class="row" style="display: flex; justify-content: center; align-items: center;">
@@ -43,7 +44,7 @@
                 <div class="mat-tabs-section" style="display: flex; width: 100%; position: relative;">
                     <mat-tab-group style="width: 100%;z-index: 10;">
                         <mat-tab label="Core Details">
-                          <app-core-details></app-core-details>
+                          <app-core-details [treeData]="treeData" (setTreeDataEvent)="setTreeData($event)"></app-core-details>
                         </mat-tab>
                         <mat-tab label="Applicability">
                           <app-applicability></app-applicability>
