@@ -164,21 +164,21 @@
             
         </div>
 
-        <!-- <div class="row form-single-row d-flex">
+        <div class="row form-single-row d-flex">
             <div class="label form-label">
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="input-field f-search-data" id="search_data" formControlName="search_data">
+                <input type="text" class="input-field f-search-data" [(ngModel)]="searchData" [ngModelOptions]="{standalone: true}" id="search_data">
                 <img class="search-icon" style="width: 18px; height: 17px;" src="assets/icons/Icon feather-search.svg">
             </div>
-        </div> -->
+        </div>
 
         <div class="row form-single-row d-flex">
             <div class="label form-label">
                 <label for="is_dependent_attribute">Dependent</label>
             </div>
             <div class="row f-is-dep d-flex">
-                <select formControlName="is_dependent_attribute" class="input-field f-li-mod" style="width: 98.5%;" id="is_dependent_attribute">
+                <select formControlName="is_dependent_attribute" class="input-field f-is-dep-sel f-li-mod" id="is_dependent_attribute">
                     <option value="true" selected>Yes</option>
                     <option value="false">No</option>
                 </select>

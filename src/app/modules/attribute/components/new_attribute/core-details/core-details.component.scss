@@ -301,8 +301,11 @@
   .form-input-gap-desc{
     width: 2%;
   }
-  // @media screen and (min-width: 1800px) {
-  //   .f-is-dep {
-  //     width: 98.5%;
-  //   }
-  // }
+  .f-is-dep-sel{
+    width: 98.5%;
+  }
+  @media screen and (max-width: 1600px) {
+    .f-is-dep-sel {
+      width: 99.5%;
+    }
+  }
