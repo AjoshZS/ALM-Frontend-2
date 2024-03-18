@@ -130,7 +130,7 @@
             </div>
             <div class="input form-input" style="position: relative;">
                 <input type="text" class="i-box-normal" [(ngModel)]="moduleName" (keyup)="onKeyUp($event)" formControlName="link_module">
-                <div class="sel-fil-div">
+                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItems.length >= 1, 'sel-fil-div-hidden': filteredItems.length < 1}">
                     <div class="sel-fil-item" (click)="selectModule(item)" *ngFor="let item of filteredItems">
                         {{ item }}
                     </div>
