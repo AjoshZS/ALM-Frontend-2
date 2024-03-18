@@ -1,6 +1,13 @@
+.header-parent{
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    box-shadow: 0 3px 8px -6px #0009;
+}
+
 .header-container{
     width: 100%;
-    height: 60px;
+    height: 65px;
     background-color: #006678;
     align-items: center;
     display: flex;

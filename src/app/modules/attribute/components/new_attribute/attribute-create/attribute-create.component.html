@@ -1,8 +1,11 @@
-<div class="container">
-    <div class="row att-file-structure p-10 p-b-0 j-space p-r-0">
+<div class="header-area">
+    <app-header></app-header>
+</div>
+<div class="container m-l-20 m-r-20">
+    <div class="row att-file-structure p-10 p-b-0 j-space p-r-0 p-l-0">
         <div class="d-flex align-center">
             <!-- <mat-icon style="font-size: 30px; color: gray; padding-right: 10px;">arrow_back</mat-icon> -->
-            <img class="help-image p-10" style="width: 20px;" src="assets/icons/Icon awesome-arrow-left.svg">
+            <img class="help-image p-10 p-l-0" style="width: 20px;" src="assets/icons/Icon awesome-arrow-left.svg">
             <!-- <mat-icon style="color: rgb(8, 74, 117); font-size: 30px; padding-right: 10px;">description</mat-icon> -->
             <img class="help-image p-10" style="width: 25px;" src="assets/icons/Group 2097.svg">
             <h4 class="poppins" style="margin: 0; font-weight: bold;">ADD NEW ATTRIBUTE</h4>
@@ -11,12 +14,12 @@
             <mat-checkbox [checked]="isChecked" style="padding-left: 0;">Mandatory Fields Only </mat-checkbox>
         </div>
     </div>
-    <hr style="margin: 0;margin-left: 1%; margin-bottom: 1%;">
+    <hr style="margin: 0; margin-bottom: 1%;">
     <div class="container-create">
         <div class="tree-container" style="width:25%">
             <app-tree-view [treeData]="treeData"></app-tree-view>
         </div>
-        <div class="content-container p-r-20" style="width:55%">
+        <div class="content-container p-r-20 z-index-1" style="width:55%">
             <div class="row" style="display: flex; width: 100%;">
                 <!-- <div class="icon-box">
                     <div class="row" style="display: flex; justify-content: center; align-items: center;">
