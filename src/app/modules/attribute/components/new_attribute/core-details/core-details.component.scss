@@ -69,8 +69,71 @@
   font-family: 'Poppins';
   outline: none;
 }
+.input-field{
+    padding-left: 10px;
+    width: 97%;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    background: white;
+    border-left-width: 2px;
+    border-left-color: #438ce7;
+    outline: none;
+}
+.ip-other-info{
+  border-left-width: 2px;border-left-color: #438ce7;
+}
+.sel-small-field{
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Poppins';
+  height: 30px;
+  background-color: white;
+}
+.rep-att-field{
+  border-left-width: 2px;
+  border-left-color: #438ce7;
+  width: 17%; 
+}
+.code-li-name{
+  width: 16%; 
+}
+.code-val{
+  width: 15%; margin-right: 4px;
+}
+.f-min-val{
+  border-left-width: 2px;
+  border-left-color: #438ce7;
+  width: 16%; height: 25px; border-left-width: 2px;
+}
+.f-max-val{
+  width: 17%; height: 25px;
+}
+.f-d-type{
+  width: 18%; height: 30px;
+}
+.f-li-mod{
+  width: 80%; height: 30px; border-left-width: 2px;border-left-color: #438ce7
+}
+.f-search-data{
+  width: 97%;
+}
+.description{
+    padding-left: 10px;
+    width: 46%;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    outline: none;
+}
 .form-input-gap{
   width: 3%;
+}
+.desc-input-gap{
+  width: 2.5%;
 }
 // .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
 //     border-color:
@@ -85,13 +148,13 @@
   --mat-radio-checked-ripple-color: none;/* Change this to your desired border color */
 }
 
-.search-icon{
-  position: absolute;
-  right: 6%;
-  top: 5px;
-  color: #438ce7;
-  
-}
+  .search-icon{
+    position: absolute;
+    right: 3%;
+    top: 5px;
+    color: #438ce7;
+    
+  }
 
 .search-icon-select{
   position: absolute;
@@ -204,3 +267,28 @@
 .att-card-content{
   padding: 0;
 }
+  .row-save-cancel{
+    display: flex; 
+    width: 22%; 
+    position: absolute;
+    right: 2.5%;
+    top: 2%;
+  }
+  .save-cancel{
+    width: 20px;
+    height: 14px;
+  }
+
+  .loader-parent {
+    position: fixed;
+    left: 40%;
+    top: 40%;
+    z-index: 9;
+  }
+  
+  .loader-parent img {
+    width: 100px;
+  }
+  .form-input-gap-desc{
+    width: 2%;
+  }

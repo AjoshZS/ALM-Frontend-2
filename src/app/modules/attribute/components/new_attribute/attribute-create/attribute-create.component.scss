@@ -87,7 +87,7 @@
   }
   .save-cancel{
     width: 20px;
-    height: 14px;
+    height: 16px;
   }
   .mat-tabs-section{
     display: flex;
@@ -125,6 +125,15 @@
 
 ::ng-deep .mdc-label{
   margin-top: 5px !important;
+}
+
+.header-area{
+  min-height: 65px;
+  max-height: 65px;
+}
+
+.z-index-1{
+  z-index: 1 !important;
 }
 
   

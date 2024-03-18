@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
+import { ApiService } from '../../../../../services/api.service'
+import { environment } from '../../../../../../environments/environment';
 // import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,43 +20,47 @@ export class CoreDetailsComponent {
   subModuleName : string = "";
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"]
 
-  constructor(private formBuilder: FormBuilder,private generalService: GeneralService) { }
+  showLoader: boolean = false;
+  constructor(private formBuilder: FormBuilder,private generalService: GeneralService, private apiService: ApiService) { }
 
   ngOnInit() {
     this.createForm = this.formBuilder.group({
-      business_name: ['', Validators.required], 
-      name_EN: ['Container Material Code',Validators.required],
-      name_FR: ['Container Material Code',Validators.required],
-      description1: ['',Validators.required],
-      description2: ['',Validators.required],
-      other_info: ['',Validators.required],
-      repeating_Attribute: ['',Validators.required],
+      attr_bus_requirement: ['', Validators.required], 
+      attribute_title_en: ['Container Material Code',Validators.required],
+      attribute_title_fr: ['Container Material Code',Validators.required],
+      attribute_description_en: ['',Validators.required],
+      attribute_description_fr: [''],
+      attribute_other_info: ['',Validators.required],
+      repeating_attribute: ['',Validators.required],
       code_list_name: ['',Validators.required],
       code_value: ['',Validators.required],
       min_value: ['',Validators.required],
       max_value: ['',Validators.required],
       data_type: ['',Validators.required],
-      link_module: ['',Validators.required],
-      link_sub_module: ['',Validators.required],
-      repeatingRadioOption: ['',Validators.required],
+      attribute_repeatability: ['Self',Validators.required],
       search_data: ['Search Attribute',Validators.required],
-      dependent: ['',Validators.required],
+      is_dependent_attribute: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
     });
 
     this.generalService.getFormData().subscribe(formData => {
       console.log("form data recieved",formData)
       if(formData === "SAVE"){
-        console.log(this.createForm.value);
+        this.saveApi();
       }else{
         this.createForm.reset();
         console.log("form cleared",this.createForm.value);
       }
-      
       // Add your save logic here
     });
+  }
 
-    
+  saveApi(): void{
+    console.log(this.createForm.value)
+    // this.showLoader = true;
+    // this.apiService.post(`${environment.apiUrl}/attributes`, {}).subscribe(data =>{
+    //   this.showLoader = false
+    // }, err => this.showLoader = false);
   }
 
   onKeyUp(event: any,fieldName:string) {
