@@ -30,7 +30,12 @@ import {ToastrModule} from 'ngx-toastr'
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      extendedTimeOut: 0,
+      tapToDismiss: true
+  })
   ],
   exports: [
     // TreeViewComponent,
