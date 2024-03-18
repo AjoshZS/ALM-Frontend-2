@@ -11,9 +11,12 @@ import { GeneralService } from '../../../services/general.service';
 export class CoreDetailsComponent {
 
   moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
-  filteredItems: string[] = [];
+  filteredItemsLM: string[] = [];
+  filteredItemsLSM: string[] = [];
   createForm!: FormGroup;
   moduleName: string="";
+  subModuleName : string = "";
+  attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"]
 
   constructor(private formBuilder: FormBuilder,private generalService: GeneralService) { }
 
@@ -54,19 +57,32 @@ export class CoreDetailsComponent {
     
   }
 
-  onKeyUp(event: any) {
+  onKeyUp(event: any,fieldName:string) {
     console.log('Input value:', event.target.value);
     let searchQuery = event.target.value
-    this.filteredItems = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
-    console.log("filteredItems",this.filteredItems)
+    if(fieldName === 'linkModule'){
+      this.filteredItemsLM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      console.log("filteredItems",this.filteredItemsLM)
+    }else if (fieldName === 'linkSubModule'){
+      this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      console.log("filteredItems",this.filteredItemsLSM)
+    }
+    
     if(searchQuery === ""){
-      this.filteredItems = []
+      this.filteredItemsLM = []
+      this.filteredItemsLSM = []
     }
   }
 
-  selectModule(selected : any){
-    this.moduleName = selected
-    this.filteredItems = []
+  selectModule(selected : any,fieldName : string){
+    if(fieldName === 'linkSubModule'){
+      this.subModuleName = selected
+      this.filteredItemsLSM = []
+    }else if(fieldName === 'linkModule'){
+      this.moduleName = selected
+      this.filteredItemsLM = []
+    }
+    
   }
 
 }

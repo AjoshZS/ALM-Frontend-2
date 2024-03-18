@@ -1,4 +1,4 @@
-<div class="container">
+<div class="c-d-container">
     <form [formGroup]="createForm" class="form">
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
@@ -129,36 +129,27 @@
                 <label for="link_module">Link Module</label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="i-box-normal" [(ngModel)]="moduleName" (keyup)="onKeyUp($event)" formControlName="link_module">
-                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItems.length >= 1, 'sel-fil-div-hidden': filteredItems.length < 1}">
-                    <div class="sel-fil-item" (click)="selectModule(item)" *ngFor="let item of filteredItems">
+                <input type="text" class="i-box-normal" [(ngModel)]="moduleName" (keyup)="onKeyUp($event,'linkModule')" formControlName="link_module">
+                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItemsLM.length >= 1, 'sel-fil-div-hidden': filteredItemsLM.length < 1}">
+                    <div class="sel-fil-item" (click)="selectModule(item,'linkModule')" *ngFor="let item of filteredItemsLM">
                         {{ item }}
                     </div>
-                </div>
-                
+                </div>               
             </div>
-            <!-- <select formControlName="link_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
-                <option value="" selected disabled hidden>Core</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select> -->
-            <!-- <img class="search-icon-select" style="width: 20px;" src="assets/icons/Icon feather-search.svg"> -->
-            <!-- <div class="search-icon">
-                <mat-icon style="color: #438ce7;">search</mat-icon>
-              </div> -->
         </div>
 
         <div class="row form-single-row" style="display: flex;">
             <div class="label form-label">
                 <label for="link_sub_module">Link Sub Module </label>
             </div>
-            <select formControlName="link_sub_module" id="name_EN" style="width: 79.5%; height: 30px; border-left-width: 2px;border-left-color: #438ce7">
-                <option value="" selected disabled hidden>Select/Search sub module name</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
+            <div class="input form-input" style="position: relative;">
+                <input type="text" class="i-box-normal" [(ngModel)]="subModuleName" (keyup)="onKeyUp($event,'linkSubModule')" formControlName="link_sub_module">
+                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItemsLSM.length >= 1, 'sel-fil-div-hidden': filteredItemsLSM.length < 1}">
+                    <div class="sel-fil-item" (click)="selectModule(item,'linkSubModule')" *ngFor="let item of filteredItemsLSM">
+                        {{ item }}
+                    </div>
+                </div>               
+            </div>
         </div>
 
         <div class="row form-single-row" style="display: flex;">
@@ -168,9 +159,9 @@
 
             <div class="form-input">
                 <mat-radio-group formControlName="repeatingRadioOption" style="width: 100%; display: flex;">
-                    <mat-radio-button value="optionA" style="width: 30%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
+                    <mat-radio-button value="optionA" style="width: 32%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
                     <!-- <div class="form-input-gap" style="width: 2%;"></div> -->
-                    <mat-radio-button value="optionB" style="width: 30%;">Group Repeating</mat-radio-button>
+                    <mat-radio-button value="optionB" style="width: 32%;">Group Repeating</mat-radio-button>
                 </mat-radio-group>
             </div>
             
@@ -212,6 +203,13 @@
 
         <!-- Add more form controls as needed -->
     </form>
+    <div class="att-cards-container d-flex">
+        <mat-card *ngFor="let name of attributeNames" class="att-card">
+            <mat-card-content class="att-card-content">
+                <mat-label>{{ name }}</mat-label>  
+            </mat-card-content>
+        </mat-card>
+    </div>
     <br>
     <br>
     <br>

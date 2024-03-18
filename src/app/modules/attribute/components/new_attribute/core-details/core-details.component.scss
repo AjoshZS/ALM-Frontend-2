@@ -4,6 +4,11 @@
 //     z-index: 10;
 // }
 
+.c-d-container{
+  position: relative;
+  overflow: hidden;
+}
+
 .att-file-structure{
   display: flex;
   align-items: center;
@@ -156,7 +161,7 @@
 }
 
 .sel-fil-item{
-  border-bottom: 1px solid #ccc;
+  // border-bottom: 1px solid #ccc;
   width: 98%;
   margin: 0;
   padding: 1%;
@@ -170,10 +175,32 @@
   width: 99%;
   overflow-y: auto;
   max-height: 100px;
+  position:absolute;
+  z-index: 20;
+  background-color: white;
 }
 .sel-fil-div-visible{
   visibility:visible;
 }
 .sel-fil-div-hidden{
   display: none;
+}
+.att-cards-container{
+  width: 80%;
+  left: 20%;
+  position: absolute;
+  flex-wrap: wrap;
+  gap: 10px;
+  // justify-content: center;
+}
+.att-card{
+  width: 20%;
+  height: 25px;
+  background-color: #dce0e0;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+}
+.att-card-content{
+  padding: 0;
 }
