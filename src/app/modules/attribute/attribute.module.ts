@@ -13,6 +13,7 @@ import { AttributeRoutingModule } from './attribute-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
+import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     ApplicabilityComponent,
     ChangeHistoryComponent,
     FieldRulesComponent,
+    LeftSidebarComponent,
   ],
   imports: [
     CommonModule,

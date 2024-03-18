@@ -12,7 +12,7 @@
             </div>
             <div class="main">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding cdkDrag cdkDragLockAxis="y">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
                         <div class="c-pointer item-name d-flex align-center w-100">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span  [ngClass]="{
@@ -20,7 +20,7 @@
                               }" class="tooltip-span" title="{{node?.name}}">{{node?.name}}</span>
                         </div>
                     </mat-tree-node>
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding>
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding matTreeNodePaddingIndent="40">
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button matTreeNodeToggle
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -34,11 +34,7 @@
                 </mat-tree>
             </div>
         </div>
-        <div class="vertical">
-            <div class="toggle-container">
-                <mat-icon class="toggle-icon d-flex align-center">chevron_right</mat-icon>
-            </div>
-        </div>
+      
 
     </div>
 
