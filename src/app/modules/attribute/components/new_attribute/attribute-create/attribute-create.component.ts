@@ -19,24 +19,7 @@ export class AttributeCreateComponent {
   formDataSubscription!: Subscription;
   treeData: any =  {
     name: 'Modules',
-    children: [
-      { name: 'Alcohol Information Module' },
-      { name: 'Allergen Information Module' },
-      {name:'Animal Feeding Module'},
-      {name:'Apparel Information Module '},
-      {
-        name: 'Alcohol BeverageContainer',
-        children: [
-          {name:'Container Material Code'},
-          {name:'Process Type Code'},
-          {
-            name: 'Alcohol Container',
-            children: [{ name: 'container Shape Code', }, { name: 'container Type Code' ,}]
-          },
-          
-        ]
-      }
-    ]
+    children: []
   };
   tree_view_enabled : boolean = false
   isChecked : boolean = false
@@ -81,7 +64,6 @@ export class AttributeCreateComponent {
   
   fetchAttributesList(){
     this.apiService.get(environment?.apiUrl + '/modules').subscribe((data:any)=>{
-      console.log(data);
       let newData = {name:'modules',children:[]};
       if(data?.modules) newData.children = data?.modules;
       this.setTreeData(newData)
@@ -99,13 +81,11 @@ export class AttributeCreateComponent {
       }
       if(node?.sub_modules) this.renameWithNewKeyName(node,'sub_modules','children');
       if(node?.children && node?.children?.length>0){
-
         node?.children.map((submodule:any)=>{
-          if(submodule.attributes && submodule.attributes?.length>0){
-            this.renameWithNewKeyName(submodule,'attributes','children');
-            console.log(submodule);
+          if(submodule.attributes && submodule.attributes?.length>0 || ( submodule.children && submodule.children?.length>0)){
+           if(submodule.attributes ) this.renameWithNewKeyName(submodule,'attributes','children');
             submodule.children.map((item:any)=>{
-              this.renameWithNewKeyName(item,'attribute_title_en','name');
+             if(item?.attribute_title_en) this.renameWithNewKeyName(item,'attribute_title_en','name');
             })
           }
         })
@@ -113,8 +93,6 @@ export class AttributeCreateComponent {
      });
      this.treeData = data;
      this.commonService.setTreeData.next(this.treeData);
-    console.log(this.treeData)
-
   }
 
 }

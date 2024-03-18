@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
 import { ApiService } from '../../../../../services/api.service'
@@ -20,7 +20,8 @@ export class CoreDetailsComponent {
   createForm!: FormGroup;
   moduleName: string="";
   subModuleName : string = "";
-  attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"]
+  attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
+  @Output() setTreeDataEvent = new EventEmitter();
 
   showLoader: boolean = false;
   constructor(private commonService: CommonService,private formBuilder: FormBuilder,private generalService: GeneralService, private apiService: ApiService,public toastService: ToastService) { }
@@ -84,16 +85,24 @@ export class CoreDetailsComponent {
       "attribute_version_number": "v1.0"
     }
     this.showLoader = true;
+    this.treeData?.children[0]?.children[0]?.children.push(attrData);
+    this.setTreeDataEvent.emit(this.treeData);
+    let bkup = {... this.treeData};
+    this.treeData = {};
+    this.treeData = bkup;
+    // this.commonService.treeUpdate.next(this.treeData);
     this.apiService.post(`${environment.apiUrl}/attributes`, attrData).subscribe(data =>{
       // this.toastService.showSuccess('Attribute created successfully');
-      this.treeData.children[4].children[2].children.push({name:'alcholol'});
-      let bkup = {... this.treeData};
-      this.treeData = {};
-      this.treeData = bkup;
-      this.commonService.treeUpdate.next(this.treeData);
+      // console.log(data);
+      // console.log(this.treeData.children[0].children[0])
+      // this.treeData.children[0].children[0].push({name:'alcholol'});
+      // let bkup = {... this.treeData};
+      // this.treeData = {};
+      // this.treeData = bkup;
+      // this.commonService.treeUpdate.next(this.treeData);
       this.showLoader = false;
     }, (err: any) => {
-      this.toastService.showError(err?.error?.message);
+      // this.toastService.showError(err?.error?.message);
       this.showLoader = false;
     });
   }
