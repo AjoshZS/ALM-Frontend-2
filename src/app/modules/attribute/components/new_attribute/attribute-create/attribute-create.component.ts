@@ -12,7 +12,7 @@ import { CommonService } from '../../../../../services/common.service';
   styleUrl: './attribute-create.component.scss'
 })
 export class AttributeCreateComponent {
-
+  fontSize: string = 'f-s-14' 
   formData: any;
   formDataSubscription!: Subscription;
   treeData: any =  {

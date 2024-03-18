@@ -25,9 +25,9 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AttributeRoutingModule,
     MatIconModule,
-    SharedModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     MatRadioModule,
