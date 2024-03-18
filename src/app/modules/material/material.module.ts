@@ -6,6 +6,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
     DragDropModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
   ],
   exports: [
     MatRippleModule,
@@ -28,6 +30,7 @@ import {MatInputModule} from '@angular/material/input';
     DragDropModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
   ]
 })
 export class MaterialModule { }
