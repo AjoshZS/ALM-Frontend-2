@@ -60,65 +60,64 @@
             <div class="label form-label">
                 <label for="repeating_attribute">Repeating Attribute</label>
             </div>
-            <select class="sel-small-field rep-att-field" formControlName="repeating_attribute" id="repeating_attribute">
-                <option selected value="false">No</option>
-                <option value="true">Yes</option>
-            </select>
-
-            <div class="form-input-gap" style="width: 2%;"></div>
-
-            <div class="label form-label" style="width: 13%;">
-                <label for="code_list_name">Code List Name</label>
+            <div class="row f-rep-att d-flex">
+                <select class="sel-small-field rep-att-field" formControlName="repeating_attribute" id="repeating_attribute">
+                    <option selected value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+    
+                <div class="form-input-gap" style="width: 4%;"></div>
+    
+                <div class="label form-label" style="width: 14%;">
+                    <label for="code_list_name">Code List Name</label>
+                </div>
+                <select class="sel-small-field code-li-name" formControlName="code_list_name" id="code_list_name">
+                    <option value="" selected disabled hidden>N/A</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+    
+                <div class="form-input-gap" style="width: 4%;"></div>
+    
+                <div class="label form-label" style="width: 11%;">
+                    <label for="code_value">Code Value</label>
+                </div>
+                <select class="sel-small-field code-val" formControlName="code_value" id="code_value">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+                <!-- <mat-icon style="color: #438ce7;padding: 2px;font-size: 30px;margin-left: 5px;">content_paste_go</mat-icon> -->
+                <img class="help-image" style="width: 30px;" src="assets/icons/Group 536.svg">
             </div>
-            <select class="sel-small-field code-li-name" formControlName="code_list_name" id="code_list_name">
-                <option value="" selected disabled hidden>N/A</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-
-            <div class="form-input-gap" style="width: 2%;"></div>
-
-            <div class="label form-label" style="width: 10%;">
-                <label for="code_value">Code Value</label>
-            </div>
-            <select class="sel-small-field code-val" formControlName="code_value" id="code_value">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-            <!-- <mat-icon style="color: #438ce7;padding: 2px;font-size: 30px;margin-left: 5px;">content_paste_go</mat-icon> -->
-            <img class="help-image" style="width: 30px;" src="assets/icons/Group 536.svg">
+            
         </div>
 
         <div class="row form-single-row d-flex">
             <div class="label form-label">
                 <label for="min_value">Min Value</label>
             </div>
-            <input type="number" class="sel-small-field f-min-val" formControlName="min_value" id="min_value">
-
-            <div class="form-input-gap" style="width: 2%;"></div>
-
-            <div class="label form-label" style="width: 14%;">
-                <label for="max_value">Max Value</label>
+            <div class="row f-rep-att d-flex">
+                <input type="number" class="sel-small-field f-min-val" formControlName="min_value" id="min_value">
+            
+                <div class="form-input-gap" style="width: 6.5%;"></div>
+            
+                <div class="label form-label" style="width: 12%;">
+                    <label for="max_value">Max Value</label>
+                </div>
+                <input type="number" class="sel-small-field f-max-val" formControlName="max_value" id="max_value">
+            
+                <div class="form-input-gap" style="width: 6.5%;"></div>
+            
+                <div class="label form-label" style="width: 12%;">
+                    <label for="data_type">Data Type</label>
+                </div>
+                <select class="sel-small-field f-d-type" formControlName="data_type" id="data_type">
+                    <option value="Number" selected>Number</option>
+                    <option value="String">String</option>
+                </select>
             </div>
-            <!-- <select formControlName="max_value" id="name_EN" style="width: 15%; height: 30px;">
-                <option value="" selected disabled hidden>56</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select> -->
-            <input type="number" class="sel-small-field f-max-val" formControlName="max_value" id="max_value">
-
-            <div class="form-input-gap" style="width: 2%;"></div>
-
-            <div class="label form-label" style="width: 9%;">
-                <label for="data_type">Data Type</label>
-            </div>
-            <select class="sel-small-field f-d-type" formControlName="data_type" id="data_type">
-                <option value="Number" selected>Number</option>
-                <option value="String">String</option>
-            </select>
 
         </div>
 
@@ -180,10 +179,13 @@
             <div class="label form-label">
                 <label for="is_dependent_attribute">Dependent</label>
             </div>
-            <select formControlName="is_dependent_attribute" class="input-field f-li-mod" id="is_dependent_attribute">
-                <option value="true" selected hidden>Yes</option>
-                <option value="false">No</option>
-            </select>
+            <div class="row f-is-dep d-flex">
+                <select formControlName="is_dependent_attribute" class="input-field f-li-mod" style="width: 98.5%;" id="is_dependent_attribute">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            
         </div>
 
         <div class="row form-single-row d-flex">

@@ -49,26 +49,26 @@
 .form-single-row{
   padding: 10px 5px 5px 0px;
 }
-#name_EN{
-  padding-left: 10px;
-  width: 97%;
-  height: 25px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: 'Poppins';
-  background: white;
-  border-left-width: 2px solid #438ce7;
-  outline: none;
-}
-#description{
-  padding-left: 10px;
-  width: 46%;
-  height: 60px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: 'Poppins';
-  outline: none;
-}
+// #name_EN{
+//   padding-left: 10px;
+//   width: 97%;
+//   height: 25px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+//   font-family: 'Poppins';
+//   background: white;
+//   border-left-width: 2px solid #438ce7;
+//   outline: none;
+// }
+// #description{
+//   padding-left: 10px;
+//   width: 46%;
+//   height: 60px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+//   font-family: 'Poppins';
+//   outline: none;
+// }
 .input-field{
     padding-left: 10px;
     width: 97%;
@@ -95,24 +95,24 @@
 .rep-att-field{
   border-left-width: 2px;
   border-left-color: #438ce7;
-  width: 17%; 
+  width: 22%; 
 }
 .code-li-name{
-  width: 16%; 
+  width: 20%; 
 }
 .code-val{
-  width: 15%; margin-right: 4px;
+  width: 20%; margin-right: 4px;
 }
 .f-min-val{
   border-left-width: 2px;
   border-left-color: #438ce7;
-  width: 16%; height: 25px; border-left-width: 2px;
+  width: 20%; height: 25px; border-left-width: 2px;
 }
 .f-max-val{
-  width: 17%; height: 25px;
+  width: 20%; height: 25px;
 }
 .f-d-type{
-  width: 18%; height: 30px;
+  width: 20%; height: 30px;
 }
 .f-li-mod{
   width: 80%; height: 30px; border-left-width: 2px;border-left-color: #438ce7
@@ -120,9 +120,12 @@
 .f-search-data{
   width: 97%;
 }
+.f-is-dep{
+  width:80%;
+}
 .description{
     padding-left: 10px;
-    width: 46%;
+    width: 46.5%;
     height: 60px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -137,6 +140,9 @@
 }
 .desc-f-row{
   width: 100%;
+}
+.f-rep-att{
+  width: 80%;
 }
 // .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
 //     border-color:
@@ -295,3 +301,8 @@
   .form-input-gap-desc{
     width: 2%;
   }
+  // @media screen and (min-width: 1800px) {
+  //   .f-is-dep {
+  //     width: 98.5%;
+  //   }
+  // }
