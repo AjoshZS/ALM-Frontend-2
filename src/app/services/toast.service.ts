@@ -8,18 +8,18 @@ export class ToastService {
 
   constructor( public toastr : ToastrService) { }
 
-  showSuccess() {
-    this.toastr.success('Success!', 'Attribute Created', {
+  showSuccess(msg: string) {
+    this.toastr.success(msg,'', {
       timeOut: 3000,
     });
   }
-  showError() {
-    this.toastr.error('Failed!', 'Error creating attribute', {
+  showError(msg: string) {
+    this.toastr.error(msg,'', {
       timeOut: 3000,
     });
   }
-  showWarning() {
-    this.toastr.warning('Warning', 'Major Error', {
+  showWarning(msg: string) {
+    this.toastr.warning(msg, '', {
       timeOut: 3000,
     });
   }

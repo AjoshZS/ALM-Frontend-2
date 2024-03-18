@@ -72,18 +72,11 @@ export class AttributeCreateComponent {
   }
 
   saveForm(){
-    console.log("saveForm clicked")
     this.generalService.setFormData("SAVE");
-    this.treeData.children[4].children[2].children.push({name:'alcholol'});
-    let bkup = {... this.treeData};
-    this.treeData = {};
-    this.treeData = bkup;
-    this.commonService.treeUpdate.next(this.treeData);
   }
 
   removeForm(){
     this.generalService.setFormData("clear");
-    console.log("removeForm clicked")
   }
   
   fetchAttributesList(){
