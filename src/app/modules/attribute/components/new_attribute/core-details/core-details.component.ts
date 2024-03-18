@@ -44,7 +44,6 @@ export class CoreDetailsComponent {
       // link_module:['',Validators.required],
       // link_sub_module:['',Validators.required],
       attribute_repeatability: ['Self',Validators.required],
-      search_data: ['Search Attribute',Validators.required],
       is_dependent_attribute: ['',Validators.required],
       dependent_attributes: ['Attribute Name',Validators.required],
     });
