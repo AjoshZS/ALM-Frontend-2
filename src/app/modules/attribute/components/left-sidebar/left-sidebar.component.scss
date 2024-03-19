@@ -1,7 +1,7 @@
 
 .vertical {
     border-right: 1px solid gray;
-    height: 100vh;
+    height: calc(100vh - 142px);
     min-height: 100%;
     position: absolute;
     top:0;
