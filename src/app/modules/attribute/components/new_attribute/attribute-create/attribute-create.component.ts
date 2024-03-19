@@ -63,8 +63,9 @@ export class AttributeCreateComponent {
   }
   
   fetchAttributesList(){
-    this.apiService.get(environment?.apiUrl + '/modules').subscribe((data:any)=>{
+    this.apiService.get(environment?.apiUrl + '/modules/tree').subscribe((data:any)=>{
       let newData = {name:'modules',children:[]};
+      console.log(data)
       if(data?.modules) newData.children = data?.modules;
       this.setTreeData(newData)
     })    
