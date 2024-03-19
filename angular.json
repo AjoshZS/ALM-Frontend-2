@@ -40,7 +40,8 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/assets/css/commonCss.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/css/style-guide.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -114,7 +115,8 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/assets/css/commonCss.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/css/style-guide.css"
             ],
             "scripts": []
           }
