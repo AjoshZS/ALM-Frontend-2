@@ -21,6 +21,7 @@ export class CoreDetailsComponent {
   moduleName: string="";
   searchData: string = "";
   subModuleName : string = "";
+  repAttVal : string = "";
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
   @Output() setTreeDataEvent = new EventEmitter();
 
@@ -36,7 +37,6 @@ export class CoreDetailsComponent {
       attribute_description_en: ['',Validators.required],
       attribute_description_fr: [''],
       attribute_other_info: ['',Validators.required],
-      repeating_attribute: ['Yes',Validators.required],
       code_list_name: ['',Validators.required],
       code_value: ['',Validators.required],
       min_value: ['',Validators.required],
@@ -71,7 +71,7 @@ export class CoreDetailsComponent {
       "submodule_id": 1,
       "attribute_metadata_id": "sample_metadata_id",
       "request_accepted_user": 123,
-      "repeating_attribute": this.createForm.value.repeating_attribute === 'true' ? true : false,
+      "repeating_attribute": this.repAttVal === 'true' ? true : false,
       "min_value": this.createForm.value.min_value,
       "max_value": this.createForm.value.max_value,
       "data_type": this.createForm.value.data_type,
