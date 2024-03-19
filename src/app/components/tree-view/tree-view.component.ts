@@ -67,20 +67,8 @@ export class TreeViewComponent implements OnInit {
   }
 
   updateTreeData(data: any): void {
-    // this.treeControl.dataNodes.forEach((node: any) => {
-    //   if (node.expandable && this.treeControl.isExpanded(node)) {
-    //     this.expandedNodes.push(node);
-    //   }
-    // });
     this.dataSource.data = [];
     this.dataSource.data = [data];
-    
-    // setTimeout(()=>{
-    // this.expandedNodes.forEach(node => {
-    //     this.treeControl.expand(node);
-    //   });
-    // }, 1000)
-    // this.treeControl.expandAll();
     this.getPrevExpansionModel();
   }
 
@@ -111,7 +99,6 @@ export class TreeViewComponent implements OnInit {
   expand(node: any) {
     this.currentExpandedNode = node;
     this.addNodetoListofExpandedNodes(node);
-
     this.treeControl.expand(node);
   }
 
