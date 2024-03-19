@@ -81,27 +81,20 @@ export class CoreDetailsComponent {
       "code_list_id": 1,
       "code_value_id": 4,
       "is_latest_version": true,
-      "attribute_version_number": "v1.0"
+      // "attribute_version_number": "v1.0"
     }
     this.showLoader = true;
-    this.treeData?.children[0]?.children[0]?.children.push(attrData);
-    this.setTreeDataEvent.emit(this.treeData);
-    let bkup = {... this.treeData};
-    this.treeData = {};
-    this.treeData = bkup;
-    // this.commonService.treeUpdate.next(this.treeData);
     this.apiService.post(`${environment.apiUrl}/attributes`, attrData).subscribe(data =>{
       // this.toastService.showSuccess('Attribute created successfully');
       // console.log(data);
-      // console.log(this.treeData.children[0].children[0])
-      // this.treeData.children[0].children[0].push({name:'alcholol'});
-      // let bkup = {... this.treeData};
-      // this.treeData = {};
-      // this.treeData = bkup;
-      // this.commonService.treeUpdate.next(this.treeData);
+      this.treeData?.children[0]?.children[0]?.children.push(attrData);
+      this.setTreeDataEvent.emit(this.treeData);
+      let bkup = {... this.treeData};
+      this.treeData = {};
+      this.treeData = bkup;
       this.showLoader = false;
     }, (err: any) => {
-      // this.toastService.showError(err?.error?.message);
+      this.toastService.showError(err?.error?.error || err?.error?.message);
       this.showLoader = false;
     });
   }
