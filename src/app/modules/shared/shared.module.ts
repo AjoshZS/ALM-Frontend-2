@@ -15,6 +15,8 @@ import { HeaderComponent } from '../../components/header/header.component';
     CommonModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   exports: [

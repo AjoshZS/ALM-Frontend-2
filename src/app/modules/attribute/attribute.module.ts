@@ -33,7 +33,8 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
     MatCheckboxModule,
     ReactiveFormsModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    AttributeRoutingModule
   ]
 })
 export class AttributeModule { }
