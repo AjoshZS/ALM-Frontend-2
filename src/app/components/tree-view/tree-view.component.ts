@@ -53,7 +53,7 @@ export class TreeViewComponent implements OnInit {
       if(Object?.keys(data)?.length > 0) this.updateTreeData(data);
     });
     this.commonService.setTreeData.subscribe(data =>{
-      if(Object?.keys(data)?.length > 0) this.dataSource.data = [data];
+      if(Object?.keys(data)?.length > 0) this.setTreeData(data)
     });
   }
 
@@ -74,6 +74,11 @@ export class TreeViewComponent implements OnInit {
     //     this.treeControl.expand(node);
     //   });
     // }, 1000)
+    this.treeControl.expandAll();
+  }
+
+  setTreeData(data:any){
+    this.dataSource.data = [data];
     this.treeControl.expandAll();
   }
 
