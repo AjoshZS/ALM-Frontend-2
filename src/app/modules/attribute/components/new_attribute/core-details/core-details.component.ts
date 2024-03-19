@@ -19,6 +19,7 @@ export class CoreDetailsComponent {
   filteredItemsLSM: string[] = [];
   createForm!: FormGroup;
   moduleName: string="";
+  searchData: string = "";
   subModuleName : string = "";
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
   @Output() setTreeDataEvent = new EventEmitter();
