@@ -95,4 +95,25 @@ export class AttributeCreateComponent {
      this.commonService.setTreeData.next(this.treeData);
   }
 
+  updateTreeData(data:any){
+    data.children.map((node:any)=>{
+      if(node?.module_name){
+        this.renameWithNewKeyName(node,'module_name','name');
+      }
+      if(node?.sub_modules) this.renameWithNewKeyName(node,'sub_modules','children');
+      if(node?.children && node?.children?.length>0){
+        node?.children.map((submodule:any)=>{
+          if(submodule.attributes && submodule.attributes?.length>0 || ( submodule.children && submodule.children?.length>0)){
+           if(submodule.attributes ) this.renameWithNewKeyName(submodule,'attributes','children');
+            submodule.children.map((item:any)=>{
+             if(item?.attribute_title_en) this.renameWithNewKeyName(item,'attribute_title_en','name');
+            })
+          }
+        })
+      }
+     });
+     this.treeData = data;
+     this.commonService.treeUpdate.next(this.treeData);
+  }
+
 }

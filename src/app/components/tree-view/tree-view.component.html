@@ -21,7 +21,7 @@
                         </div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding matTreeNodePaddingIndent="40">
-                        <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button matTreeNodeToggle
+                        <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button (click)="toggleNode(node)" 
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>

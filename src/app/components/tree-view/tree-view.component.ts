@@ -5,6 +5,10 @@ import { CommonService } from '../../services/common.service';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
+  module_id?:any;
+  sub_module_id?:any;
+  attribute_id?:any;
+
 }
 
 interface ExampleFlatNode {
@@ -21,11 +25,15 @@ interface ExampleFlatNode {
 export class TreeViewComponent implements OnInit {
   @Input() treeData: any;
   expandedNodes: any[] = [];
+  prevExpansionModel: any;
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
-      level: level
+      module_id: node?.module_id,
+      level: level,
+      attribute_id: node?.attribute_id,
+      sub_module_id: node?.sub_module_id
     };
   };
 
@@ -42,6 +50,7 @@ export class TreeViewComponent implements OnInit {
   );
 
   dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  currentExpandedNode:any;
 
   constructor(private commonService: CommonService) {
   }
@@ -58,14 +67,11 @@ export class TreeViewComponent implements OnInit {
   }
 
   updateTreeData(data: any): void {
-    this.expandedNodes = [];
-    this.treeControl.dataNodes.forEach((node: any) => {
-      if (node.expandable && this.treeControl.isExpanded(node)) {
-        this.expandedNodes.push(node);
-      }
-    });
-    // console.log(this.expandedNodes)
-    // console.log(this.treeControl.dataNodes)
+    // this.treeControl.dataNodes.forEach((node: any) => {
+    //   if (node.expandable && this.treeControl.isExpanded(node)) {
+    //     this.expandedNodes.push(node);
+    //   }
+    // });
     this.dataSource.data = [];
     this.dataSource.data = [data];
     
@@ -74,12 +80,50 @@ export class TreeViewComponent implements OnInit {
     //     this.treeControl.expand(node);
     //   });
     // }, 1000)
-    this.treeControl.expandAll();
+    // this.treeControl.expandAll();
+    this.getPrevExpansionModel();
   }
 
   setTreeData(data:any){
     this.dataSource.data = [data];
-    this.treeControl.expandAll();
+  }
+
+  getPrevExpansionModel() {
+    this.treeControl.dataNodes.map((item:any)=>{
+     if(this.prevExpansionModel?.length && this.prevExpansionModel){
+      if(item?.name =='modules') this.treeControl.expand(item)
+      this.prevExpansionModel.forEach((expandedNode:any)=>{
+        if(expandedNode?.expandable && expandedNode?.name == item?.name && (expandedNode?.module_id == item?.module_id || expandedNode?.sub_module_id == item?.sub_module_id )) this.treeControl.expand(item)
+      })
+     }
+    })
+  }
+
+  toggleNode(node: any) {
+    if (this.treeControl.isExpanded(node)) {
+      this.removenodeFromExpandedList(node);
+      this.treeControl.collapse(node);
+    }
+    else this.expand(node);
+    this.prevExpansionModel = this.treeControl.expansionModel.selected;
+  }
+
+  expand(node: any) {
+    this.currentExpandedNode = node;
+    this.addNodetoListofExpandedNodes(node);
+
+    this.treeControl.expand(node);
+  }
+
+  removenodeFromExpandedList(node: any) {
+    // const index = this.expandedNodes.findIndex((obj: any) => {
+    //   return (obj.id === node.id || obj?.module_id == node.module_id || obj?.sub_module_id == node.sub_module_id  ) && obj.name === node.name;
+    // });
+    // if (index !== -1) this.expandedNodes.splice(index, 1);
+  }
+
+  addNodetoListofExpandedNodes(node:any){
+    this.expandedNodes.push(node);
   }
 
 }
