@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
     ReactiveFormsModule,
     MatRadioModule,
     MatTabsModule,
-    AttributeRoutingModule
+    AttributeRoutingModule,
+    MatSidenavModule
   ]
 })
 export class AttributeModule { }

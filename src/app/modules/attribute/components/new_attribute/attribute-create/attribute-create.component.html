@@ -16,20 +16,22 @@
     </div>
     <hr style="margin: 0; margin-bottom: 1%;">
     <div class="container-create">
-        <div class="tree-container" style="width:25%">
-           <app-left-sidebar [treeData]="treeData" ></app-left-sidebar>
+        <div class="tree-container animate-show-hide" style="max-width: 25%;overflow-x: hidden;"
+            [ngClass]="isSidebarOpen ? ' ng-hide-remove' : 'ng-hide'">
+            <app-left-sidebar [treeData]="treeData" (closeSidebarEvent)="isSidebarOpen=false"></app-left-sidebar>
         </div>
-        <div class="content-container p-r-20 z-index-1" style="width:55%">
+        <div *ngIf="isSidebarOpen==false">
+            <div class="icon-box" (click)="isSidebarOpen=!isSidebarOpen">
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                    <img class="help-image" style="width: 20px;" src="assets/icons/Group 319.svg">
 
+                    <mat-icon style="width: 15px;">chevron_right</mat-icon>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-container p-r-20 z-index-1" [ngClass]="isSidebarOpen ? ' w-55' : 'w-70'">
             <div class="row" style="display: flex; width: 100%;">
-                <!-- <div class="icon-box">
-                    <div class="row" style="display: flex; justify-content: center; align-items: center;">
-                        <img class="help-image" style="width: 20px;" src="assets/icons/Group 319.svg">
-                    
-                        <mat-icon style="width: 15px;">chevron_right</mat-icon>
-                    </div>
-                    
-                </div> -->
                 <div class="ticket-data p-5" style="width: 50%;">
                     <p style="margin: 0;font-weight: bold;">Ticket 125487</p>
                     <p>Container Material Code</p>
@@ -44,52 +46,54 @@
                 <div class="mat-tabs-section" style="display: flex; width: 100%; position: relative;">
                     <mat-tab-group style="width: 100%;z-index: 10;">
                         <mat-tab label="Core Details">
-                          <app-core-details [treeData]="treeData" (updateTreeDataEvent)="updateTreeData($event)"></app-core-details>
+                            <app-core-details [treeData]="treeData"
+                                (updateTreeDataEvent)="updateTreeData($event)"></app-core-details>
                         </mat-tab>
                         <mat-tab label="Applicability">
-                          <app-applicability></app-applicability>
+                            <app-applicability></app-applicability>
                         </mat-tab>
                         <mat-tab label="Change History">
-                          <!-- <app-tab3></app-tab3> -->
+                            <!-- <app-tab3></app-tab3> -->
                         </mat-tab>
                     </mat-tab-group>
                     <hr class="h-line-tabs">
                     <div class="row row-save-cancel m-r-5">
                         <div class="row j-end" style="display: flex; width: 100%; align-items: center;">
-                    
-                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="saveForm()" matRipple [matRippleCentered]="true">
+
+                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="saveForm()" matRipple
+                                [matRippleCentered]="true">
                                 <img class="help-image save-cancel p-3" src="assets/icons/Group 2098.svg">
-                            
-                           
+
+
                                 <p class="m-t-3" style="margin-bottom: 0;">Save Draft</p>
                             </div>
-                            
-                            
-                            
 
-                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="removeForm()" matRipple [matRippleCentered]="true">
+
+
+
+                            <div class="p-5" style="display: flex;cursor: pointer;" (click)="removeForm()" matRipple
+                                [matRippleCentered]="true">
                                 <img class="help-image save-cancel p-3" src="assets/icons/Icon metro-cancel.svg">
-                            
+
                                 <p class="m-t-3" style="margin-bottom: 0;">Cancel</p>
                             </div>
-                           
-                            
-                            
-                            
+
+
+
+
                         </div>
                     </div>
-                    
+
                 </div>
 
-                
+
             </div>
 
 
-            
+
 
         </div>
-        <!-- <div class="vertical-line"></div> -->
-        <div class="field-rules-container" style="width:20%">
+        <div class="field-rules-container" [ngClass]="isSidebarOpen ? ' w-20' : 'w-30'">
             <app-field-rules></app-field-rules>
         </div>
     </div>

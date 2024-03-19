@@ -8,10 +8,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class LeftSidebarComponent {
   @Input() treeData:any;
-  @Output() toggleMenuEvent = new EventEmitter();
+  @Output() closeSidebarEvent = new EventEmitter();
+  
 
   toggleMenu(){
-    this.toggleMenuEvent.emit()
+    this.closeSidebarEvent.emit()
   }
 
 }

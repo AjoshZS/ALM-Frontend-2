@@ -5,8 +5,9 @@
     min-height: 100%;
     position: absolute;
     top:0;
-    right:10px;
+    right:14px;
   }
+  
 
   .relative{
     position: relative;
@@ -33,3 +34,11 @@
     cursor: pointer;
   }
   
+
+  .max-w-100{
+    max-width: 100%!important;
+  }
+
+  .overflow-hidden{
+   overflow: hidden!important;
+  }

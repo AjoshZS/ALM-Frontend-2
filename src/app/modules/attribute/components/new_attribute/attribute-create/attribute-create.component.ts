@@ -24,7 +24,7 @@ export class AttributeCreateComponent {
   tree_view_enabled : boolean = false
   isChecked : boolean = false
   createForm!: FormGroup;
-
+  isSidebarOpen = true;
   constructor(private formBuilder: FormBuilder,
     private generalService: GeneralService, private commonService: CommonService,private apiService:ApiService) {
       
