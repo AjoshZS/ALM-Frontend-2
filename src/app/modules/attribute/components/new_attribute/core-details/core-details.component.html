@@ -60,7 +60,7 @@
                 <label for="repeating_attribute">Repeating Attribute</label>
             </div>
             <div class="row f-rep-att d-flex">
-                <select class="sel-small-field rep-att-field" formControlName="repeating_attribute" id="repeating_attribute">
+                <select class="sel-small-field rep-att-field dropdown-content" [(ngModel)]="repAttVal" [ngModelOptions]="{standalone: true}" id="repeating_attribute">
                     <option selected value="false">No</option>
                     <option value="true">Yes</option>
                 </select>
@@ -148,14 +148,14 @@
             </div>
         </div>
 
-        <div class="row form-single-row d-flex">
+        <div class="row form-single-row d-flex" *ngIf="repAttVal==='true'">
             <div class="label form-label">
                 <label for="attribute_repeatability">Repeatability</label>
             </div>
 
             <div class="form-input">
                 <mat-radio-group formControlName="attribute_repeatability" style="width: 100%; display: flex;">
-                    <mat-radio-button value="Self" style="width: 32%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
+                    <mat-radio-button value="Self" class="mat-mdc-radio-checked" style="width: 32%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
                     <!-- <div class="form-input-gap" style="width: 2%;"></div> -->
                     <mat-radio-button value="Group" style="width: 32%;">Group Repeating</mat-radio-button>
                 </mat-radio-group>
