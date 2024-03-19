@@ -16,12 +16,12 @@
     </div>
     <hr style="margin: 0; margin-bottom: 1%;">
     <div class="container-create">
-        <div class="tree-container animate-show-hide" style="max-width: 25%;overflow-x: hidden;"
-            [ngClass]="isSidebarOpen ? ' ng-hide-remove' : 'ng-hide'">
-            <app-left-sidebar [treeData]="treeData" (closeSidebarEvent)="isSidebarOpen=false"></app-left-sidebar>
+        <div class="tree-container animate-show-hide" style="max-width: 25%;overflow-x: hidden;"  #treecontainer
+          >
+            <app-left-sidebar [treeData]="treeData" (closeSidebarEvent)="closeSidebar()"></app-left-sidebar>
         </div>
         <div *ngIf="isSidebarOpen==false">
-            <div class="icon-box" (click)="isSidebarOpen=!isSidebarOpen">
+            <div class="icon-box" (click)="openSidebar()">
                 <div class="row" style="display: flex; justify-content: center; align-items: center;">
                     <img class="help-image" style="width: 22px;" src="assets/icons/Group 319.svg">
 

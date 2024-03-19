@@ -25,7 +25,7 @@
 
 .icon-box {
   // width: 45px;
-  width: max-content!important;
+  width: max-content !important;
   height: 35px;
   background-color: #f1f4f6;
   display: flex;
@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.icon-box mat-icon{
+.icon-box mat-icon {
   font-size: 18px;
   line-height: 25px;
 }
@@ -190,21 +190,29 @@
 
 .animate-show-hide.ng-hide-remove {
   width: 25%;
-  animation: 0.5s myChange1;
+  animation: 0.8s myChange1;
 }
 
-.w-55{
- width: 55%;
+.w-55 {
+  width: 55%;
 }
 
-.w-20{
+.w-20 {
   width: 20%;
- }
+}
 
- .w-30{
+.w-30 {
   width: 30%;
- }
+}
 
- .w-70{
+.w-70 {
   width: 70%;
- }
+}
+
+.w-25{
+  width: 25%;
+}
+
+.w-0{
+  width: 0%;
+}

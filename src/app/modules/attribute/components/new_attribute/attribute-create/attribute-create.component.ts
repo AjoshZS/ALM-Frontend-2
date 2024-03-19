@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { TreeViewComponent } from '../../../../../components/tree-view/tree-view.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
@@ -25,10 +25,9 @@ export class AttributeCreateComponent {
   isChecked : boolean = false
   createForm!: FormGroup;
   isSidebarOpen = true;
+  @ViewChild('treecontainer') treecontainer:ElementRef | any;
   constructor(private formBuilder: FormBuilder,
-    private generalService: GeneralService, private commonService: CommonService,private apiService:ApiService) {
-      
-     }
+    private generalService: GeneralService, private commonService: CommonService,private apiService:ApiService) {}
 
   ngOnInit() {
     this.createForm = this.formBuilder.group({
@@ -52,6 +51,25 @@ export class AttributeCreateComponent {
       dependent_attributes: ['Attribute Name',Validators.required],
     });
     this.fetchAttributesList();
+  }
+
+  ngAfterViewInit(){
+    this.treecontainer.nativeElement.classList.add('w-25');
+  }
+
+  openSidebar() {
+    this.isSidebarOpen = true;
+    this.treecontainer.nativeElement.classList.remove('w-0');
+    this.treecontainer.nativeElement.classList.remove('ng-hide');
+    this.treecontainer.nativeElement.classList.add('ng-hide-remove');
+  }
+
+  closeSidebar(){
+    this.isSidebarOpen = false;
+    this.treecontainer.nativeElement.classList.remove('w-25');
+    this.treecontainer.nativeElement.classList.add('w-0');
+    this.treecontainer.nativeElement.classList.remove('ng-hide-remove');
+    this.treecontainer.nativeElement.classList.add('ng-hide');
   }
 
   saveForm(){
