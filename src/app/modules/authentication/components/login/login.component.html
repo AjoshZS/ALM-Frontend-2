@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="sample">
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <!-- <div  class="text-danger f-s-11">Invalid username or password</div> -->
+            <div>
+                <input class="input-field input-item" type="text" id="username" name="username" placeholder="username"
+                    formControlName="userName">
+               
+                <div *ngIf="submitted && loginForm.get('userName')?.hasError('required')" class="text-danger f-s-11">
+                    Please enter a username</div>
+            </div>
+            <div>
+                <input class="input-field field " type="password" id="password" name="password" placeholder="password"
+                    formControlName="password">
+          
+                <div *ngIf="submitted && loginForm.get('password')?.hasError('required')" class="text-danger f-s-11">
+                    Please enter a password</div>
+
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+
+</div>
