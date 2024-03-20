@@ -72,14 +72,18 @@
 }
 
 .input-field {
-    height: 40px !important;
-    border: 1px solid #A1A1A1 !important;
-    border-radius: 9px !important;
-
+    height: 30px !important;
+    border-top: 1px solid #A1A1A1 !important;
+    border-radius: 5px !important;
+    border-right: 1px solid #A1A1A1 !important;
+    border-bottom: 1px solid #A1A1A1 !important;
+    border-left: 2px solid #146678 !important;
 }
 
 .input-field:focus {
-    border: 1px solid #146678 !important;
+    border-top: 1px solid #0DB0BC !important;
+    border-right: 1px solid #0DB0BC !important;
+    border-bottom: 1px solid #0DB0BC !important;
     outline: none !important;
 }
 
