@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
 import { ApiService } from '../../../../../services/api.service'
@@ -16,16 +16,21 @@ export class CoreDetailsComponent {
   @Input() treeData: any;
   moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
   filteredItemsLM: any[] = [];
-  filteredItemsLSM: string[] = [];
+  filteredItemsLSM: any[] = [];
   attributesArray: any[] = [];
   attributesListArray: any[] = [];
   moduleNameArr: any[] = [];
   createForm!: FormGroup;
   moduleName: string="";
   moduleId!: number;
+  subModuleID!: number;
   selectedAttribute: string = "";
   searchData: string = "";
   subModuleName : string = "";
+  subModuleNameTouched: boolean = false;
+  subModulfieldClicked: boolean = false;
+  moduleNameTouched: boolean = false;
+  modulfieldClicked: boolean = false;
   repAttVal : string = "";
   moduleNamesStr: string ="";
   selectedRadio:string = 'Self';
@@ -58,7 +63,12 @@ export class CoreDetailsComponent {
 
     this.generalService.getFormData().subscribe(formData => {
       if(formData === "SAVE"){
-        this.saveApi();
+        if(this.createForm.value.attr_bus_requirement == "" || this.createForm.value.attribute_title_en == "" || this.createForm.value.attribute_title_fr == "" || this.createForm.value.attribute_description_en == "" || this.moduleName == "" || this.subModuleName == ""){
+          this.toastService.showError('Cannot save! Required fields empty')
+        }else{
+          this.saveApi();
+        }
+        
       }else{
         this.createForm.reset();
         this.attributesListArray = []
@@ -77,7 +87,7 @@ export class CoreDetailsComponent {
       "attribute_description_fr": this.createForm.value.attribute_description_fr,
       "attribute_other_info": this.createForm.value.attribute_other_info,
       "module_id": this.moduleId,
-      "submodule_id": 1,
+      "submodule_id": this.subModuleID,
       "attribute_metadata_id": "sample_metadata_id",
       "request_accepted_user": 123,
       "repeating_attribute": this.repAttVal === 'true' ? true : false,
@@ -116,7 +126,9 @@ export class CoreDetailsComponent {
       // this.filteredItemsLM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
 
     }else if (fieldName === 'linkSubModule'){
-      this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      this.subModuleNameTouched = false
+      this.subModuleSearchApi(searchQuery)
+      // this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     
     if(searchQuery === ""){
@@ -126,8 +138,10 @@ export class CoreDetailsComponent {
   }
 
   selectModule(selected : any,fieldName : string){
+    console.log("selected value",selected,fieldName)
     if(fieldName === 'linkSubModule'){
-      this.subModuleName = selected
+      this.subModuleName = selected.sub_module_name
+      this.subModuleID = selected.sub_module_id
       this.filteredItemsLSM = []
     }else if(fieldName === 'linkModule'){
       this.moduleName = selected.module_name
@@ -198,5 +212,56 @@ export class CoreDetailsComponent {
       console.log("error response",err,this.filteredItemsLM)
     })
   }
+
+  subModuleSearchApi(searchKey : string){
+    if (this.moduleId != null || this.moduleId != undefined) {
+      let moduleIdString: string = this.moduleId.toString();
+      this.apiService.get(`${environment.apiUrl}/submodules?query=` + searchKey + `&moduleId=` + moduleIdString).subscribe((data: any) => {
+        console.log("sub module name search api response", data)
+        this.filteredItemsLSM = []
+        for (const obj of data) {
+          // Push the value of the 'name' field into the namesArray
+          this.filteredItemsLSM.push(obj);
+        }
+      }, (err: Error) => {
+        this.filteredItemsLSM = []
+        console.log("error response", err)
+      })
+    }else{
+      console.log("select a module",this.moduleId)
+    }
+    
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOut(event:any) {
+    console.log("click event fired")
+      if (event.target.id != 'moduleDropDown' && event.target.name != 'moduleInputBox') 
+      {
+        this.filteredItemsLM = []
+      }
+
+      if (event.target.id != 'subModuleDropDown' && event.target.name != 'subModuleInputBox') 
+      {
+        this.filteredItemsLSM = []
+      }
+
+      if (event.target.name != 'moduleInputBox' && this.modulfieldClicked) 
+      {
+        this.moduleNameTouched = true
+      }
+
+      if (event.target.name != 'subModuleInputBox' && this.subModulfieldClicked) 
+      {
+        this.subModuleNameTouched = true
+      }
+   }
+
+   moduleInputClicked(){
+    this.modulfieldClicked = true
+   }
+   subModuleInputClicked(){
+    this.subModulfieldClicked = true
+   }
 
 }
