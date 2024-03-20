@@ -99,18 +99,18 @@ img {
   text-overflow: ellipsis;
 }
 
-.overlap:hover::after {
-  content: attr(title);
-  position: absolute;
-  background-color: black;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-  z-index: 1;
-  top: 100%; 
-  left: 50%; 
-  transform: translateX(-50%);
-}
+// .overlap:hover::after {
+//   content: attr(title);
+//   position: absolute;
+//   background-color: black;
+//   color: white;
+//   padding: 5px;
+//   border-radius: 5px;
+//   z-index: 1;
+//   top: 100%; 
+//   left: 50%; 
+//   transform: translateX(-50%);
+// }
 
 .max-w-100{
   max-width: calc(100% - 10px)!important;
