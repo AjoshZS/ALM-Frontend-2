@@ -7,6 +7,7 @@
 .c-d-container{
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .att-file-structure{
@@ -69,7 +70,7 @@
 //   font-family: 'Poppins';
 //   outline: none;
 // }
-.input-field{
+.ip-field{
     padding-left: 10px;
     width: 97%;
     height: 25px;
@@ -237,6 +238,7 @@
   width: 98%;
   margin: 0;
   padding: 1%;
+  cursor: pointer;
 }
 .sel-fil-item:hover {
   background-color: #99a0a0; /* Change color on hover */
@@ -265,16 +267,19 @@
   gap: 10px;
   // justify-content: center;
 }
-.att-card{
-  width: 20%;
-  height: 25px;
+.att-card {
+  // padding-left: 15px;
+  min-width: 25% !important;
   background-color: #dce0e0;
   border-radius: 15px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 3px;
+  font-size: 13px;
 }
 .att-card-content{
-  padding: 0;
+  width: 98%;
+  padding: 0 !important;
 }
   .row-save-cancel{
     display: flex; 
@@ -303,6 +308,23 @@
   }
   .f-is-dep-sel{
     width: 98.5%;
+  }
+  .mat-label-att-item{
+    width: 80%;
+    padding-left: 10px !important;  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mat-icon-box-att-item{
+    width: 15%;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+  }
+  .mat-icon-att-item{
+    position: absolute;
+    right: 5px;
   }
   @media screen and (max-width: 1600px) {
     .f-is-dep-sel {

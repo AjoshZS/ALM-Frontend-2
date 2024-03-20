@@ -15,13 +15,20 @@ import { CommonService } from '../../../../../services/common.service';
 export class CoreDetailsComponent {
   @Input() treeData: any;
   moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
-  filteredItemsLM: string[] = [];
+  filteredItemsLM: any[] = [];
   filteredItemsLSM: string[] = [];
+  attributesArray: any[] = [];
+  attributesListArray: any[] = [];
+  moduleNameArr: any[] = [];
   createForm!: FormGroup;
   moduleName: string="";
+  moduleId!: number;
+  selectedAttribute: string = "";
   searchData: string = "";
   subModuleName : string = "";
   repAttVal : string = "";
+  moduleNamesStr: string ="";
+  selectedRadio:string = 'Self';
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
   @Output() setTreeDataEvent = new EventEmitter();
 
@@ -44,9 +51,9 @@ export class CoreDetailsComponent {
       data_type: ['',Validators.required],
       // link_module:['',Validators.required],
       // link_sub_module:['',Validators.required],
-      attribute_repeatability: ['Self',Validators.required],
+      // attribute_repeatability: ['Self',Validators.required],
       is_dependent_attribute: ['',Validators.required],
-      dependent_attributes: ['Attribute Name',Validators.required],
+      // dependent_attributes: ['Attribute Name',Validators.required],
     });
 
     this.generalService.getFormData().subscribe(formData => {
@@ -54,12 +61,14 @@ export class CoreDetailsComponent {
         this.saveApi();
       }else{
         this.createForm.reset();
+        this.attributesListArray = []
       }
       // Add your save logic here
     });
   }
 
   saveApi(): void{
+    let dependent_attributesArr = this.attributesListArray.map(obj => obj.attribute_id);
     const attrData = {
       "attr_bus_requirement": this.createForm.value.attr_bus_requirement,
       "attribute_title_en": this.createForm.value.attribute_title_en,
@@ -67,7 +76,7 @@ export class CoreDetailsComponent {
       "attribute_description_en": this.createForm.value.attribute_description_en,
       "attribute_description_fr": this.createForm.value.attribute_description_fr,
       "attribute_other_info": this.createForm.value.attribute_other_info,
-      "module_id": 1,
+      "module_id": this.moduleId,
       "submodule_id": 1,
       "attribute_metadata_id": "sample_metadata_id",
       "request_accepted_user": 123,
@@ -75,8 +84,9 @@ export class CoreDetailsComponent {
       "min_value": this.createForm.value.min_value,
       "max_value": this.createForm.value.max_value,
       "data_type": this.createForm.value.data_type,
-      "attribute_repeatability": this.createForm.value.attribute_repeatability,
+      "attribute_repeatability": this.selectedRadio,
       "is_dependent_attribute": false,
+      "dependent_attributes": dependent_attributesArr,
       "attribute_status": "active",
       "request_form_id": 456,
       "code_list_id": 1,
@@ -103,7 +113,9 @@ export class CoreDetailsComponent {
   onKeyUp(event: any,fieldName:string) {
     let searchQuery = event.target.value
     if(fieldName === 'linkModule'){
-      this.filteredItemsLM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      this.moduleSearchApi(searchQuery)
+      // this.filteredItemsLM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+
     }else if (fieldName === 'linkSubModule'){
       this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
     }
@@ -119,10 +131,73 @@ export class CoreDetailsComponent {
       this.subModuleName = selected
       this.filteredItemsLSM = []
     }else if(fieldName === 'linkModule'){
-      this.moduleName = selected
+      this.moduleName = selected.module_name
+      this.moduleId = selected.module_id
       this.filteredItemsLM = []
     }
     
+  }
+
+  radioChange(e:any){
+    console.log("selected radio button",this.selectedRadio)
+  }
+
+  onKeyUpDepAttr(event:any){
+    console.log("entered key",event.target.value)
+    let searchKey = event.target.value
+    this.attSearchApi(searchKey)
+    if(searchKey === ""){
+      this.attributesArray = []
+    }
+  }
+
+  attSearchApi(attSearchKey:string){
+    this.apiService.get(`${environment.apiUrl}/attributes/search?title=`+attSearchKey).subscribe((data:any)=>{
+      console.log("attribute name search api response",data)
+      this.attributesArray = []
+      for (const obj of data) {
+        // Push the value of the 'name' field into the namesArray
+        this.attributesArray.push(obj);
+      }
+    },(err:Error)=>{
+      this.attributesArray = []
+      console.log("error response",err,this.attributesArray)
+    })
+  }
+
+  selectAttribute(selected : any){
+    // this.selectedAttribute = selected.attribute_title_en
+    console.log("attributes already",this.attributesListArray,selected)
+    const itemIndex = this.attributesListArray.findIndex(element => element.attribute_id === selected.attribute_id)
+    // let existingObject = this.attributesListArray.find((item: any) => item.id === selected.id);
+    if (itemIndex === -1) {
+      this.attributesListArray.push(selected);
+    }
+    console.log("attributesListArray", this.attributesListArray,itemIndex)
+    this.attributesArray = []
+    this.selectedAttribute = ""
+  }
+
+  removeAttribute(element:any){
+    let index = this.attributesListArray.findIndex(obj => obj.attribute_id === element.attribute_id);
+    if (index !== -1) {
+      this.attributesListArray.splice(index, 1);
+    }
+    console.log("attributesListArray after removal", this.attributesListArray)
+  }
+
+  moduleSearchApi(modSearchKey : string){
+    this.apiService.get(`${environment.apiUrl}/modules?query=`+modSearchKey).subscribe((data:any)=>{
+      console.log("module name search api response",data)
+      this.filteredItemsLM = []
+      for (const obj of data) {
+        // Push the value of the 'name' field into the namesArray
+        this.filteredItemsLM.push(obj);
+      }
+    },(err:Error)=>{
+      this.filteredItemsLM = []
+      console.log("error response",err,this.filteredItemsLM)
+    })
   }
 
 }

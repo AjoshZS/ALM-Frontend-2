@@ -19,7 +19,7 @@
                 <label for="attribute_title_en">Name (EN)</label>
             </div>
             <div class="input form-input">
-                <input class="input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attr_bus_requirement" formControlName="attribute_title_en">
+                <input class="ip-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attr_bus_requirement" formControlName="attribute_title_en">
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                 <label for="attribute_title_fr">Name (FR)</label>
             </div>
             <div class="input form-input">
-                <input class="input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_title_fr" formControlName="attribute_title_fr">
+                <input class="ip-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_title_fr" formControlName="attribute_title_fr">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                 <label for="attribute_other_info">Other Info</label>
             </div>
             <div class="input form-input">
-                <input type="text" class="input-field ip-other-info" formControlName="attribute_other_info" id="att_other_info">
+                <input type="text" class="ip-field ip-other-info" formControlName="attribute_other_info" id="att_other_info">
             </div>
         </div>
 
@@ -60,7 +60,7 @@
                 <label for="repeating_attribute">Repeating Attribute</label>
             </div>
             <div class="row f-rep-att d-flex">
-                <select class="sel-small-field rep-att-field dropdown-content" [(ngModel)]="repAttVal" [ngModelOptions]="{standalone: true}" id="repeating_attribute">
+                <select class="sel-small-field rep-att-field" [(ngModel)]="repAttVal" [ngModelOptions]="{standalone: true}" id="repeating_attribute">
                     <option selected value="false">No</option>
                     <option value="true">Yes</option>
                 </select>
@@ -128,7 +128,7 @@
                 <input type="text" class="i-box-normal" [(ngModel)]="moduleName" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkModule')">
                 <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': filteredItemsLM.length >= 1, 'sel-fil-div-hidden': filteredItemsLM.length < 1}">
                     <div class="sel-fil-item" (click)="selectModule(item,'linkModule')" *ngFor="let item of filteredItemsLM">
-                        {{ item }}
+                        {{ item.module_name }}
                     </div>
                 </div>               
             </div>
@@ -154,8 +154,8 @@
             </div>
 
             <div class="form-input">
-                <mat-radio-group formControlName="attribute_repeatability" style="width: 100%; display: flex;">
-                    <mat-radio-button value="Self" class="mat-mdc-radio-checked" style="width: 32%; border-color:  #438ce7 !important;">Self Repeating</mat-radio-button>
+                <mat-radio-group [(ngModel)]="selectedRadio" [ngModelOptions]="{standalone: true}" (change)="radioChange($event)" style="width: 100%; display: flex;">
+                    <mat-radio-button value="Self" style="width: 32%; border-color:  #438ce7 !important;" checked>Self Repeating</mat-radio-button>
                     <!-- <div class="form-input-gap" style="width: 2%;"></div> -->
                     <mat-radio-button value="Group" style="width: 32%;">Group Repeating</mat-radio-button>
                 </mat-radio-group>
@@ -177,7 +177,7 @@
                 <label for="is_dependent_attribute">Dependent</label>
             </div>
             <div class="row f-is-dep d-flex">
-                <select formControlName="is_dependent_attribute" class="input-field f-is-dep-sel f-li-mod" id="is_dependent_attribute">
+                <select formControlName="is_dependent_attribute" class="ip-field f-is-dep-sel f-li-mod" id="is_dependent_attribute">
                     <option value="true" selected>Yes</option>
                     <option value="false">No</option>
                 </select>
@@ -190,18 +190,27 @@
                 <label for="dependent_attributes ">Dependent Attributes </label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="input-field f-search-data" id="dependent_attributes" formControlName="dependent_attributes">
+                <input type="text" class="ip-field f-search-data" id="dependent_attributes" [(ngModel)]="selectedAttribute" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUpDepAttr($event)">
                 <!-- <mat-icon class="search-icon">search</mat-icon> -->
                 <img class="help-image search-icon" style="width: 18px; height: 17px;" src="assets/icons/Icon feather-search.svg">
+                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': attributesArray.length >= 1, 'sel-fil-div-hidden': attributesArray.length < 1}">
+                    <div class="sel-fil-item" (click)="selectAttribute(item)" *ngFor="let item of attributesArray">
+                        {{ item.attribute_title_en }}
+                    </div>
+                </div>  
             </div>
         </div>
 
         <!-- Add more form controls as needed -->
     </form>
     <div class="att-cards-container d-flex">
-        <mat-card *ngFor="let name of attributeNames" class="att-card">
-            <mat-card-content class="att-card-content">
-                <mat-label>{{ name }}</mat-label>  
+        <mat-card *ngFor="let item of attributesListArray" class="att-card">
+            <mat-card-content class="att-card-content d-flex">
+                <mat-label class="mat-label-att-item">{{ item.attribute_title_en }}</mat-label>
+                <div class="mat-icon-box-att-item d-flex">
+                    <mat-icon class="mat-icon-att-item" (click)="removeAttribute(item)">close</mat-icon>
+                </div>
+                  
             </mat-card-content>
         </mat-card>
     </div>

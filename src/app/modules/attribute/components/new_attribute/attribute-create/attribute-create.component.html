@@ -40,18 +40,25 @@
 
             </div>
             <!-- <br> -->
-            <div class="row">
-                <div class="mat-tabs-section" style="display: flex; width: 100%; position: relative;">
+            <div class="row" style="height: 100%;">
+                <div class="mat-tabs-section" style="height:100%;display: flex; width: 100%; position: relative;">
                     <mat-tab-group style="width: 100%;z-index: 10;">
-                        <mat-tab label="Core Details">
-                          <app-core-details [treeData]="treeData" (setTreeDataEvent)="setTreeData($event)"></app-core-details>
-                        </mat-tab>
-                        <mat-tab label="Applicability">
-                          <app-applicability></app-applicability>
-                        </mat-tab>
-                        <mat-tab label="Change History">
-                          <!-- <app-tab3></app-tab3> -->
-                        </mat-tab>
+                        <!-- <div class="mat-tabs-container" style="height: 100%;"> -->
+                            <mat-tab label="Core Details">
+                                <div class="mat-tabs-container" style="height: 100%;">
+                                    <app-core-details [treeData]="treeData" (setTreeDataEvent)="setTreeData($event)"></app-core-details>
+
+                                </div>
+                                <!-- <app-core-details [treeData]="treeData" (setTreeDataEvent)="setTreeData($event)"></app-core-details> -->
+                              </mat-tab>
+                              <mat-tab label="Applicability">
+                                <app-applicability></app-applicability>
+                              </mat-tab>
+                              <mat-tab label="Change History">
+                                <!-- <app-tab3></app-tab3> -->
+                              </mat-tab>
+                        <!-- </div> -->
+                        
                     </mat-tab-group>
                     <hr class="h-line-tabs">
                     <div class="row row-save-cancel m-r-5">
