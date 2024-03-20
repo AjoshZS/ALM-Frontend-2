@@ -112,3 +112,7 @@ img {
   transform: translateX(-50%);
 }
 
+.max-w-100{
+  max-width: calc(100% - 10px)!important;
+  overflow: hidden;
+}

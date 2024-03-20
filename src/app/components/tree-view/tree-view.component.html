@@ -1,5 +1,5 @@
-<div class="container m-r-20 p-l-0">
-    <div class="row d-flex w-100">
+<div class="container max-w-100 p-l-0">
+    <div class="row  w-100">
         <div class="w-100">
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search">
@@ -21,7 +21,7 @@
                         </div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding matTreeNodePaddingIndent="40">
-                        <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button matTreeNodeToggle
+                        <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button (click)="toggleNode(node)" 
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>

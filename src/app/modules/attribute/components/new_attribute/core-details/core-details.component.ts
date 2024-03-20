@@ -30,7 +30,7 @@ export class CoreDetailsComponent {
   moduleNamesStr: string ="";
   selectedRadio:string = 'Self';
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
-  @Output() setTreeDataEvent = new EventEmitter();
+  @Output() updateTreeDataEvent = new EventEmitter();
 
   showLoader: boolean = false;
   constructor(private commonService: CommonService,private formBuilder: FormBuilder,private generalService: GeneralService, private apiService: ApiService,public toastService: ToastService) { }
@@ -96,10 +96,9 @@ export class CoreDetailsComponent {
     }
     this.showLoader = true;
     this.apiService.post(`${environment.apiUrl}/attributes`, attrData).subscribe(data =>{
-      // this.toastService.showSuccess('Attribute created successfully');
-      // console.log(data);
+      this.toastService.showSuccess('Attribute created successfully');
       this.treeData?.children[0]?.children[0]?.children.push(attrData);
-      this.setTreeDataEvent.emit(this.treeData);
+      this.updateTreeDataEvent.emit(this.treeData);
       let bkup = {... this.treeData};
       this.treeData = {};
       this.treeData = bkup;

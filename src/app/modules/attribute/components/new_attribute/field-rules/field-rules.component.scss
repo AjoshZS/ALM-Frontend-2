@@ -1,7 +1,8 @@
 .content{
     margin-top: 15px;
     position: relative;
-    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid gray;
 }
 
 .field-rule{
@@ -33,8 +34,6 @@
    padding-left: 15px; 
 }
 .vertical{
-    border-left: 1px solid gray;
-    height: 822px;
     cursor: col-resize;
 }
 #square {
