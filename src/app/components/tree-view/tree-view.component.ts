@@ -128,7 +128,6 @@ export class TreeViewComponent implements OnInit {
   }
 
   selectNode(node:any){
-    console.log(node)
     this.selectedNode = node;
     this.general.setcurrentNodeId(node?.module_id ? node?.module_id : (node.sub_module_id ? node?.sub_module_id : node?.attribute_id))
 
