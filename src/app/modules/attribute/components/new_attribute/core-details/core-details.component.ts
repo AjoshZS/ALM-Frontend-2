@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralService } from '../../../services/general.service';
 import { ApiService } from '../../../../../services/api.service'
@@ -16,17 +16,26 @@ export class CoreDetailsComponent {
   @Input() treeData: any;
   moduleArray: string[] = ["tree","tray","then","this","tiger","lion","leopard","dog","cat","elephant","monkey","donkey","mouse"]
   filteredItemsLM: any[] = [];
-  filteredItemsLSM: string[] = [];
+  filteredItemsLSM: any[] = [];
   attributesArray: any[] = [];
   attributesListArray: any[] = [];
   moduleNameArr: any[] = [];
+  codeListArray: any[] = [];
+  codeValuesArray: any[] = [];
   createForm!: FormGroup;
   moduleName: string="";
   moduleId!: number;
+  subModuleID!: number;
   selectedAttribute: string = "";
   searchData: string = "";
   subModuleName : string = "";
-  repAttVal : string = "";
+  subModuleNameTouched: boolean = false;
+  subModulfieldClicked: boolean = false;
+  moduleNameTouched: boolean = false;
+  modulfieldClicked: boolean = false;
+  rep_att_fieldClicked: boolean = false;
+  rep_att_invalid: boolean = false;
+  repAttVal : string = "true";
   moduleNamesStr: string ="";
   selectedRadio:string = 'Self';
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
@@ -42,13 +51,13 @@ export class CoreDetailsComponent {
       attribute_title_en: ['Container Material Code',Validators.required],
       attribute_title_fr: ['Container Material Code',Validators.required],
       attribute_description_en: ['',Validators.required],
-      attribute_description_fr: [''],
+      attribute_description_fr: ['',Validators.required],
       attribute_other_info: ['',Validators.required],
       code_list_name: ['',Validators.required],
       code_value: ['',Validators.required],
       min_value: ['',Validators.required],
       max_value: ['',Validators.required],
-      data_type: ['',Validators.required],
+      data_type: ['Number',Validators.required],
       // link_module:['',Validators.required],
       // link_sub_module:['',Validators.required],
       // attribute_repeatability: ['Self',Validators.required],
@@ -56,12 +65,23 @@ export class CoreDetailsComponent {
       // dependent_attributes: ['Attribute Name',Validators.required],
     });
 
+    this.createForm.get('code_value')?.disable();
+
+    this.codeListSearchApi()
+
     this.generalService.getFormData().subscribe(formData => {
       if(formData === "SAVE"){
-        this.saveApi();
-      }else{
+        if(this.createForm.value.attr_bus_requirement == "" || this.createForm.value.attribute_title_en == "" || this.createForm.value.attribute_title_fr == "" || this.createForm.value.attribute_description_en == "" || this.createForm.value.attribute_other_info == "" || this.moduleName == "" || this.subModuleName == "" || this.repAttVal == "" || this.createForm.value.data_type == "" || this.selectedRadio == ""){
+          this.toastService.showError('Cannot save! Required fields empty')
+        }else{
+          this.saveApi();
+        }
+        
+      }else if (formData === "clear"){
         this.createForm.reset();
         this.attributesListArray = []
+        this.filteredItemsLSM = []
+        this.filteredItemsLM = []
       }
       // Add your save logic here
     });
@@ -77,7 +97,7 @@ export class CoreDetailsComponent {
       "attribute_description_fr": this.createForm.value.attribute_description_fr,
       "attribute_other_info": this.createForm.value.attribute_other_info,
       "module_id": this.moduleId,
-      "submodule_id": 1,
+      "submodule_id": this.subModuleID,
       "attribute_metadata_id": "sample_metadata_id",
       "request_accepted_user": 123,
       "repeating_attribute": this.repAttVal === 'true' ? true : false,
@@ -103,6 +123,10 @@ export class CoreDetailsComponent {
       this.treeData = {};
       this.treeData = bkup;
       this.showLoader = false;
+      this.createForm.reset();
+      this.attributesListArray = []
+      this.filteredItemsLSM = []
+      this.filteredItemsLM = []
     }, (err: any) => {
       this.toastService.showError(err?.error?.error || err?.error?.message);
       this.showLoader = false;
@@ -116,7 +140,11 @@ export class CoreDetailsComponent {
       // this.filteredItemsLM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
 
     }else if (fieldName === 'linkSubModule'){
-      this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      this.subModuleNameTouched = false
+      this.subModuleSearchApi(searchQuery)
+      // this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+    }else if(fieldName === 'codeList'){
+      // this.codeListSearchApi(searchQuery)
     }
     
     if(searchQuery === ""){
@@ -126,8 +154,10 @@ export class CoreDetailsComponent {
   }
 
   selectModule(selected : any,fieldName : string){
+    console.log("selected value",selected,fieldName)
     if(fieldName === 'linkSubModule'){
-      this.subModuleName = selected
+      this.subModuleName = selected.sub_module_name
+      this.subModuleID = selected.sub_module_id
       this.filteredItemsLSM = []
     }else if(fieldName === 'linkModule'){
       this.moduleName = selected.module_name
@@ -198,5 +228,89 @@ export class CoreDetailsComponent {
       console.log("error response",err,this.filteredItemsLM)
     })
   }
+
+  subModuleSearchApi(searchKey : string){
+    if (this.moduleId != null || this.moduleId != undefined) {
+      let moduleIdString: string = this.moduleId.toString();
+      this.apiService.get(`${environment.apiUrl}/submodules?query=` + searchKey + `&moduleId=` + moduleIdString).subscribe((data: any) => {
+        console.log("sub module name search api response", data)
+        this.filteredItemsLSM = []
+        for (const obj of data) {
+          // Push the value of the 'name' field into the namesArray
+          this.filteredItemsLSM.push(obj);
+        }
+      }, (err: Error) => {
+        this.filteredItemsLSM = []
+        console.log("error response", err)
+      })
+    }else{
+      console.log("select a module",this.moduleId)
+    }
+    
+  }
+
+  codeListSearchApi(){
+    console.log("this.codeListSearchApi")
+    this.apiService.get(`${environment.apiUrl}/codelists`).subscribe((data: any) => {
+      console.log("sub module name search api response", data)
+      this.codeListArray = data.codeLists
+    }, (err: Error) => {
+      console.log("error response", err)
+    })
+  }
+
+  codeValuesApi(codelist:any){
+    this.createForm.get('code_value')?.enable();
+    let selectedIndex = codelist.target.value
+    console.log("codeValuesApi",selectedIndex)
+    this.apiService.get(`${environment.apiUrl}/codevalues?codeListId=`+selectedIndex).subscribe((data: any) => {
+      console.log("sub module name search api response", data)
+      this.codeValuesArray = data.codeValues
+    }, (err: Error) => {
+      console.log("error response", err)
+    })
+    
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOut(event:any) {
+    console.log("click event fired")
+      if (event.target.id != 'moduleDropDown' && event.target.name != 'moduleInputBox') 
+      {
+        this.filteredItemsLM = []
+      }
+
+      if (event.target.id != 'subModuleDropDown' && event.target.name != 'subModuleInputBox') 
+      {
+        this.filteredItemsLSM = []
+      }
+
+      if (event.target.name != 'moduleInputBox' && this.modulfieldClicked) 
+      {
+        this.moduleNameTouched = true
+      }
+
+      if (event.target.name != 'subModuleInputBox' && this.subModulfieldClicked) 
+      {
+        this.subModuleNameTouched = true
+      }
+
+      // if (event.target.id != 'repeating_attribute' && this.rep_att_fieldClicked) 
+      // {
+      //   this.rep_att_invalid = true
+      // }
+   }
+
+   moduleInputClicked(){
+    this.modulfieldClicked = true
+   }
+   subModuleInputClicked(){
+    this.subModulfieldClicked = true
+   }
+
+  //  repAttFieldClicked(){
+  //   console.log("repAttFieldClicked")
+  //   this.rep_att_fieldClicked = true
+  //  }
 
 }

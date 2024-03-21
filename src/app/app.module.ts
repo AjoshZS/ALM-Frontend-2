@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { Interceptor } from './interceptor/interceptor';
-import {ToastrModule} from 'ngx-toastr'
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
