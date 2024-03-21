@@ -176,8 +176,8 @@
 
   .search-icon{
     position: absolute;
-    right: 3%;
-    top: 5px;
+    right: 2%;
+    top: 8px;
     color: #438ce7;
     
   }
@@ -359,6 +359,10 @@
 
   .row-dep-att{
     padding-bottom: 15px !important;
+  }
+
+  .f-reqd-desc-en{
+    width: 41%;
   }
 
   @media screen and (max-width: 1600px) {

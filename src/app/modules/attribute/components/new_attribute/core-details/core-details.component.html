@@ -57,12 +57,18 @@
                 
             </div>
         </div>
-        <div class="f-reqd" *ngIf="createForm.get('attribute_description_en')!.invalid && createForm.get('attribute_description_en')!.touched">
-            Description field can't be empty
+        <div class="row d-flex p-relative">
+            <div class="f-reqd f-reqd-desc-en" *ngIf="createForm.get('attribute_description_en')!.invalid && createForm.get('attribute_description_en')!.touched">
+                Description (EN) field can't be empty
+            </div>
+            <div class="f-reqd f-reqd-desc-en" *ngIf="createForm.get('attribute_description_fr')!.invalid && createForm.get('attribute_description_fr')!.touched">
+                Description (FR) field can't be empty
+            </div>
         </div>
+        
 
         <div class="row form-single-row d-flex">
-            <div class="star-reqd"></div>
+            <div class="star-reqd">*</div>
             <div class="label form-label">
                 <label for="attribute_other_info">Other Info</label>
             </div>
@@ -70,9 +76,12 @@
                 <input type="text" class="ip-field ip-other-info input-field" formControlName="attribute_other_info" id="att_other_info">
             </div>
         </div>
+        <div class="f-reqd" *ngIf="createForm.get('attribute_other_info')!.invalid && createForm.get('attribute_other_info')!.touched">
+            Other Info field can't be empty.
+        </div>
 
         <div class="row form-single-row d-flex">
-            <div class="star-reqd"></div>
+            <div class="star-reqd">*</div>
             <div class="label form-label">
                 <label for="repeating_attribute">Repeating Attribute</label>
             </div>
@@ -87,11 +96,8 @@
                 <div class="label form-label" style="width: 14%;">
                     <label for="code_list_name">Code List Name</label>
                 </div>
-                <select class="sel-small-field code-li-name input-field" formControlName="code_list_name" id="code_list_name">
-                    <option value="" selected disabled hidden>N/A</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                <select class="sel-small-field code-li-name input-field" (change)="codeValuesApi($event)" formControlName="code_list_name" id="code_list_name">
+                    <option *ngFor="let option of codeListArray" [value]="option.code_list_id">{{ option.code_list_name }}</option>
                 </select>
     
                 <div class="form-input-gap" style="width: 4%;"></div>
@@ -100,14 +106,15 @@
                     <label for="code_value">Code Value</label>
                 </div>
                 <select class="sel-small-field code-val input-field" formControlName="code_value" id="code_value">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option *ngFor="let option of codeValuesArray" [value]="option.code_value_name">{{ option.code_value_name }}</option>
                 </select>
                 <!-- <mat-icon style="color: #438ce7;padding: 2px;font-size: 30px;margin-left: 5px;">content_paste_go</mat-icon> -->
                 <img class="help-image" style="width: 30px;" src="assets/icons/Group 536.svg">
             </div>
             
+        </div>
+        <div class="f-reqd" *ngIf="repAttVal == ''">
+            Repeating Attribute field can't be empty.
         </div>
 
         <div class="row form-single-row d-flex">
@@ -127,6 +134,7 @@
             
                 <div class="form-input-gap" style="width: 6.5%;"></div>
             
+                <div class="star-reqd">*</div>
                 <div class="label form-label" style="width: 12%;">
                     <label for="data_type">Data Type</label>
                 </div>
@@ -175,7 +183,7 @@
         </div>
 
         <div class="row form-single-row d-flex" *ngIf="repAttVal==='true'">
-            <div class="star-reqd"></div>
+            <div class="star-reqd">*</div>
             <div class="label form-label">
                 <label for="attribute_repeatability">Repeatability</label>
             </div>

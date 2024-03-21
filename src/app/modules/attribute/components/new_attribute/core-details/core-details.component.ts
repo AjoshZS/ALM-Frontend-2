@@ -20,6 +20,8 @@ export class CoreDetailsComponent {
   attributesArray: any[] = [];
   attributesListArray: any[] = [];
   moduleNameArr: any[] = [];
+  codeListArray: any[] = [];
+  codeValuesArray: any[] = [];
   createForm!: FormGroup;
   moduleName: string="";
   moduleId!: number;
@@ -31,7 +33,9 @@ export class CoreDetailsComponent {
   subModulfieldClicked: boolean = false;
   moduleNameTouched: boolean = false;
   modulfieldClicked: boolean = false;
-  repAttVal : string = "";
+  rep_att_fieldClicked: boolean = false;
+  rep_att_invalid: boolean = false;
+  repAttVal : string = "true";
   moduleNamesStr: string ="";
   selectedRadio:string = 'Self';
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
@@ -47,13 +51,13 @@ export class CoreDetailsComponent {
       attribute_title_en: ['Container Material Code',Validators.required],
       attribute_title_fr: ['Container Material Code',Validators.required],
       attribute_description_en: ['',Validators.required],
-      attribute_description_fr: [''],
+      attribute_description_fr: ['',Validators.required],
       attribute_other_info: ['',Validators.required],
       code_list_name: ['',Validators.required],
       code_value: ['',Validators.required],
       min_value: ['',Validators.required],
       max_value: ['',Validators.required],
-      data_type: ['',Validators.required],
+      data_type: ['Number',Validators.required],
       // link_module:['',Validators.required],
       // link_sub_module:['',Validators.required],
       // attribute_repeatability: ['Self',Validators.required],
@@ -61,17 +65,23 @@ export class CoreDetailsComponent {
       // dependent_attributes: ['Attribute Name',Validators.required],
     });
 
+    this.createForm.get('code_value')?.disable();
+
+    this.codeListSearchApi()
+
     this.generalService.getFormData().subscribe(formData => {
       if(formData === "SAVE"){
-        if(this.createForm.value.attr_bus_requirement == "" || this.createForm.value.attribute_title_en == "" || this.createForm.value.attribute_title_fr == "" || this.createForm.value.attribute_description_en == "" || this.moduleName == "" || this.subModuleName == ""){
+        if(this.createForm.value.attr_bus_requirement == "" || this.createForm.value.attribute_title_en == "" || this.createForm.value.attribute_title_fr == "" || this.createForm.value.attribute_description_en == "" || this.createForm.value.attribute_other_info == "" || this.moduleName == "" || this.subModuleName == "" || this.repAttVal == "" || this.createForm.value.data_type == "" || this.selectedRadio == ""){
           this.toastService.showError('Cannot save! Required fields empty')
         }else{
           this.saveApi();
         }
         
-      }else{
+      }else if (formData === "clear"){
         this.createForm.reset();
         this.attributesListArray = []
+        this.filteredItemsLSM = []
+        this.filteredItemsLM = []
       }
       // Add your save logic here
     });
@@ -113,6 +123,10 @@ export class CoreDetailsComponent {
       this.treeData = {};
       this.treeData = bkup;
       this.showLoader = false;
+      this.createForm.reset();
+      this.attributesListArray = []
+      this.filteredItemsLSM = []
+      this.filteredItemsLM = []
     }, (err: any) => {
       this.toastService.showError(err?.error?.error || err?.error?.message);
       this.showLoader = false;
@@ -129,6 +143,8 @@ export class CoreDetailsComponent {
       this.subModuleNameTouched = false
       this.subModuleSearchApi(searchQuery)
       // this.filteredItemsLSM = this.moduleArray.filter(item => item.toLowerCase().includes(searchQuery.toLowerCase()));
+    }else if(fieldName === 'codeList'){
+      // this.codeListSearchApi(searchQuery)
     }
     
     if(searchQuery === ""){
@@ -233,6 +249,29 @@ export class CoreDetailsComponent {
     
   }
 
+  codeListSearchApi(){
+    console.log("this.codeListSearchApi")
+    this.apiService.get(`${environment.apiUrl}/codelists`).subscribe((data: any) => {
+      console.log("sub module name search api response", data)
+      this.codeListArray = data.codeLists
+    }, (err: Error) => {
+      console.log("error response", err)
+    })
+  }
+
+  codeValuesApi(codelist:any){
+    this.createForm.get('code_value')?.enable();
+    let selectedIndex = codelist.target.value
+    console.log("codeValuesApi",selectedIndex)
+    this.apiService.get(`${environment.apiUrl}/codevalues?codeListId=`+selectedIndex).subscribe((data: any) => {
+      console.log("sub module name search api response", data)
+      this.codeValuesArray = data.codeValues
+    }, (err: Error) => {
+      console.log("error response", err)
+    })
+    
+  }
+
   @HostListener('document:click', ['$event'])
   clickOut(event:any) {
     console.log("click event fired")
@@ -255,6 +294,11 @@ export class CoreDetailsComponent {
       {
         this.subModuleNameTouched = true
       }
+
+      // if (event.target.id != 'repeating_attribute' && this.rep_att_fieldClicked) 
+      // {
+      //   this.rep_att_invalid = true
+      // }
    }
 
    moduleInputClicked(){
@@ -263,5 +307,10 @@ export class CoreDetailsComponent {
    subModuleInputClicked(){
     this.subModulfieldClicked = true
    }
+
+  //  repAttFieldClicked(){
+  //   console.log("repAttFieldClicked")
+  //   this.rep_att_fieldClicked = true
+  //  }
 
 }
