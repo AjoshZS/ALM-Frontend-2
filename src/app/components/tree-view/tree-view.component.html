@@ -17,7 +17,7 @@
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                       <!-- Feature Search Tree -->
                     <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [style.display]=" this.searchString && hideLeafNode(node) ? 'none' : ''" matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y"> -->
-                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding  matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
+                    <mat-tree-node *matTreeNodeDef="let node" (click)="selectNode(node)" [ngClass]="node?.attribute_id == selectedNode?.attribute_id ? 'selected-item' : ''" matTreeNodePadding  matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
                         <div class="c-pointer item-name d-flex align-center w-100">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span  [ngClass]="{
@@ -27,7 +27,7 @@
                     </mat-tree-node>
                       <!-- Feature Search Tree -->
                     <!-- <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  [style.display]=" this.searchString && hideParentNode(node) ? 'none' : 'flex'"  matTreeNodePadding matTreeNodePaddingIndent="40"> -->
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"    matTreeNodePadding matTreeNodePaddingIndent="40">
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild"  [class.nested-node]="treeControl.getLevel(node) > 0"    matTreeNodePadding matTreeNodePaddingIndent="40">
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button (click)="toggleNode(node)" 
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
