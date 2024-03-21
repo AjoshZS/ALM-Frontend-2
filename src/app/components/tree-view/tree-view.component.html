@@ -17,8 +17,8 @@
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                       <!-- Feature Search Tree -->
                     <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [style.display]=" this.searchString && hideLeafNode(node) ? 'none' : ''" matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y"> -->
-                    <mat-tree-node *matTreeNodeDef="let node" (click)="selectNode(node)" [ngClass]="node?.attribute_id == selectedNode?.attribute_id ? 'selected-item' : ''" matTreeNodePadding  matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
-                        <div class="c-pointer item-name d-flex align-center w-100">
+                    <mat-tree-node *matTreeNodeDef="let node" (click)="selectNode(node)"  matTreeNodePadding  matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
+                        <div class="c-pointer item-name d-flex align-center w-100" [ngClass]="node?.attribute_id === selectedNode?.attribute_id ? 'selected-item2' : ''">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span  [ngClass]="{
                                 'overlap': treeControl.getLevel(node) > 1
