@@ -2,6 +2,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, ElementRef, Injectable, Input, OnChanges, OnInit, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { CommonService } from '../../services/common.service';
+import { GeneralService } from '../../modules/attribute/services/general.service';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
@@ -51,8 +52,10 @@ export class TreeViewComponent implements OnInit {
 
   dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   currentExpandedNode:any;
+  searchString:any;
+  selectedNode:any;
 
-  constructor(private commonService: CommonService) {
+  constructor(private commonService: CommonService, private general:GeneralService) {
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
@@ -112,5 +115,24 @@ export class TreeViewComponent implements OnInit {
   addNodetoListofExpandedNodes(node:any){
     this.expandedNodes.push(node);
   }
+
+  public hideLeafNode(node: any): boolean {
+    return  new RegExp(this.searchString, 'i').test(node.name) === false;
+  }
+
+  public hideParentNode(node: any): boolean {
+    return (this.treeControl
+      .getDescendants(node)
+      .filter((node:any) =>  node.children==null || node.children.length == 0)
+      .every((node:any) => {new RegExp(this.searchString, 'i').test(node.name) === false}))
+  }
+
+  selectNode(node:any){
+    this.selectedNode = node;
+    this.general.setcurrentNodeId(node?.module_id ? node?.module_id : (node.sub_module_id ? node?.sub_module_id : node?.attribute_id))
+
+  }
+
+ 
 
 }
