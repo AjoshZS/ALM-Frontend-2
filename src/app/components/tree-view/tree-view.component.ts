@@ -51,6 +51,7 @@ export class TreeViewComponent implements OnInit {
 
   dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   currentExpandedNode:any;
+  searchString:any;
 
   constructor(private commonService: CommonService) {
   }
@@ -112,5 +113,18 @@ export class TreeViewComponent implements OnInit {
   addNodetoListofExpandedNodes(node:any){
     this.expandedNodes.push(node);
   }
+
+  public hideLeafNode(node: any): boolean {
+    return  new RegExp(this.searchString, 'i').test(node.name) === false;
+  }
+
+  public hideParentNode(node: any): boolean {
+    return (this.treeControl
+      .getDescendants(node)
+      .filter((node:any) =>  node.children==null || node.children.length == 0)
+      .every((node:any) => {new RegExp(this.searchString, 'i').test(node.name) === false}))
+  }
+
+ 
 
 }

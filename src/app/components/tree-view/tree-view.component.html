@@ -1,18 +1,23 @@
-<div class="container max-w-100 p-l-0">
+<div class="container max-w-100 p-l-0 tree-ctn">
     <div class="row  w-100">
         <div class="w-100">
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search">
+                <!-- Feature Search Tree -->
+                <!-- <input type="text" class="search-input" placeholder="Search" [(ngModel)]="searchString"  #input> -->
+                <input type="text" class="search-input" placeholder="Search"  #input>
                 <img src="/assets/icons/Icon feather-search.svg" class="search-icon">
 
             </div>
-            <div class="row d-flex align-center m-t-15 m-b-10">
-                <span><mat-icon class="draft-icon">assignment</mat-icon></span>
-                <p class="draft f-w-500 m-l-5 m-b-0">Draft</p>
-            </div>
+ 
             <div class="main">
+                <div class="row d-flex align-center m-t-15 m-b-10">
+                    <span><mat-icon class="draft-icon">assignment</mat-icon></span>
+                    <p class="draft f-w-500 m-l-5 m-b-0">Draft</p>
+                </div>
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
+                      <!-- Feature Search Tree -->
+                    <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [style.display]=" this.searchString && hideLeafNode(node) ? 'none' : ''" matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y"> -->
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding  matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
                         <div class="c-pointer item-name d-flex align-center w-100">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span  [ngClass]="{
@@ -20,7 +25,9 @@
                               }" class="tooltip-span" title="{{node?.name}}">{{node?.name}}</span>
                         </div>
                     </mat-tree-node>
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  matTreeNodePadding matTreeNodePaddingIndent="40">
+                      <!-- Feature Search Tree -->
+                    <!-- <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  [style.display]=" this.searchString && hideParentNode(node) ? 'none' : 'flex'"  matTreeNodePadding matTreeNodePaddingIndent="40"> -->
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"    matTreeNodePadding matTreeNodePaddingIndent="40">
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button (click)="toggleNode(node)" 
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
