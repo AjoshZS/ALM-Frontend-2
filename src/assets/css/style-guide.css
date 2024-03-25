@@ -136,9 +136,17 @@ tbody tr:nth-child(even) {
 }
 
 .dropdown {
+    /* position: absolute !important; */
+    /* top: 100% !important; */
+    /* right: 26px !important; */
+    width: 100% !important;
     background-color: white !important;
-    border: 1px solid #d0e8e8 !important;
-    display: block !important;
+    border: 1.5px solid #d0e8e8 !important;
+    border-top: none !important;
+    z-index: 2000 !important;
+    color: black !important;
+    position:absolute !important;
+    /* width: 13% !important; */
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 7px !important;
@@ -151,7 +159,8 @@ tbody tr:nth-child(even) {
     text-decoration: none !important;
     color: black !important;
     transition: background-color 0.3s, color 0.3s !important;
-    margin-bottom: auto !important;
+    margin-bottom: auto;
+    min-height: 25px !important;
 }
 
 .dropdown-contents:hover {

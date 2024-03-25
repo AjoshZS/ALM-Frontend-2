@@ -9,11 +9,12 @@
                 <label for="attr_bus_requirement">Business Requirement</label>
             </div>
             <div class="input form-input">
-                <input type="text" class="f-att-bus-req input-field"
-                    id="attr_bus_requirement" formControlName="attr_bus_requirement">
+                <input type="text" class="f-att-bus-req input-field" id="attr_bus_requirement"
+                    formControlName="attr_bus_requirement">
             </div>
         </div>
-        <div class="f-reqd" *ngIf="createForm.get('attr_bus_requirement')!.invalid && createForm.get('attr_bus_requirement')!.touched">
+        <div class="f-reqd"
+            *ngIf="createForm.get('attr_bus_requirement')!.invalid && createForm.get('attr_bus_requirement')!.touched">
             Business Requirement field can't be empty.
         </div>
 
@@ -23,10 +24,13 @@
                 <label for="attribute_title_en">Name (EN)</label>
             </div>
             <div class="input form-input">
-                <input class="ip-field input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attr_bus_requirement" formControlName="attribute_title_en">
+                <input class="ip-field input-field" type="text"
+                    style="border-left-width: 2px;border-left-color: #438ce7;" id="attr_bus_requirement"
+                    formControlName="attribute_title_en">
             </div>
         </div>
-        <div class="f-reqd" *ngIf="createForm.get('attribute_title_en')!.invalid && createForm.get('attribute_title_en')!.touched">
+        <div class="f-reqd"
+            *ngIf="createForm.get('attribute_title_en')!.invalid && createForm.get('attribute_title_en')!.touched">
             Name (EN) field can't be empty.
         </div>
 
@@ -36,10 +40,13 @@
                 <label for="attribute_title_fr">Name (FR)</label>
             </div>
             <div class="input form-input">
-                <input class="ip-field input-field" type="text" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_title_fr" formControlName="attribute_title_fr">
+                <input class="ip-field input-field" type="text"
+                    style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_title_fr"
+                    formControlName="attribute_title_fr">
             </div>
         </div>
-        <div class="f-reqd" *ngIf="createForm.get('attribute_title_fr')!.invalid && createForm.get('attribute_title_fr')!.touched">
+        <div class="f-reqd"
+            *ngIf="createForm.get('attribute_title_fr')!.invalid && createForm.get('attribute_title_fr')!.touched">
             Name (FR) field can't be empty.
         </div>
 
@@ -50,22 +57,35 @@
             </div>
             <div class="input form-input">
                 <div class="desc-f-row  d-flex">
-                    <textarea class="description input-field" style="border-left-width: 2px;border-left-color: #438ce7;" id="attribute_description_en" formControlName="attribute_description_en"></textarea>
+                    <!-- <div class="row d-flex row-desc-boxes"> -->
+                        <div class="en-desc">
+                            <textarea class="description input-fiel" style="border-left-width: 2px;border-left-color: #146678;"
+                        id="attribute_description_en" formControlName="attribute_description_en"></textarea>
+                        </div>
+                        
                     <div class="desc-input-gap"></div>
-                    <textarea class="description input-field desc-fr" formControlName="attribute_description_fr"></textarea>
+                    <div class="en-desc">
+                        <textarea class="description input-field"
+                        formControlName="attribute_description_fr"></textarea>
+                    </div>
+                    
+                    <!-- </div> -->
+                    
                 </div>
-                
+
             </div>
         </div>
         <div class="row d-flex p-relative">
-            <div class="f-reqd f-reqd-desc-en" *ngIf="createForm.get('attribute_description_en')!.invalid && createForm.get('attribute_description_en')!.touched">
+            <div class="f-reqd f-reqd-desc-en"
+                *ngIf="createForm.get('attribute_description_en')!.invalid && createForm.get('attribute_description_en')!.touched">
                 Description (EN) field can't be empty
             </div>
-            <div class="f-reqd f-reqd-desc-en" *ngIf="createForm.get('attribute_description_fr')!.invalid && createForm.get('attribute_description_fr')!.touched">
+            <div class="f-reqd f-reqd-desc-en"
+                *ngIf="createForm.get('attribute_description_fr')!.invalid && createForm.get('attribute_description_fr')!.touched">
                 Description (FR) field can't be empty
             </div>
         </div>
-        
+
 
         <div class="row form-single-row d-flex">
             <div class="star-reqd">*</div>
@@ -73,10 +93,12 @@
                 <label for="attribute_other_info">Other Info</label>
             </div>
             <div class="input form-input">
-                <input type="text" class="ip-field ip-other-info input-field" formControlName="attribute_other_info" id="att_other_info">
+                <input type="text" class="ip-field ip-other-info input-field" formControlName="attribute_other_info"
+                    id="att_other_info">
             </div>
         </div>
-        <div class="f-reqd" *ngIf="createForm.get('attribute_other_info')!.invalid && createForm.get('attribute_other_info')!.touched">
+        <div class="f-reqd"
+            *ngIf="createForm.get('attribute_other_info')!.invalid && createForm.get('attribute_other_info')!.touched">
             Other Info field can't be empty.
         </div>
 
@@ -85,33 +107,70 @@
             <div class="label form-label">
                 <label for="repeating_attribute">Repeating Attribute</label>
             </div>
-            <div class="row f-rep-att d-flex">
-                <select class="sel-small-field rep-att-field input-field" [(ngModel)]="repAttVal" [ngModelOptions]="{standalone: true}" id="repeating_attribute">
-                    <option selected value="false">No</option>
-                    <option value="true">Yes</option>
-                </select>
-    
-                <div class="form-input-gap" style="width: 4%;"></div>
-    
-                <div class="label form-label" style="width: 14%;">
-                    <label for="code_list_name">Code List Name</label>
-                </div>
-                <select class="sel-small-field code-li-name input-field" (change)="codeValuesApi($event)" formControlName="code_list_name" id="code_list_name">
-                    <option *ngFor="let option of codeListArray" [value]="option.code_list_id">{{ option.code_list_name }}</option>
-                </select>
-    
-                <div class="form-input-gap" style="width: 4%;"></div>
-    
-                <div class="label form-label" style="width: 11%;">
-                    <label for="code_value">Code Value</label>
-                </div>
-                <select class="sel-small-field code-val input-field" formControlName="code_value" id="code_value">
+            <div class="row f-rep-att d-flex p-relative">
+                <div class="row rep-att-row d-flex">
+                    <div class="f-dropdown-codelist p-relative">
+                        <input class="row sel-small-field code-li-name input-field" [(ngModel)]="repAttVal"
+                            [ngModelOptions]="{standalone: true}" id="repeating_attribute" readonly>
+                        <mat-icon class="p-absolute icon-dropdown" id="repeating_attribute"
+                            (click)="selectBoxClicked($event,'repeating_attribute')">expand_more</mat-icon>
+                        <div *ngIf="rep_att_select_bool" class="rep-att-dropdown dropdown">
+                            <div class="dropdown-contents" (click)="selectModule(item,'rep_att')"
+                                *ngFor="let item of rep_att_array">
+                                {{ item }}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-input-gap" style="width: 4%;"></div>
+
+                    <div class="label form-label" style="width: 13%;">
+                        <label for="code_list_name">Code List Name</label>
+                    </div>
+
+                    <div class="f-dropdown-codelist p-relative">
+                        <input class="row sel-small-field f-code-li-name input-field" formControlName="code_list_name"
+                            id="code_list_name" readonly>
+                        <mat-icon class="p-absolute icon-dropdown icon-dropdown" id="code_list_name"
+                            (click)="selectBoxClicked($event,'code_list_name')">expand_more</mat-icon>
+                        <div *ngIf="codelist_select_bool" class="rep-att-dropdown dropdown-code-list dropdown">
+                            <div class="dropdown-contents" (click)="selectModule(item,'code_list_name')"
+                                *ngFor="let item of codeListArray">
+                                {{ item.code_list_name }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-input-gap" style="width: 4%;"></div>
+
+                    <div class="label form-label" style="width: 13%;">
+                        <label for="code_value">Code Value</label>
+                    </div>
+
+                    <div class="f-dropdown-codelist p-relative">
+                        <input class="row sel-small-field f-codelist input-field" formControlName="code_value"
+                            id="code_value" readonly>
+                        <mat-icon class="p-absolute icon-dropdown icon-dropdown" id="code_value"
+                            (click)="selectBoxClicked($event,'code_value')">expand_more</mat-icon>
+                        <div *ngIf="codevalue_select_bool" class="rep-att-dropdown dropdown-code-list dropdown">
+                            <div class="dropdown-contents" (click)="selectModule(item,'code_value_name')"
+                                *ngFor="let item of codeValuesArray">
+                                {{ item.code_value_name }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <select class="sel-small-field code-val input-field" formControlName="code_value" id="code_value">
                     <option *ngFor="let option of codeValuesArray" [value]="option.code_value_name">{{ option.code_value_name }}</option>
-                </select>
-                <!-- <mat-icon style="color: #438ce7;padding: 2px;font-size: 30px;margin-left: 5px;">content_paste_go</mat-icon> -->
-                <img class="help-image" style="width: 30px;" src="assets/icons/Group 536.svg">
+                </select> -->
+                <div class="row-end-icon-box">
+                    <img class="help-image" style="width: 30px;" src="assets/icons/Group 536.svg">
+                </div>
+                </div>
             </div>
-            
+
         </div>
         <div class="f-reqd" *ngIf="repAttVal == ''">
             Repeating Attribute field can't be empty.
@@ -123,25 +182,44 @@
                 <label for="min_value">Min Value</label>
             </div>
             <div class="row f-rep-att d-flex">
-                <input type="number" class="sel-small-field f-min-val input-field" formControlName="min_value" id="min_value">
-            
-                <div class="form-input-gap" style="width: 6.5%;"></div>
-            
-                <div class="label form-label" style="width: 12%;">
-                    <label for="max_value">Max Value</label>
+                <div class="row min-value-row d-flex">
+                    <input type="number" class="sel-small-field f-min-val input-field no-spinners"
+                        formControlName="min_value" id="min_value">
+
+                    <div class="form-input-gap" style="width: 6%;"></div>
+
+                    <div class="label form-label" style="width: 13.5%;">
+                        <label for="max_value">Max Value</label>
+                    </div>
+                    <input type="number" class="sel-small-field f-max-val input-field no-spinners"
+                        formControlName="max_value" id="max_value">
+
+                    <div class="form-input-gap" style="width: 6%;"></div>
+
+                    <div class="star-reqd">*</div>
+                    <div class="label form-label" style="width: 13.5%;">
+                        <label for="data_type">Data Type</label>
+                    </div>
+
+                    <div class="f-dropdown-codelist p-relative">
+                        <input class="row sel-small-field f-code-li-name input-field" formControlName="data_type"
+                            id="data_type" readonly>
+                        <mat-icon class="p-absolute icon-dropdown icon-dropdown" id="data_type"
+                            (click)="selectBoxClicked($event,'data_type')">expand_more</mat-icon>
+                        <div *ngIf="datatype_select_bool" class="rep-att-dropdown dropdown-code-list dropdown">
+                            <div class="dropdown-contents" (click)="selectModule(item,'data_type')"
+                                *ngFor="let item of datatypeArray">
+                                {{ item }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <input type="number" class="sel-small-field f-max-val input-field" formControlName="max_value" id="max_value">
-            
-                <div class="form-input-gap" style="width: 6.5%;"></div>
-            
-                <div class="star-reqd">*</div>
-                <div class="label form-label" style="width: 12%;">
-                    <label for="data_type">Data Type</label>
-                </div>
-                <select class="sel-small-field f-d-type input-field" formControlName="data_type" id="data_type">
+
+
+                <!-- <select class="sel-small-field f-d-type input-field" formControlName="data_type" id="data_type">
                     <option value="Number" selected>Number</option>
                     <option value="String">String</option>
-                </select>
+                </select> -->
             </div>
 
         </div>
@@ -152,12 +230,16 @@
                 <label for="link_module">Link Module</label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" name="moduleInputBox" class="i-box-normal input-field" (click)="moduleInputClicked()" [(ngModel)]="moduleName" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkModule')">
-                <div class="sel-fil-div" id="moduleDropDown" [ngClass]="{'sel-fil-div-visible': filteredItemsLM.length >= 1, 'sel-fil-div-hidden': filteredItemsLM.length < 1}">
-                    <div class="sel-fil-item" (click)="selectModule(item,'linkModule')" *ngFor="let item of filteredItemsLM">
+                <input type="text" name="moduleInputBox" class="i-box-normal input-field" (click)="moduleInputClicked()"
+                    [(ngModel)]="moduleName" [ngModelOptions]="{standalone: true}"
+                    (keyup)="onKeyUp($event,'linkModule')">
+                <div class="dropdown" id="moduleDropDown"
+                    [ngClass]="{'sel-fil-div-visible': filteredItemsLM.length >= 1, 'sel-fil-div-hidden': filteredItemsLM.length < 1}">
+                    <div class="dropdown-contents" (click)="selectModule(item,'linkModule')"
+                        *ngFor="let item of filteredItemsLM">
                         {{ item.module_name }}
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
         <div class="f-reqd" *ngIf="moduleName === '' && moduleNameTouched">
@@ -170,32 +252,38 @@
                 <label for="link_sub_module">Link Sub Module </label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" name="subModuleInputBox" (click)="subModuleInputClicked()" [disabled]="moduleName === ''" class="i-box-normal input-field" [(ngModel)]="subModuleName" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkSubModule')">
-                <div class="sel-fil-div" id="subModuleDropDown" [ngClass]="{'sel-fil-div-visible': filteredItemsLSM.length >= 1, 'sel-fil-div-hidden': filteredItemsLSM.length < 1}">
-                    <div class="sel-fil-item" (click)="selectModule(item,'linkSubModule')" *ngFor="let item of filteredItemsLSM">
+                <input type="text" name="subModuleInputBox" (click)="subModuleInputClicked()"
+                    [disabled]="moduleName === ''" class="i-box-normal input-field" [(ngModel)]="subModuleName"
+                    [ngModelOptions]="{standalone: true}" (keyup)="onKeyUp($event,'linkSubModule')">
+                <div class="dropdown p-absolute" id="subModuleDropDown"
+                    [ngClass]="{'sel-fil-div-visible': filteredItemsLSM.length >= 1, 'sel-fil-div-hidden': filteredItemsLSM.length < 1}">
+                    <div class="dropdown-contents" (click)="selectModule(item,'linkSubModule')"
+                        *ngFor="let item of filteredItemsLSM">
                         {{ item.sub_module_name }}
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
         <div class="f-reqd" *ngIf="subModuleName === '' && subModuleNameTouched">
             Sub Module field can't be empty
         </div>
 
-        <div class="row form-single-row d-flex" *ngIf="repAttVal==='true'">
+        <div class="row form-single-row d-flex" *ngIf="repAttVal==='Yes'">
             <div class="star-reqd">*</div>
             <div class="label form-label">
                 <label for="attribute_repeatability">Repeatability</label>
             </div>
 
             <div class="form-input">
-                <mat-radio-group [(ngModel)]="selectedRadio" [ngModelOptions]="{standalone: true}" (change)="radioChange($event)" style="width: 100%; display: flex;">
-                    <mat-radio-button value="Self" style="width: 32%; border-color:  #438ce7 !important;" checked>Self Repeating</mat-radio-button>
+                <mat-radio-group [(ngModel)]="selectedRadio" [ngModelOptions]="{standalone: true}"
+                    (change)="radioChange($event)" style="width: 100%; display: flex;">
+                    <mat-radio-button value="Self" style="width: 32%; border-color:  #438ce7 !important;" checked>Self
+                        Repeating</mat-radio-button>
                     <!-- <div class="form-input-gap" style="width: 2%;"></div> -->
                     <mat-radio-button value="Group" style="width: 32%;">Group Repeating</mat-radio-button>
                 </mat-radio-group>
             </div>
-            
+
         </div>
 
         <!-- <div class="row form-single-row d-flex">
@@ -212,13 +300,29 @@
             <div class="label form-label">
                 <label for="is_dependent_attribute">Dependent</label>
             </div>
-            <div class="row f-is-dep d-flex">
-                <select formControlName="is_dependent_attribute" class="ip-field f-is-dep-sel f-li-mod input-field" id="is_dependent_attribute">
-                    <option value="true" selected>Yes</option>
-                    <option value="false">No</option>
-                </select>
+            <!-- <div class="row f-is-dep d-flex"> -->
+
+            <div class="f-dropdown-is_dependant p-relative">
+                <input class="row ip-field f-is-dep-sel f-li-mod input-field input-field"
+                    formControlName="is_dependent_attribute" id="is_dependent_attribute" readonly>
+                <mat-icon class="p-absolute icon-dropdown icon-is-dep-dropdown icon-dropdown"
+                    id="is_dependent_attribute"
+                    (click)="selectBoxClicked($event,'is_dependent_attribute')">expand_more</mat-icon>
+                <div *ngIf="is_dependant_select_bool" class="rep-att-dropdown dropdown-code-list dropdown">
+                    <div class="dropdown-contents" (click)="selectModule(item,'is_dependent_attribute')"
+                        *ngFor="let item of is_dependant_array">
+                        {{ item }}
+                    </div>
+                </div>
             </div>
-            
+
+            <!-- <select formControlName="is_dependent_attribute" class="ip-field f-is-dep-sel f-li-mod input-field"
+                    id="is_dependent_attribute">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select> -->
+            <!-- </div> -->
+
         </div>
 
         <div class="row form-single-row d-flex row-dep-att">
@@ -227,14 +331,27 @@
                 <label for="dependent_attributes ">Dependent Attributes </label>
             </div>
             <div class="input form-input" style="position: relative;">
-                <input type="text" class="ip-field f-search-data input-field" id="dependent_attributes" [(ngModel)]="selectedAttribute" [ngModelOptions]="{standalone: true}" (keyup)="onKeyUpDepAttr($event)">
+                <input type="text" class="ip-field f-search-data input-field" [matAutocomplete]="auto"
+                    id="dependent_attributes" [(ngModel)]="selectedAttribute" [ngModelOptions]="{standalone: true}"
+                    (keyup)="onKeyUpDepAttr($event)">
                 <!-- <mat-icon class="search-icon">search</mat-icon> -->
-                <img class="help-image search-icon" style="width: 18px; height: 17px;" src="assets/icons/Icon feather-search.svg">
-                <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': attributesArray.length >= 1, 'sel-fil-div-hidden': attributesArray.length < 1}">
+                <img class="help-image search-icon" style="width: 18px; height: 17px;"
+                    src="assets/icons/Icon feather-search.svg">
+                <!-- <div class="sel-fil-div" [ngClass]="{'sel-fil-div-visible': attributesArray.length >= 1, 'sel-fil-div-hidden': attributesArray.length < 1}">
                     <div class="sel-fil-item" (click)="selectAttribute(item)" *ngFor="let item of attributesArray">
                         {{ item.attribute_title_en }}
                     </div>
-                </div>  
+                </div>   -->
+
+                <mat-autocomplete #auto="matAutocomplete" 
+                    [ngClass]="{'sel-fil-div-visible': attributesArray.length >= 1, 'sel-fil-div-hidden': attributesArray.length < 1}">
+                    <mat-option class="dropdown-contents" (onSelectionChange)="selectAttribute(item)"
+                        *ngFor="let item of attributesArray" [value]="item.attribute_title_en"
+                        (click)="selectAttribute(item)">
+                        <span>{{ item.attribute_title_en }}</span> |
+                    </mat-option>
+                </mat-autocomplete>
+
             </div>
         </div>
 
@@ -247,8 +364,9 @@
                 <div class="mat-icon-box-att-item d-flex">
                     <mat-icon class="mat-icon-att-item" (click)="removeAttribute(item)">close</mat-icon>
                 </div>
-                  
+
             </mat-card-content>
         </mat-card>
     </div>
+    <div class="extra-height"></div>
 </div>

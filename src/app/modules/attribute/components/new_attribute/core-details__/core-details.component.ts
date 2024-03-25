@@ -23,9 +23,6 @@ export class CoreDetailsComponent {
   moduleNameArr: any[] = [];
   codeListArray: any[] = [];
   codeValuesArray: any[] = [];
-  rep_att_array: string[] = ["Yes","No"]
-  is_dependant_array: string[] = ["Yes","No"]
-  datatypeArray: string[] = ["Number","String"]
   createForm!: FormGroup;
   moduleName: string="";
   moduleId!: number;
@@ -39,12 +36,7 @@ export class CoreDetailsComponent {
   modulfieldClicked: boolean = false;
   rep_att_fieldClicked: boolean = false;
   rep_att_invalid: boolean = false;
-  rep_att_select_bool: boolean = false;
-  codelist_select_bool: boolean = false;
-  codevalue_select_bool: boolean = false;
-  datatype_select_bool: boolean = false;
-  is_dependant_select_bool: boolean = false;
-  repAttVal : string = "No";
+  repAttVal : string = "true";
   moduleNamesStr: string ="";
   selectedRadio:string = 'Self';
   attributeNames : string[] = ['John', 'Alice', 'Bob', 'Emma',"tree","tray","then","this","tiger","lion","leopard"];
@@ -60,10 +52,8 @@ export class CoreDetailsComponent {
     this.codeListArray = []
     this.codeValuesArray = []
     this.selectedRadio = attData.attribute_repeatability
-    this.repAttVal = (attData.repeating_attribute) === true ? 'Yes' : 'No'
+    this.repAttVal = attData.repeating_attribute
     this.moduleName = attData.module.module_name
-    this.moduleId = attData.module.module_id
-    this.subModuleID = attData.subModule.sub_module_id
     this.subModuleName = attData.subModule.sub_module_name
     if(attData.codeList){
       this.codeListArray.push(attData.codeList)
@@ -166,7 +156,7 @@ export class CoreDetailsComponent {
       "max_value": this.createForm.value.max_value,
       "data_type": this.createForm.value.data_type,
       "attribute_repeatability": this.selectedRadio,
-      "is_dependent_attribute": this.createForm.value.is_dependent_attribute === 'Yes' ? true : false,
+      "is_dependent_attribute": false,
       "dependent_attributes": dependent_attributesArr,
       "attribute_status": "active",
       "request_form_id": 456,
@@ -175,7 +165,6 @@ export class CoreDetailsComponent {
       "is_latest_version": true,
       // "attribute_version_number": "v1.0"
     }
-    console.log("attribute to be saved",attrData)
     this.showLoader = true;
     this.apiService.post(`${environment.apiUrl}/attributes`, attrData).subscribe(data =>{
       this.toastService.showSuccess('Attribute created successfully');
@@ -225,22 +214,6 @@ export class CoreDetailsComponent {
       this.moduleName = selected.module_name
       this.moduleId = selected.module_id
       this.filteredItemsLM = []
-    }else if(fieldName === 'rep_att'){
-      this.repAttVal = selected
-      this.rep_att_select_bool = false
-    }else if(fieldName === 'code_list_name'){
-      this.createForm.get('code_list_name')?.setValue(selected.code_list_name);
-      this.codelist_select_bool = false
-      this.codeValuesApi(selected)
-    }else if(fieldName === 'code_value_name'){
-      this.createForm.get('code_value')?.setValue(selected.code_value_name);
-      this.codevalue_select_bool = false
-    }else if(fieldName === 'data_type'){
-      this.createForm.get('data_type')?.setValue(selected);
-      this.datatype_select_bool = false
-    }else if(fieldName === 'is_dependent_attribute'){
-      this.createForm.get('is_dependent_attribute')?.setValue(selected);
-      this.is_dependant_select_bool = false
     }
     
   }
@@ -339,9 +312,9 @@ export class CoreDetailsComponent {
 
   codeValuesApi(codelist:any){
     this.createForm.get('code_value')?.enable();
-    let selectedIndex = codelist.code_list_id
+    let selectedIndex = codelist.target.value
     console.log("codeValuesApi",selectedIndex)
-    this.apiService.get(`${environment.apiUrl}/codevalues?codeListId=`+selectedIndex.toString()).subscribe((data: any) => {
+    this.apiService.get(`${environment.apiUrl}/codevalues?codeListId=`+selectedIndex).subscribe((data: any) => {
       console.log("sub module name search api response", data)
       this.codeValuesArray = data.codeValues
     }, (err: Error) => {
@@ -373,30 +346,10 @@ export class CoreDetailsComponent {
         this.subModuleNameTouched = true
       }
 
-      if (event.target.id != 'repeating_attribute' && this.rep_att_select_bool) 
-      {
-        this.rep_att_select_bool = false
-      }
-
-      if (event.target.id != 'code_list_name' && this.codelist_select_bool) 
-      {
-        this.codelist_select_bool = false
-      }
-
-      if (event.target.id != 'code_value' && this.codevalue_select_bool) 
-      {
-        this.codevalue_select_bool = false
-      }
-
-      if (event.target.id != 'data_type' && this.datatype_select_bool) 
-      {
-        this.datatype_select_bool = false
-      }
-
-      if (event.target.id != 'is_dependent_attribute' && this.is_dependant_select_bool) 
-      {
-        this.datatype_select_bool = false
-      }
+      // if (event.target.id != 'repeating_attribute' && this.rep_att_fieldClicked) 
+      // {
+      //   this.rep_att_invalid = true
+      // }
    }
 
    moduleInputClicked(){
@@ -406,21 +359,6 @@ export class CoreDetailsComponent {
     this.subModulfieldClicked = true
    }
 
-   selectBoxClicked(event:any,field:string){
-    console.log("selectBoxClicked")
-    if(field === "repeating_attribute"){
-      this.rep_att_select_bool = true
-    }else if(field === "code_list_name"){
-      this.codelist_select_bool = true
-    }else if(field === 'code_value'){
-      this.codevalue_select_bool = true
-    }else if(field === 'data_type'){
-      this.datatype_select_bool = true
-    }else if(field === 'is_dependent_attribute'){
-      this.is_dependant_select_bool = true
-    }
-    
-   }
    
 
 }
