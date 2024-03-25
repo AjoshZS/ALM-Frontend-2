@@ -62,6 +62,8 @@ export class CoreDetailsComponent {
     this.selectedRadio = attData.attribute_repeatability
     this.repAttVal = (attData.repeating_attribute) === true ? 'Yes' : 'No'
     this.moduleName = attData.module.module_name
+    this.moduleId = attData.module.module_id
+    this.subModuleID = attData.subModule.sub_module_id
     this.subModuleName = attData.subModule.sub_module_name
     if(attData.codeList){
       this.codeListArray.push(attData.codeList)
@@ -173,6 +175,7 @@ export class CoreDetailsComponent {
       "is_latest_version": true,
       // "attribute_version_number": "v1.0"
     }
+    console.log("attribute to be saved",attrData)
     this.showLoader = true;
     this.apiService.post(`${environment.apiUrl}/attributes`, attrData).subscribe(data =>{
       this.toastService.showSuccess('Attribute created successfully');

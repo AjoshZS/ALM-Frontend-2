@@ -343,7 +343,7 @@
                     </div>
                 </div>   -->
 
-                <mat-autocomplete #auto="matAutocomplete" class="dropdown"
+                <mat-autocomplete #auto="matAutocomplete" 
                     [ngClass]="{'sel-fil-div-visible': attributesArray.length >= 1, 'sel-fil-div-hidden': attributesArray.length < 1}">
                     <mat-option class="dropdown-contents" (onSelectionChange)="selectAttribute(item)"
                         *ngFor="let item of attributesArray" [value]="item.attribute_title_en"
