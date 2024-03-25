@@ -13,10 +13,12 @@
     padding-top: 20px;
   }
   
-  
+  .main{
+    align-items: center;
+    justify-content: center;
+  }
  .yes-button {
-      min-width: 60px !important;
-   margin-left: 52px;
+      min-width: 70px !important;
   }
 
   .yes-button:focus{
@@ -27,7 +29,7 @@
   
 
  .no-button {
-    min-width: 60px !important;
-    margin-left: 25px;
+    min-width: 70px !important;
+    margin-left: 20px;
   }
   
