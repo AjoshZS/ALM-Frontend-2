@@ -133,31 +133,3 @@ tbody tr:nth-child(even) {
 .card {
     border: 1px solid #66CDF3 !important
 }
-
-.dropdown-content {
-    background-color: white !important;
-    border: 1px solid #d0e8e8 !important;
-    min-width: 120px !important;
-    display: block !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 6px !important;
-    border-bottom-left-radius: 6px !important;
-}
-
-.dropdown-content option {
-    padding: 12px 16px !important;
-    text-decoration: none !important;
-    display: block !important;
-    color: black !important;
-    transition: background-color 0.3s, color 0.3s !important;
-}
-
-.dropdown-content option:hover {
-    background-color: #007791 !important;
-    color: white !important;
-}
-.dropdown-content option:focus{
-    background-color: #007791 !important;
-    color: white !important;
-}

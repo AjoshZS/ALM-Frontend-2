@@ -7,7 +7,15 @@
                 <mat-icon class="p-8">help_outline</mat-icon>
                 <mat-icon class="p-8">settings</mat-icon>
                 <!-- <mat-icon>account_circle</mat-icon> -->
-                <div class="avatar">A</div>
+
+                <div class="avatar" (click)="toggleDropdown()">
+                    A
+                </div>
+                <div *ngIf="showDropdown" class="dropdown">
+                    <p class="dropdown-contents" (click)="logout()">Logout</p>
+                </div>
+
+
             </div>
         </div>
     </div>

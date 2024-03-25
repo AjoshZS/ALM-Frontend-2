@@ -4,12 +4,15 @@ import { TreeViewComponent } from '../../components/tree-view/tree-view.componen
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../components/header/header.component';
+import { ConfirmationComponent } from '../../components/confirmation/confirmation.component';
 
 
 @NgModule({
   declarations: [
     TreeViewComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConfirmationComponent
+    
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { HeaderComponent } from '../../components/header/header.component';
     FormsModule,
     ReactiveFormsModule,
     HeaderComponent,
-    TreeViewComponent
+    TreeViewComponent,
+    ConfirmationComponent
   ]
 })
 export class SharedModule { }

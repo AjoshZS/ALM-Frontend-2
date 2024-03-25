@@ -1,0 +1,33 @@
+
+.mat-dialog-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+ .message{
+    color:black;
+ }
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  
+  
+ .yes-button {
+      min-width: 60px !important;
+   margin-left: 52px;
+  }
+
+  .yes-button:focus{
+    background-color: #00b0bb !important;
+    color: white !important;
+    border: 1px solid #0090a3 !important;
+  }
+  
+
+ .no-button {
+    min-width: 60px !important;
+    margin-left: 25px;
+  }
+  

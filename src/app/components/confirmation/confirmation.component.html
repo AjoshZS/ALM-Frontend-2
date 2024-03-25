@@ -1,0 +1,14 @@
+
+<mat-dialog-content class="message">
+    {{ message }}
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <!-- <button cdkFocusInitial class="button yes-button" (click)="onConfirm()">Yes</button> -->
+    <!-- <button  class="button"  (click)="onConfirm()">Ok</button> -->
+    <button  cdkFocusInitial mat-raised-button class="button yes-button"  (click)="onConfirm()">Ok</button>
+
+    <button   mat-raised-button class="button no-button " (click)="onCancel()">Cancel</button>
+
+
+  </mat-dialog-actions>
+  
