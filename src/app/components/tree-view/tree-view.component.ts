@@ -125,7 +125,7 @@ export class TreeViewComponent implements OnInit {
     if(this.searchString)  searchString = this.searchString?.toLowerCase()
     let isHide = this.treeControl
     .getDescendants(node)
-    .filter((node:any) =>  node.children==null || node.children.length == 0  )
+    .filter((node:any) =>  (node.children==null || node.children.length == 0) )
     .every((node2:any) => {return !node2?.name?.toLowerCase()?.includes(searchString)});
     
     if(!isHide && new RegExp(this.searchString, 'i').test(node.name) === true) this.treeControl.expand(node);
