@@ -35,8 +35,8 @@ export class HeaderComponent {
 
     });
     dialogRef.componentInstance.confirmed.subscribe(() => {
-     
-      this.router.navigate([''])
+      localStorage.clear();
+      this.router.navigate(['']);
     });
   }
 
