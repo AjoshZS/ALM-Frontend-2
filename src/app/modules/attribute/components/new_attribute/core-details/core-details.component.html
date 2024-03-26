@@ -51,7 +51,7 @@
         </div>
 
         <div class="row form-single-row d-flex">
-            <div class="star-reqd">*</div>
+            <div class="star-reqd desc-star">*</div>
             <div class="label form-label">
                 <label for="description">Description (EN)</label>
             </div>
@@ -150,7 +150,7 @@
                     </div>
 
                     <div class="f-dropdown-codelist p-relative">
-                        <input class="row sel-small-field f-codelist input-field" formControlName="code_value"
+                        <input class="row sel-small-field f-codelist input-field" [disabled]="createForm.get('code_list_name') == null" formControlName="code_value"
                             id="code_value" readonly>
                         <mat-icon class="p-absolute icon-dropdown icon-dropdown" id="code_value"
                             (click)="selectBoxClicked($event,'code_value')">expand_more</mat-icon>

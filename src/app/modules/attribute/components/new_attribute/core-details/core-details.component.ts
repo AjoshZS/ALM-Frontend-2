@@ -65,6 +65,14 @@ export class CoreDetailsComponent {
     this.moduleId = attData.module.module_id
     this.subModuleID = attData.subModule.sub_module_id
     this.subModuleName = attData.subModule.sub_module_name
+    let attributes_ListArray = attData.dependent_attributes
+    for (let i in attributes_ListArray){
+      let newObject = {
+        "attribute_id" : attributes_ListArray[i].dependent_attribute_id,
+        "attribute_title_en" : attributes_ListArray[i].attribute_title_en
+      }
+      this.attributesListArray.push(newObject)
+    }
     if(attData.codeList){
       this.codeListArray.push(attData.codeList)
       codeListName = attData.codeList.code_list_name
@@ -108,7 +116,7 @@ export class CoreDetailsComponent {
       // link_module:['',Validators.required],
       // link_sub_module:['',Validators.required],
       // attribute_repeatability: ['Self',Validators.required],
-      is_dependent_attribute: ['Yes',Validators.required],
+      is_dependent_attribute: ['No',Validators.required],
       // dependent_attributes: ['Attribute Name',Validators.required],
     });
 
@@ -129,6 +137,8 @@ export class CoreDetailsComponent {
         this.attributesListArray = []
         this.filteredItemsLSM = []
         this.filteredItemsLM = []
+        this.createForm.get('data_type')?.setValue('Number')
+        this.createForm.get('is_dependent_attribute')?.setValue('No')
       }
       // Add your save logic here
     });
@@ -136,20 +146,24 @@ export class CoreDetailsComponent {
 
     this.generalService.getcurrentNodeId().subscribe(nodeId => {
       let attributeId : string = nodeId.toString()
-      console.log("currentnodeID",attributeId)   
-      this.apiService.get(`${environment.apiUrl}/attributes?id=`+attributeId).subscribe((data: any) => {
-        console.log("attributes search api response", data)
-        this.attributeDataJson = data
-        this.fillAttributeForm(this.attributeDataJson)
-      }, (err: Error) => {      
-        console.log("error response", err)
-      })
+      console.log("currentnodeID",attributeId)
+      if(typeof attributeId === 'string' && attributeId !== '[object Object]') {
+        this.apiService.get(`${environment.apiUrl}/attributes?id=`+attributeId).subscribe((data: any) => {
+          console.log("attributes search api response", data)
+          this.attributeDataJson = data
+          this.fillAttributeForm(this.attributeDataJson)
+        }, (err: Error) => {      
+          console.log("error response", err)
+        })
+      }     
     });
 
   }
 
   saveApi(): void{
-    let dependent_attributesArr = this.attributesListArray.map(obj => obj.attribute_id);
+    console.log("dep_att",this.attributesListArray)
+      let dependent_attributesArr = this.attributesListArray.map(obj => obj.attribute_id);
+      console.log("dep_att_after",dependent_attributesArr)
     const attrData = {
       "attr_bus_requirement": this.createForm.value.attr_bus_requirement,
       "attribute_title_en": this.createForm.value.attribute_title_en,
@@ -278,7 +292,11 @@ export class CoreDetailsComponent {
     const itemIndex = this.attributesListArray.findIndex(element => element.attribute_id === selected.attribute_id)
     // let existingObject = this.attributesListArray.find((item: any) => item.id === selected.id);
     if (itemIndex === -1) {
-      this.attributesListArray.push(selected);
+      let newObject = {
+        "attribute_id" : selected.attribute_id,
+        "attribute_title_en" : selected.attribute_title_en
+      }
+      this.attributesListArray.push(newObject);
     }
     console.log("attributesListArray", this.attributesListArray,itemIndex)
     this.attributesArray = []

@@ -159,6 +159,9 @@
     font-family: 'Poppins';
     outline: none;
 }
+.desc-star{
+  height: 35px;
+}
 .desc-fr{
   border-left: 1px solid #A1A1A1 !important
 }
@@ -375,8 +378,9 @@
   }
   .star-reqd{
     color: red;
-    width: 1%;
-    display: inline-block;
+    width: 1.5%;
+    display: flex;
+    align-items: center;
   }
 
   .row-dep-att{
@@ -411,7 +415,7 @@
   // }
 
   .icon-is-dep-dropdown{
-    right: 1% !important;
+    right: 1.5% !important;
   }
 
   .min-value-row{
