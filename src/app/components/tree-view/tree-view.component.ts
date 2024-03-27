@@ -27,6 +27,7 @@ export class TreeViewComponent implements OnInit {
   @Input() treeData: any;
   expandedNodes: any[] = [];
   prevExpansionModel: any;
+  searchIconValid: boolean = true;
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -52,7 +53,7 @@ export class TreeViewComponent implements OnInit {
 
   dataSource: any = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   currentExpandedNode:any;
-  searchString:any;
+  searchString:string = '';
   selectedNode:any;
 
   constructor(private commonService: CommonService, private general:GeneralService) {
@@ -121,16 +122,41 @@ export class TreeViewComponent implements OnInit {
   }
 
   public hideParentNode(node: any): boolean {
-    return (this.treeControl
-      .getDescendants(node)
-      .filter((node:any) =>  node.children==null || node.children.length == 0)
-      .every((node:any) => {new RegExp(this.searchString, 'i').test(node.name) === false}))
+    let searchString:any = '';
+    if(this.searchString)  searchString = this.searchString?.toLowerCase()
+    let isHide = this.treeControl
+    .getDescendants(node)
+    .filter((node:any) =>  (node.children==null || node.children.length == 0) )
+    .every((node2:any) => {return !node2?.name?.toLowerCase()?.includes(searchString)});
+    
+    if(!isHide && new RegExp(this.searchString, 'i').test(node.name) === true) this.treeControl.expand(node);
+    return (isHide && new RegExp(this.searchString, 'i').test(node.name) === false)
   }
 
   selectNode(node:any){
+    console.log("selected node",node)
     this.selectedNode = node;
-    this.general.setcurrentNodeId(node?.module_id ? node?.module_id : (node.sub_module_id ? node?.sub_module_id : node?.attribute_id))
+    this.general.setcurrentNodeId(node?.attribute_id)
 
+  }
+
+  checkIfEmpty(event:any){
+    if(event?.target.value == ''){
+      this.searchIconValid = true
+      this.treeControl.collapseAll()
+      this.treeControl.expand(this.treeData[0])
+    }
+    else {
+      this.searchIconValid = false
+      this.prevExpansionModel = this.treeControl.expansionModel.selection;
+      this.treeControl.expandAll()
+      // console.log("text entered",event?.target.value,this.treeControl)
+    }
+  }
+
+  removeSearchString(){
+    this.searchString = '';
+    this.searchIconValid = true
   }
 
  
