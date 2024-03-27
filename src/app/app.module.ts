@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } fro
 import { Interceptor } from './interceptor/interceptor';
 import {ToastrModule} from 'ngx-toastr';
 import { MaterialModule } from './modules/material/material.module';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { MaterialModule } from './modules/material/material.module';
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }, AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
