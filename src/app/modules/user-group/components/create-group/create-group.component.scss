@@ -1,0 +1,29 @@
+.header-area {
+    min-height: 65px;
+    max-height: 65px;
+  }
+  .att-file-structure {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+  .h-panel-icon{
+    font-size: 20px;
+  }
+  .h-panel-text{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon-text-box{
+    min-width: 5% !important
+  }
+  .horizontal-bar{
+    border: 0.5px solid #add8d8;
+  }
+  .right-icon{
+    align-items: center;
+    justify-content: end;
+    color: #2b86ae;
+  }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CreateGroupComponent } from './components/create-group/create-group.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 const userGroupRoutes: Routes = [
@@ -19,6 +20,7 @@ const userGroupRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(userGroupRoutes),
+    SharedModule
   ]
 })
 export class UserGroupModule { }
