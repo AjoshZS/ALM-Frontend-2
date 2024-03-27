@@ -1,4 +1,4 @@
-<div class="container-main">
+<div *ngIf="showForm" class="container-main">
     <div class="sample">
         <div *ngIf="showLoader"  class="loader-parent">
             <img src="assets/gif/loader.gif">
@@ -13,13 +13,13 @@
                 <input class="input-field input-item" type="text" id="username" name="username" placeholder="UserName"
                     formControlName="userName" >
                 <div *ngIf="submitted && loginForm.get('userName')?.hasError('required')" class="text-danger f-s-11">
-                    Please enter a username</div>
+                    Please enter username</div>
             </div>
             <div class="input-container m-t-8">
                 <input class="input-field input-item" type="text" id="username" name="username" placeholder="Password"
                     formControlName="password" >
                 <div *ngIf="submitted && loginForm.get('password')?.hasError('required')" class="text-danger f-s-11">
-                    Please enter a password</div>
+                    Please enter password</div>
             </div>
             <div class="m-t-9 check-box-main">
                 <label class="container">Remember Me

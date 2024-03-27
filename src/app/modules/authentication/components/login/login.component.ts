@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { environment } from '../../../../../environments/environment';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../services/toast.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -13,41 +15,54 @@ export class LoginComponent {
   loginForm!: FormGroup
   submitted: boolean = false;
   showLoader: boolean = false;
-
-  constructor(
-    private fb: FormBuilder, private apiService: ApiService,private router:Router
-  ) { }
+  showForm: boolean = false;
+  constructor(@Inject(DOCUMENT) private document: Document,
+    private fb: FormBuilder, private apiService: ApiService, private router: Router, private tostr: ToastService
+  ) {
+  }
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-    })
+    if (localStorage.getItem('accessToken')) this.router.navigate(['/attribute']);
+    else {
+      this.showForm = true;
+      this.loginForm = this.fb.group({
+        userName: ['johndoe@gs1.org', Validators.required],
+        password: ['John Doe', Validators.required],
+      });
+    }
   }
 
   get f() { return this.loginForm.controls; }
 
   login() {
+    const payload = {
+      email: this.loginForm?.value?.userName?.trim(),
+      username: this.loginForm?.value?.password?.trim()
+    };
     this.submitted = true;
-    // this.showLoader = true;
-    this.apiService.post(environment?.apiUrl+ '/login',this.loginForm.value).subscribe((data: any) => {
-      let accessToken = data?.accessToken;
-      let refreshToken = data?.refreshToken;
-
-      localStorage.setItem('accessToken', JSON.stringify(accessToken));
-      localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
-      this.router.navigate(['/attribute'])
-    
-    })
-    if (this.loginForm.valid) {
+    if (payload.email && payload.username) {
       this.showLoader = true;
-
-      console.log(this.loginForm.value);
-
+      this.apiService.post(environment?.authApiUrl + '/login', payload).subscribe((data: any) => {
+        if (data?.token) {
+          localStorage.setItem('accessToken', data?.token);
+          if (data?.refreshToken) localStorage.setItem('refreshToken', data?.refreshToken);
+          this.router.navigate(['/attribute']);
+        }
+        this.showLoader = false;
+      }, err => {
+        this.showLoader = false;
+        if (err?.status === 403) this.tostr.showWarning('Invalid user');
+      });
     }
-    if (this.loginForm.invalid) {
-      return;
-    }
-    console.log('Login successful!');
+    // if (this.loginForm.valid) {
+    //   this.showLoader = true;
+
+    //   console.log(this.loginForm.value);
+
+    // }
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
+    // console.log('Login successful!');
   }
 }

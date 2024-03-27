@@ -46,3 +46,15 @@
     margin-top: 2px !important;
     width: 150px !important;
   }
+
+  .loader-parent {
+    position: fixed;
+    left: 40%;
+    top: 40%;
+    z-index: 9;
+  }
+  
+  .loader-parent img {
+    width: 100px;
+    margin-left: 45px;
+  }

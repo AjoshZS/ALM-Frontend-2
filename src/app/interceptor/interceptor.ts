@@ -15,15 +15,12 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
-  constructor(private router: Router,private apiService:ApiService) { }
+  constructor(private router: Router, private apiService: ApiService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
-          if (err?.error?.inValidUser || err.status === 403) { // invalid token
-            this.logout();
-          }
-          if(err?.error?.tokenExpired){
+          if (err?.status === 401) { // invalid token
             this.newToken();
           } else {
             return throwError(err);
@@ -40,9 +37,12 @@ export class Interceptor implements HttpInterceptor {
   }
 
   newToken(): void {
-    this.apiService.get(environment?.apiUrl + '/fetchaccesstoken').subscribe((data:any)=>{   
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
-    }) 
+    const payload = { refreshToken: localStorage.getItem('refreshToken') };
+    if (payload?.refreshToken) {
+      this.apiService.get(environment?.apiUrl + '/refresh-token').subscribe((data: any) => {
+        localStorage.setItem('accessToken', data.token);
+        location.reload();
+      });
+    } else this.logout();
   }
 }
