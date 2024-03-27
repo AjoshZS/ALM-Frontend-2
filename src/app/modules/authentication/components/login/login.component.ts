@@ -22,13 +22,15 @@ export class LoginComponent {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('accessToken')) this.router.navigate(['/attribute']);
-    else {
-      this.showForm = true;
-      this.loginForm = this.fb.group({
-        userName: ['johndoe@gs1.org', Validators.required],
-        password: ['John Doe', Validators.required],
-      });
+    if (typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('accessToken')) this.router.navigate(['/attribute']);
+      else {
+        this.showForm = true;
+        this.loginForm = this.fb.group({
+          userName: ['johndoe@gs1.org', Validators.required],
+          password: ['John Doe', Validators.required],
+        });
+      }
     }
   }
 

@@ -9,19 +9,23 @@ export class AuthService {
   constructor() { }
 
   isAuthenticated(){
-    let token = localStorage.getItem('accessToken');
-    if(token === null) return false;
-    else {
-      let decodedToken: any = jwtDecode<JwtPayload>(token);
-      if(decodedToken?.id) return true;
-      else return false;
-    }
+    if (typeof localStorage !== 'undefined') {
+      let token = localStorage.getItem('accessToken');
+      if(token === null) return false;
+      else {
+        let decodedToken: any = jwtDecode<JwtPayload>(token);
+        if(decodedToken?.id) return true;
+        else return false;
+      }
+    } else return false;
   }
 
   getUser(){
-    let token = localStorage.getItem('accessToken');
-    if(token === null) return false;
-    else return jwtDecode<JwtPayload>(token);
+    if (typeof localStorage !== 'undefined') {
+      let token = localStorage.getItem('accessToken');
+      if(token === null) return false;
+      else return jwtDecode<JwtPayload>(token);
+    } else return false;
   }
   
 }

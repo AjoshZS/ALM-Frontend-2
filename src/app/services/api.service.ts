@@ -13,7 +13,7 @@ export class ApiService {
   getToken() {
     if (this.authToken) return this.authToken;
     else {
-      let token = localStorage.getItem('userToken');
+      let token = localStorage.getItem('accessToken');
       if (token === null) return '';
       else return token;
     }
@@ -27,7 +27,7 @@ export class ApiService {
 
   setHeaders() {
     let header = new HttpHeaders({
-      // 'Authorization': `Bearer ${this.getToken()}`,
+      'Authorization': `Bearer ${this.getToken()}`,
       'X-Frame-Options': 'SAMEORIGIN',
       'X-Content-Type-Options': 'nosniff',
       'X-Xss-Protection': '1; mode=block'

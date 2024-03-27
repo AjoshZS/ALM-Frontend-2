@@ -104,8 +104,8 @@ export class CoreDetailsComponent {
   ngOnInit() {
     this.createForm = this.formBuilder.group({
       attr_bus_requirement: ['', Validators.required],
-      attribute_title_en: ['Container Material Code', Validators.required],
-      attribute_title_fr: ['Container Material Code', Validators.required],
+      attribute_title_en: ['', Validators.required],
+      attribute_title_fr: ['', Validators.required],
       attribute_description_en: ['', Validators.required],
       attribute_description_fr: ['', Validators.required],
       attribute_other_info: ['', Validators.required],
