@@ -5,7 +5,8 @@
                 <!-- Feature Search Tree -->
                 <input type="text" class="search-input" placeholder="Search" [(ngModel)]="searchString" (keyup)="checkIfEmpty($event)"  #input>
                 <!-- <input type="text" class="search-input" placeholder="Search"  #input> -->
-                <img src="/assets/icons/Icon feather-search.svg" class="search-icon">
+                <img *ngIf="searchIconValid" src="/assets/icons/Icon feather-search.svg" class="search-icon">
+                <img *ngIf="!searchIconValid" src="/assets/icons/Icon metro-cancel.svg" (click)="removeSearchString()" class="search-icon">
 
             </div>
  
@@ -16,7 +17,7 @@
                 </div>
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                       <!-- Feature Search Tree -->
-                    <mat-tree-node *matTreeNodeDef="let node"(click)="selectNode(node)"  matTreeNodePadding [style.display]=" this.searchString && hideLeafNode(node) ? 'none' : ''" matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
+                    <mat-tree-node *matTreeNodeDef="let node"(click)="selectNode(node)"  matTreeNodePadding [style.display]="searchString && hideLeafNode(node) ? 'none' : ''" matTreeNodePaddingIndent="40" cdkDrag cdkDragLockAxis="y">
                         <div class="c-pointer item-name d-flex align-center w-100" [ngClass]="node?.attribute_id === selectedNode?.attribute_id ? 'selected-item2' : ''">
                             <mat-icon class="c-pointer m-r-5">folder_open</mat-icon>
                             <span  [ngClass]="{
@@ -25,7 +26,7 @@
                         </div>
                     </mat-tree-node>
                       <!-- Feature Search Tree -->
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  [style.display]="this.searchString && hideParentNode(node) ? 'none' : 'flex'"  matTreeNodePadding matTreeNodePaddingIndent="40">
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" [class.nested-node]="treeControl.getLevel(node) > 0"  [style.display]="searchString && hideParentNode(node) ? 'none' : 'flex'"  matTreeNodePadding matTreeNodePaddingIndent="40">
                         <mat-icon class="mat-icon-rtl-mirror mat-arrow" mat-icon-button (click)="toggleNode(node)" 
                             [attr.aria-label]="'Toggle ' + node.name">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}

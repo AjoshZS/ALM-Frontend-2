@@ -27,6 +27,7 @@ export class TreeViewComponent implements OnInit {
   @Input() treeData: any;
   expandedNodes: any[] = [];
   prevExpansionModel: any;
+  searchIconValid: boolean = true;
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -133,17 +134,29 @@ export class TreeViewComponent implements OnInit {
   }
 
   selectNode(node:any){
+    console.log("selected node",node)
     this.selectedNode = node;
-    this.general.setcurrentNodeId(node?.module_id ? node?.module_id : (node.sub_module_id ? node?.sub_module_id : node?.attribute_id))
+    this.general.setcurrentNodeId(node?.attribute_id)
 
   }
 
   checkIfEmpty(event:any){
     if(event?.target.value == ''){
+      this.searchIconValid = true
       this.treeControl.collapseAll()
       this.treeControl.expand(this.treeData[0])
     }
-    else this.prevExpansionModel = this.treeControl.expansionModel.selected;
+    else {
+      this.searchIconValid = false
+      this.prevExpansionModel = this.treeControl.expansionModel.selection;
+      this.treeControl.expandAll()
+      // console.log("text entered",event?.target.value,this.treeControl)
+    }
+  }
+
+  removeSearchString(){
+    this.searchString = '';
+    this.searchIconValid = true
   }
 
  

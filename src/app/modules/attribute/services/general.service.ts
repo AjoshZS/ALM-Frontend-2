@@ -8,6 +8,7 @@ export class GeneralService {
 
   private formDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private id: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  private treeDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
   constructor() { }
 
@@ -26,6 +27,14 @@ export class GeneralService {
 
   getcurrentNodeId(): Observable<any> {
     return this.id.asObservable();
+  }
+
+  updateTreeData(data: any): void {
+    this.treeDataSubject.next(data);
+  }
+
+  getTreeData(): Observable<any> {
+    return this.treeDataSubject.asObservable();
   }
 
 }
