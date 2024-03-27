@@ -11,18 +11,22 @@ export class ApiService {
   authToken: any;
 
   getToken() {
-    if (this.authToken) return this.authToken;
-    else {
-      let token = localStorage.getItem('accessToken');
-      if (token === null) return '';
-      else return token;
-    }
+    if (typeof localStorage !== 'undefined') {
+      if (this.authToken) return this.authToken;
+      else {
+        let token = localStorage.getItem('accessToken');
+        if (token === null) return '';
+        else return token;
+      }
+    }  else return '';
   }
 
   getLoginToken() {
-    let token = localStorage.getItem('LoginToken');
-    if (token === null) return '';
-    else return token;
+    if (typeof localStorage !== 'undefined') {
+      let token = localStorage.getItem('LoginToken');
+      if (token === null) return '';
+      else return token;
+    } else return '';
   }
 
   setHeaders() {
