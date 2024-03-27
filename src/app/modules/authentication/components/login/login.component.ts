@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm!: FormGroup
   submitted: boolean = false;
+  showLoader: boolean = false;
 
   constructor(
     private fb: FormBuilder, private apiService: ApiService,private router:Router
@@ -28,7 +29,7 @@ export class LoginComponent {
 
   login() {
     this.submitted = true;
-
+    // this.showLoader = true;
     this.apiService.post(environment?.apiUrl+ '/login',this.loginForm.value).subscribe((data: any) => {
       let accessToken = data?.accessToken;
       let refreshToken = data?.refreshToken;
@@ -39,6 +40,8 @@ export class LoginComponent {
     
     })
     if (this.loginForm.valid) {
+      this.showLoader = true;
+
       console.log(this.loginForm.value);
 
     }

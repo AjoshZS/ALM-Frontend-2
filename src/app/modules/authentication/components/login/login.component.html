@@ -1,39 +1,31 @@
-<div class="container">
+<div class="container-main">
     <div class="sample">
-
+        <div *ngIf="showLoader"  class="loader-parent">
+            <img src="assets/gif/loader.gif">
+        </div>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="signin-main">
                 <i class="fa-regular fa-user signin-icon"></i>
                 <h3 class="m-l-5 m-t-18">Signin</h3>
             </div>
             <!-- <div  class="text-danger f-s-11">Invalid username or password</div> -->
-            <div>
+            <div class="input-container">
                 <input class="input-field input-item" type="text" id="username" name="username" placeholder="UserName"
                     formControlName="userName" >
-                <div *ngIf="loginForm.get('userName')?.invalid && (loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched)"
-                    class="text-danger f-s-11">
-                    <div *ngIf="loginForm.get('userName')?.errors?.['required']">Username is required</div>
-                </div>
                 <div *ngIf="submitted && loginForm.get('userName')?.hasError('required')" class="text-danger f-s-11">
                     Please enter a username</div>
             </div>
-            <div>
-                <input class="input-field field" type="password" id="password" name="password" placeholder="Password"
-                    formControlName="password">
-                    <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
-                    class="text-danger f-s-11">
-                    <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
-                </div>
+            <div class="input-container m-t-8">
+                <input class="input-field input-item" type="text" id="username" name="username" placeholder="Password"
+                    formControlName="password" >
                 <div *ngIf="submitted && loginForm.get('password')?.hasError('required')" class="text-danger f-s-11">
                     Please enter a password</div>
-
             </div>
             <div class="m-t-9 check-box-main">
-
-                <input type="checkbox" id="rememberMe" class="check-box">
-                <label for="rememberMe" class="f-s-11">
-                    Remember Me
-                </label>
+                <label class="container">Remember Me
+                    <input type="checkbox" >
+                    <span class="checkmark"></span>
+                  </label> 
 
             </div>
             <div class="main d-flex">
