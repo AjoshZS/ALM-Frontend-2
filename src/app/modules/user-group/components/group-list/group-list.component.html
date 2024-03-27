@@ -1,1 +1,43 @@
-<p>group-list works!</p>
+<div class="header-area">
+  <app-header></app-header>
+</div>
+<div class=" m-l-20 m-r-20">
+  <div class="d-flex header">
+    <i class="fa-solid fa-house"></i>
+    <p class="m-t-20 m-l-5 f-s-13 head">Home</p>
+    <mat-icon class="m-t-2">chevron_right</mat-icon>
+    <i class="fa-solid fa-user-group group-icon"></i>
+    <p class="m-t-19 m-l-5 f-s-13 head">Groups</p>
+
+  </div>
+  <hr class="horizontal-bar">
+</div>
+
+<div class="container">
+  <div class="first-div">
+    <div class="d-flex m-l-20">
+      <i class="fa-solid fa-user-group group-icon"></i>
+      <h3 class="f-s-11">GROUP LIST</h3>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search">
+        <img src="/assets/icons/Icon feather-search.svg" class="search-icon">
+
+      </div>
+      <div class="f-dropdown-codelist p-relative">
+        <input class="row sel-small-field f-code-li-name input-field"
+            id="code_list_name" readonly>
+        <mat-icon class="p-absolute icon-dropdown icon-dropdown" id="code_list_name"
+           >expand_more</mat-icon>
+        <div class="rep-att-dropdown dropdown-code-list dropdown">
+            <!-- <div class="dropdown-contents" 
+                >
+            </div> -->
+        </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="second-div">
+    <p>new</p>
+  </div>
+</div>

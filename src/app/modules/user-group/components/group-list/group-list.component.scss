@@ -1,0 +1,58 @@
+.header-area {
+    min-height: 65px;
+    max-height: 65px;
+  }
+.header{
+    align-items: center;
+    margin-left: 8px;
+}
+
+.group-icon{
+  color: #00b0bb;  
+}
+hr.horizontal-bar{
+  border: 0.5px solid #add8d8;
+}
+
+
+.container {
+  display: flex;
+  height: 100%;
+}
+.first-div {
+  flex: 70%;
+ 
+}
+.second-div {
+  flex: 30%;
+  
+}
+.search-container {
+  position: relative;
+  // width: 95%;
+}
+
+.search-icon {
+  position: absolute;
+  right: 61%;
+  top: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 17px;
+}
+.search-input {
+  outline: none;
+  width: 40%;
+  padding: 8px 32px 8px 8px;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin-top: 11px;
+  height: 29px;
+}
+.icon-dropdown{
+  top: 5px;
+  right: 0%;
+  cursor: pointer;
+}
