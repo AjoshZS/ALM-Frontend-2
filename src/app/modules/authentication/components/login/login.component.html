@@ -16,7 +16,7 @@
                     Please enter username</div>
             </div>
             <div class="input-container m-t-8">
-                <input class="input-field input-item" type="text" id="username" name="username" placeholder="Password"
+                <input class="input-field input-item" type="password" id="username" name="username" placeholder="Password"
                     formControlName="password" >
                 <div *ngIf="submitted && loginForm.get('password')?.hasError('required')" class="text-danger f-s-11">
                     Please enter password</div>
